@@ -1,0 +1,115 @@
+[gd_scene load_steps=15 format=3 uid="uid://ceajq0u7plpv8"]
+
+[ext_resource type="Script" path="res://characters/enemy/crawler/enemy_crawler.gd" id="1_gwkva"]
+[ext_resource type="Script" path="res://resuables/components/Stats Component/stats_component.gd" id="3_0brs1"]
+[ext_resource type="Script" path="res://resuables/FSM/fsm_Handler.gd" id="4_nob2r"]
+[ext_resource type="Script" path="res://characters/enemy/enemy_base_states/enemy_idle.gd" id="5_tfxp8"]
+[ext_resource type="Script" path="res://characters/enemy/enemy_base_states/enemy_chase.gd" id="6_rcwrr"]
+[ext_resource type="Script" path="res://characters/enemy/enemy_base_states/enemy_hit.gd" id="6_tewlm"]
+[ext_resource type="Script" path="res://characters/enemy/crawler/Crawldeath.gd" id="6_u4q7k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pp7p1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpnyi"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fwulj"]
+size = Vector2(8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2nwbj"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3oi24"]
+radius = 96.0833
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ga18c"]
+radius = 32.249
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j7lhn"]
+radius = 7.0
+
+[node name="Enemy_Crawler" type="CharacterBody2D" node_paths=PackedStringArray("FSM")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_gwkva")
+FSM = NodePath("EnemyFSM")
+
+[node name="HPbar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = -12.0
+theme_override_styles/background = SubResource("StyleBoxFlat_pp7p1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bpnyi")
+max_value = 1.0
+step = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="Stats_Component" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_0brs1")
+MAX_HP = 1
+CUR_HP = 1
+BULLETS = -1
+MELEE_DMG = 1
+RANGE_DMG = 1
+CHARGE_DMG = 1
+CONTACT_DMG = 1
+MAX_SPEED = 50
+FRICTION = 40
+ACCELERATION = 50
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_fwulj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2nwbj")
+
+[node name="Detection_Range" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Range"]
+shape = SubResource("CircleShape2D_3oi24")
+debug_color = Color(0.91, 0, 0.743167, 0.0823529)
+
+[node name="Attack_Range" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Range"]
+shape = SubResource("CircleShape2D_ga18c")
+debug_color = Color(0, 0.595, 0.7, 0)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_j7lhn")
+debug_color = Color(2.21401e-06, 0.640605, 0.347354, 0.42)
+
+[node name="EnemyFSM" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_nob2r")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="EnemyFSM" node_paths=PackedStringArray("ENEMY")]
+script = ExtResource("5_tfxp8")
+ENEMY = NodePath("../..")
+
+[node name="Chase" type="Node" parent="EnemyFSM" node_paths=PackedStringArray("ENEMY", "STATS")]
+script = ExtResource("6_rcwrr")
+ENEMY = NodePath("../..")
+STATS = NodePath("../../Stats_Component")
+
+[node name="Hit" type="Node" parent="EnemyFSM"]
+script = ExtResource("6_tewlm")
+
+[node name="Death" type="Node" parent="EnemyFSM"]
+script = ExtResource("6_u4q7k")
+
+[connection signal="body_entered" from="Detection_Range" to="." method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="Detection_Range" to="." method="_on_detection_range_body_exited"]
+[connection signal="area_entered" from="Attack_Range" to="." method="_on_attack_range_area_entered"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

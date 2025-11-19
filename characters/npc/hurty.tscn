@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://s13cfswf86q1"]
+
+[ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="1_0ambj"]
+[ext_resource type="Script" path="res://characters/npc/hurty.gd" id="1_mp8ib"]
+[ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://resuables/components/Stats Component/stats_component.tscn" id="2_faets"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vb7ke"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yfc87"]
+radius = 4.0
+
+[node name="hurty" type="StaticBody2D" node_paths=PackedStringArray("STATS") groups=["Enemy"]]
+collision_layer = 6
+collision_mask = 0
+script = ExtResource("1_mp8ib")
+STATS = NodePath("StatsComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.46, 0, 0.00766655, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_0ambj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 112
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vb7ke")
+debug_color = Color(0.47133, 0, 0.159825, 0.42)
+
+[node name="StatsComponent" parent="." instance=ExtResource("2_faets")]
+KNOCKBACK = 150.0
+CONTACT_DMG = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yfc87")
+debug_color = Color(0, 0.54043, 0.9571, 0.42)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

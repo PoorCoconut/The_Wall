@@ -1,0 +1,74 @@
+[gd_scene load_steps=14 format=3 uid="uid://yng3x2icw85h"]
+
+[ext_resource type="Texture2D" uid="uid://cecw15jir0wal" path="res://textures/enemies/spider.png" id="1_dkfnc"]
+[ext_resource type="Script" path="res://characters/enemy/spider/enemy_spider.gd" id="1_tjd5t"]
+[ext_resource type="PackedScene" uid="uid://cd0gji0ohlvxv" path="res://resuables/components/NewStats/HP_Component/hp_component.tscn" id="2_fe8sv"]
+[ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://resuables/components/Stats Component/stats_component.tscn" id="3_0fuac"]
+[ext_resource type="Script" path="res://resuables/components/NewStats/HP_Component/hp_component.gd" id="3_rh4bg"]
+[ext_resource type="Script" path="res://resuables/FSM/fsm_Handler.gd" id="6_8ob8t"]
+[ext_resource type="Script" path="res://characters/enemy/spider/spider_idle.gd" id="7_lclow"]
+[ext_resource type="Script" path="res://characters/enemy/spider/spider_move.gd" id="8_bl6ce"]
+[ext_resource type="Script" path="res://characters/enemy/spider/spider_die.gd" id="9_omntn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1uyno"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hkia1"]
+radius = 9.05539
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_riqyp"]
+radius = 96.0833
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1q3t"]
+radius = 8.0
+
+[node name="enemy_spider" type="CharacterBody2D"]
+script = ExtResource("1_tjd5t")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_dkfnc")
+hframes = 2
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_1uyno")
+debug_color = Color(0.980392, 0, 0.376471, 0)
+
+[node name="hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("CircleShape2D_hkia1")
+debug_color = Color(0.0627451, 0.65098, 0, 0)
+
+[node name="detection_Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_Range"]
+shape = SubResource("CircleShape2D_riqyp")
+debug_color = Color(0.810367, 0.00217686, 0.987188, 0)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i1q3t")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="HP_Component" parent="." instance=ExtResource("2_fe8sv")]
+script = ExtResource("3_rh4bg")
+MAX_HP = 1
+
+[node name="StatsComponent" parent="." instance=ExtResource("3_0fuac")]
+CONTACT_DMG = 1
+MAX_SPEED = 100
+FRICTION = 200
+ACCELERATION = 150
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("6_8ob8t")
+
+[node name="Idle" type="Node" parent="FSM"]
+script = ExtResource("7_lclow")
+
+[node name="Move" type="Node" parent="FSM"]
+script = ExtResource("8_bl6ce")
+
+[node name="Die" type="Node" parent="FSM"]
+script = ExtResource("9_omntn")

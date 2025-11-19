@@ -1,0 +1,59 @@
+THE WALL TO-DO LIST
+
+-Ysort is  must
+-Fix Dash Trail Mirroring
+-KNOCKBACK
+	-When attacking u get "knockbacked" [or maybe reduced friction?]
+	-When hit, you get knockbacked
+	-When dashing into a wall you get knockbacked [?]
+-Make a HURT system (at least for player)
+	-How will the player switch to HURT if it's in a used FSM
+	^You OVERRIDE the FSM to make HURT the current STATE
+	^-But even in over riding, who listens for the condition and where does it 		listen?
+	^You put the "listener" in the FSM Handler!
+	
+-Make a DEATH system (at least for player)
+-Unify Attack and Movement States
+	-Look for nodes that rely on "Seeing" the attack fsm [like the player charbod]
+
+8-17-25
+BUG:
+Bullet flashes in wrong position first
+
+TO DO LIST 8-07-25
+-Bullet /
+	-BUG! 	It flashes towards a wrong position before "teleporting" into the 		correct location
+-Attack Animations /
+-Clean Up State Machine
+-Enemy Template
+	-Bullet Spawner /
+-Update Sprite much bigger [attacks don't line up with collision shape] /
+
+====8-09-25====
+BUG REPORT:
+WHEN CLICKING ATTACK [EITHER MELEE OR GUN], DASH GOES INTO THAT DIRECTION
+
+Sometimes, when spamming DASH AND [ONE OF THE] ATTACK BUTTONS, THE DASH GETS WEIRD AND THE STATE MACHINE THROWS AN ERROR [INVALID CHANGE STATE]
+
+The animation player throws a WARNING, something about the HITBOX COLLISIONPOLY
+^^SOLVED
+
+================================================================================
+PLAYER STATS:
+Player Stats Should Be
+HP = 5
+Cur HP = HP
+Bullets = 5 
+Knockback = 250?
+Weight = 0
+MDmg =
+RDmg = 
+CDmg =
+ConDmg = 
+MAX_SPEED = 115
+FRICTION = 215
+ACCEL = 10
+DASH DIST = 250
+DASH ACCEL = 110
+DASH FRICTION = 50
+LIGHT AURA = 

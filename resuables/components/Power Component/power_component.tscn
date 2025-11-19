@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0x4tu2ftbej3"]
+
+[ext_resource type="Script" path="res://resuables/components/Power Component/power_component.gd" id="1_ksvb1"]
+
+[node name="powerComponent" type="Node"]
+script = ExtResource("1_ksvb1")

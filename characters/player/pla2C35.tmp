@@ -1,0 +1,315 @@
+[gd_scene load_steps=36 format=3 uid="uid://bwyyko6bjn4hw"]
+
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_1uybl"]
+[ext_resource type="Texture2D" uid="uid://deutla8tjguyt" path="res://textures/characters/player.png" id="2_6jkky"]
+[ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://resuables/components/Stats Component/stats_component.tscn" id="3_n342w"]
+[ext_resource type="Script" path="res://resuables/FSM/fsm_Handler.gd" id="4_38wst"]
+[ext_resource type="Script" path="res://characters/player/FSM/state_idle.gd" id="5_jmiis"]
+[ext_resource type="Script" path="res://characters/player/FSM/state_run.gd" id="6_wdudx"]
+[ext_resource type="Script" path="res://characters/player/FSM/state_dash.gd" id="7_bemkg"]
+[ext_resource type="Script" path="res://characters/player/FSM/state_atkidle.gd" id="8_bdgmi"]
+[ext_resource type="Script" path="res://characters/player/FSM/state_atk1.gd" id="9_fvcfl"]
+[ext_resource type="Script" path="res://characters/player/FSM/state_atk2.gd" id="10_s44gf"]
+[ext_resource type="Script" path="res://characters/player/FSM/state_atk3.gd" id="11_q5lia"]
+
+[sub_resource type="Animation" id="Animation_ikukg"]
+resource_name = "Atk_Down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_xuoga"]
+resource_name = "Atk_Left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_br1pq"]
+resource_name = "Atk_Right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_1je43"]
+resource_name = "Atk_Up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_2vo2b"]
+resource_name = "Idle_Down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_08e71"]
+resource_name = "Idle_Left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_msus0"]
+resource_name = "Idle_Right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_fd4qs"]
+resource_name = "Idle_Up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_2l8tm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5wive"]
+_data = {
+"Atk_Down": SubResource("Animation_ikukg"),
+"Atk_Left": SubResource("Animation_xuoga"),
+"Atk_Right": SubResource("Animation_br1pq"),
+"Atk_Up": SubResource("Animation_1je43"),
+"Idle_Down": SubResource("Animation_2vo2b"),
+"Idle_Left": SubResource("Animation_08e71"),
+"Idle_Right": SubResource("Animation_msus0"),
+"Idle_Up": SubResource("Animation_fd4qs"),
+"RESET": SubResource("Animation_2l8tm")
+}
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_60qih"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_brycp"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_he7gk"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_lut60"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pcvps"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mlyiw"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_64uqj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tlrve"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rr5ow"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d0mve"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_obwqr"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uk55n"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ii6yy"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gjsc1"]
+states/Atk/node = SubResource("AnimationNodeBlendSpace2D_60qih")
+states/Atk/position = Vector2(443, 169)
+states/Dash/node = SubResource("AnimationNodeBlendSpace2D_brycp")
+states/Dash/position = Vector2(614, 3)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_he7gk")
+states/Idle/position = Vector2(332, 100)
+states/Run/node = SubResource("AnimationNodeBlendSpace2D_lut60")
+states/Run/position = Vector2(443, 3)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_pcvps"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_mlyiw"), "Run", "Dash", SubResource("AnimationNodeStateMachineTransition_64uqj"), "Idle", "Atk", SubResource("AnimationNodeStateMachineTransition_tlrve"), "Run", "Atk", SubResource("AnimationNodeStateMachineTransition_rr5ow"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_d0mve"), "Atk", "Idle", SubResource("AnimationNodeStateMachineTransition_obwqr"), "Dash", "Idle", SubResource("AnimationNodeStateMachineTransition_uk55n"), "Dash", "Run", SubResource("AnimationNodeStateMachineTransition_ii6yy")]
+graph_offset = Vector2(-102, 18)
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("FSM_MOV", "FSM_ATK")]
+script = ExtResource("1_1uybl")
+FSM_MOV = NodePath("playerFSM_MOV")
+FSM_ATK = NodePath("playerFSM_ATK")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_6jkky")
+hframes = 14
+vframes = 8
+
+[node name="collision" type="CollisionShape2D" parent="."]
+
+[node name="StatsComponent" parent="." instance=ExtResource("3_n342w")]
+MAX_SPEED = 115.0
+FRICTION = 4.5
+ACCELERATION = 6.0
+dash = true
+DASH_DIST = 690.0
+DASH_ACCEL = 0.1
+DASH_FRIC = 100.0
+
+[node name="playerFSM_MOV" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_38wst")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="playerFSM_MOV"]
+script = ExtResource("5_jmiis")
+
+[node name="Run" type="Node" parent="playerFSM_MOV" node_paths=PackedStringArray("player", "stat_comp")]
+script = ExtResource("6_wdudx")
+player = NodePath("../..")
+stat_comp = NodePath("../../StatsComponent")
+
+[node name="Dash" type="Node" parent="playerFSM_MOV" node_paths=PackedStringArray("player", "stat_comp")]
+script = ExtResource("7_bemkg")
+player = NodePath("../..")
+stat_comp = NodePath("../../StatsComponent")
+Early_Time = 0.4
+Window_Time = 0.1
+Reset_Time = 0.4
+CHAIN_FORCE = 0.03
+
+[node name="dashTimer" type="Timer" parent="playerFSM_MOV/Dash"]
+wait_time = 0.1
+one_shot = true
+
+[node name="chainTimer" type="Timer" parent="playerFSM_MOV/Dash"]
+one_shot = true
+
+[node name="Death" type="Node" parent="playerFSM_MOV"]
+
+[node name="Hurt" type="Node" parent="playerFSM_MOV"]
+
+[node name="playerFSM_ATK" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_38wst")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="playerFSM_ATK"]
+script = ExtResource("8_bdgmi")
+
+[node name="Atk1" type="Node" parent="playerFSM_ATK"]
+script = ExtResource("9_fvcfl")
+
+[node name="ComboTimer" type="Timer" parent="playerFSM_ATK/Atk1"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Atk2" type="Node" parent="playerFSM_ATK"]
+script = ExtResource("10_s44gf")
+
+[node name="ComboTimer" type="Timer" parent="playerFSM_ATK/Atk2"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Atk3" type="Node" parent="playerFSM_ATK"]
+script = ExtResource("11_q5lia")
+
+[node name="ComboTimer" type="Timer" parent="playerFSM_ATK/Atk3"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+
+[node name="playerAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5wive")
+}
+autoplay = "Idle_Down"
+
+[node name="AnimTree" type="AnimationTree" parent="."]
+active = false
+tree_root = SubResource("AnimationNodeStateMachine_gjsc1")
+anim_player = NodePath("../playerAnim")
+parameters/Atk/blend_position = Vector2(0, 0)
+parameters/Dash/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Run/blend_position = Vector2(0, 0)
+
+[connection signal="timeout" from="playerFSM_MOV/Dash/dashTimer" to="playerFSM_MOV/Dash" method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="playerFSM_MOV/Dash/chainTimer" to="playerFSM_MOV/Dash" method="_on_chain_timer_timeout"]
+[connection signal="timeout" from="playerFSM_ATK/Atk1/ComboTimer" to="playerFSM_ATK/Atk1" method="_on_combo_timer_timeout"]
+[connection signal="timeout" from="playerFSM_ATK/Atk2/ComboTimer" to="playerFSM_ATK/Atk2" method="_on_combo_timer_timeout"]
+[connection signal="timeout" from="playerFSM_ATK/Atk3/ComboTimer" to="playerFSM_ATK/Atk3" method="_on_combo_timer_timeout"]

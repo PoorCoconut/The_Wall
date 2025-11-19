@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://1315wi6a3pnl"]
+
+[ext_resource type="Script" path="res://ui/debug/ui_debug.gd" id="1_yhsrp"]
+
+[node name="ui_debug" type="CanvasLayer"]
+script = ExtResource("1_yhsrp")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.0125
+anchor_top = 0.0166667
+anchor_right = 0.9875
+anchor_bottom = 0.983333
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="last_dir" type="Label" parent="Control/Player"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Last Dir: "
+
+[node name="unq_last_dir" type="Label" parent="Control/Player"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Uniq Last Dir: "
+
+[node name="cur_dir" type="Label" parent="Control/Player"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cur Dir: "
+
+[node name="velocity" type="Label" parent="Control/Player"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "V: "
+
+[node name="top_v" type="Label" parent="Control/Player"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Top V: "
+
+[node name="cur_state" type="Label" parent="Control/Player"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cur State: "
+
+[node name="dash_chain" type="Label" parent="Control/Player"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Chains: 0 "
