@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://dkn6mu0v75054"]
+
+[ext_resource type="Script" uid="uid://8hu1ti3t7qtx" path="res://characters/enemy/test_basic_enemy/test_enemy.gd" id="1_4qekv"]
+[ext_resource type="Texture2D" uid="uid://cecw15jir0wal" path="res://textures/enemies/spider.png" id="1_d2nw4"]
+[ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://resuables/components/Hitbox and Hurtbox/hurtbox.tscn" id="2_eu3en"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d2nw4"]
+radius = 4.1231055
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu3en"]
+atlas = ExtResource("1_d2nw4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qekv"]
+atlas = ExtResource("1_d2nw4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0fgnf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu3en")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qekv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="test_enemy" type="CharacterBody2D"]
+script = ExtResource("1_4qekv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d2nw4")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0fgnf")
+autoplay = "default"
+frame_progress = 0.44587666
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_eu3en")]

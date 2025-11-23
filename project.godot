@@ -13,6 +13,8 @@ config_version=5
 config/name="The Wall"
 run/main_scene="res://scenes/levelTest/lvl_test.tscn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -89,13 +91,11 @@ debug={
 
 [layer_names]
 
-2d_physics/layer_1="Player"
-2d_physics/layer_2="Enemy"
-2d_physics/layer_3="World"
-2d_physics/layer_4="Atk_Player"
-2d_physics/layer_5="Atk_Enmy_Safe"
-2d_physics/layer_6="Atk_Enmy_Neutral"
-2d_physics/layer_7="Atk_Enmy_Hurt"
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="Player_Hurtbox"
+2d_physics/layer_6="Enemy_Hurtbox"
 
 [physics]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://bwyyko6bjn4hw"]
+[gd_scene load_steps=118 format=3 uid="uid://bwyyko6bjn4hw"]
 
 [ext_resource type="Script" uid="uid://cwsj5d0hp6cvp" path="res://characters/player/player.gd" id="1_1uybl"]
 [ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://resuables/components/Stats Component/stats_component.tscn" id="3_n342w"]
@@ -71,13 +71,6 @@ region = Rect2(16, 32, 16, 16)
 [sub_resource type="Gradient" id="Gradient_q0ixk"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4o1dx"]
-radius = 4.0
-height = 14.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhari"]
-size = Vector2(28.5, 40.0001)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yoru2"]
 radius = 4.0
 height = 8.0
@@ -110,18 +103,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [33, 34, 35, 36]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1.5708]
-}
 
 [sub_resource type="Animation" id="Animation_2ioxi"]
 resource_name = "Atk_Down2"
@@ -150,18 +131,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [37, 38, 39, 40]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1.5708]
 }
 
 [sub_resource type="Animation" id="Animation_xuoga"]
@@ -192,18 +161,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [41, 42, 43, 44]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3.14159]
-}
 
 [sub_resource type="Animation" id="Animation_ahqg8"]
 resource_name = "Atk_Left2"
@@ -232,18 +189,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [45, 46, 47, 48]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3.14159]
 }
 
 [sub_resource type="Animation" id="Animation_br1pq"]
@@ -274,18 +219,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [41, 42, 43, 44]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0.0]
-}
 
 [sub_resource type="Animation" id="Animation_e0r8a"]
 resource_name = "Atk_Right2"
@@ -314,18 +247,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [45, 46, 47, 48]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_1je43"]
@@ -356,18 +277,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [49, 50, 51, 52]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [-1.5708]
-}
 
 [sub_resource type="Animation" id="Animation_4ptur"]
 resource_name = "Atk_Up2"
@@ -396,18 +305,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [53, 54, 55, 56]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [-1.5708]
 }
 
 [sub_resource type="Animation" id="Animation_pti4p"]
@@ -913,22 +810,10 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HitBox:rotation")
+tracks/3/path = NodePath("Marker2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.5708]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Marker2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1534,31 +1419,6 @@ scale = Vector2(0.05, 0.05)
 texture = ExtResource("3_nvg7b")
 hframes = 8
 vframes = 8
-
-[node name="CollisionPoly2" type="CollisionPolygon2D" parent="."]
-visible = false
-position = Vector2(-17, 4.31259e-05)
-rotation = 3.14159
-polygon = PackedVector2Array(-17, 8, -5.00002, 8.00003, 6.99999, 4.00006, 19, -3.99991, 19, -7.99991, 11, -15.9999, 3.00005, -19.9999, -4.99995, -20, -20.9999, -20, -8.99997, -12)
-disabled = true
-
-[node name="HurtBox" type="Area2D" parent="." groups=["Player"]]
-unique_name_in_owner = true
-position = Vector2(0, 6)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource("CapsuleShape2D_4o1dx")
-debug_color = Color(0.071, 0.649505, 0, 0.42)
-
-[node name="HitBox" type="Area2D" parent="."]
-rotation = 1.5708
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionPoly" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(21.75, -7.23998e-05)
-shape = SubResource("RectangleShape2D_bhari")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11)

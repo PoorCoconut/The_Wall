@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnb1ew1vyyav1"]
+
+[ext_resource type="Script" uid="uid://orehrdaulo3" path="res://test.gd" id="1_8dvvl"]
+[ext_resource type="PackedScene" uid="uid://bwyyko6bjn4hw" path="res://characters/player/player.tscn" id="2_kisey"]
+
+[node name="test" type="Node2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_8dvvl")
+
+[node name="Window" type="Window" parent="."]
+transparent_bg = true
+oversampling_override = 1.0
+title = "This is a test"
+initial_position = 1
+size = Vector2i(400, 400)
+borderless = true
+always_on_top = true
+transparent = true
+theme_override_colors/title_color = Color(0, 0, 0, 1)
+
+[node name="NativeAcceptDialog" type="NativeAcceptDialog" parent="Window"]
+title = "WHAT?????"
+dialog_text = "IM IN A GAME!?!?!?"
+
+[node name="player" parent="Window" instance=ExtResource("2_kisey")]
+texture_filter = 1
+position = Vector2(251.99998, 240)
+scale = Vector2(3, 3)
+
+[node name="Camera2D" parent="Window/player" index="9"]
+position_smoothing_enabled = false
+
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+
+[editable path="Window/player"]

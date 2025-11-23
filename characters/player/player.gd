@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var STATS : Stats_Component
 const bullet_path : PackedScene = preload("res://resuables/projectile/bullet.tscn")
 
-
 var damage_received : int
 
 ##Positioning
@@ -24,10 +23,6 @@ var enem_knockback : float
 func _ready() -> void:
 	%HP_BAR.max_value = STATS.MAX_HP
 	%HP_BAR.value = STATS.CUR_HP
-	
-	for enemy in get_tree().get_nodes_in_group("Enemy"):
-		if enemy.has_signal("deal_damage"):
-			enemy.deal_damage.connect(got_hit)
 
 func _process(_delta: float) -> void:
 	update_debug()
@@ -51,19 +46,23 @@ func _physics_process(_delta: float) -> void:
 		last_dir = -(last_dir - mouse_pos).normalized()
 	%Marker2D.look_at(get_global_mouse_position())
 
-func got_hit(damage:int, knockback:float): #Forces a STATE CHANGE
-	print("Player got hit for ", damage, " damage and ", knockback, " knockback strength")
-	enem_knockback = knockback
-	#Saves player from a One Shot death
-	if STATS.CUR_HP == STATS.MAX_HP and damage >= STATS.CUR_HP: 
-		STATS.CUR_HP = 1
-		#print("saved from ONE SHOT")
-	else:
-		STATS.CUR_HP = clamp(STATS.CUR_HP - damage, 0, STATS.MAX_HP)
-	%HP_BAR.value = STATS.CUR_HP
-	%HurtBox.set_deferred("monitorable", false)
-	%IFrame.start()
-	FSM.force_change_state("Hurt")
+#func got_hit(damage:int, knockback:float): #Forces a STATE CHANGE
+	#print("Player got hit for ", damage, " damage and ", knockback, " knockback strength")
+	#enem_knockback = knockback
+	##Saves player from a One Shot death
+	#if STATS.CUR_HP == STATS.MAX_HP and damage >= STATS.CUR_HP: 
+		#STATS.CUR_HP = 1
+		##print("saved from ONE SHOT")
+	#else:
+		#STATS.CUR_HP = clamp(STATS.CUR_HP - damage, 0, STATS.MAX_HP)
+	#%HP_BAR.value = STATS.CUR_HP
+	#%HurtBox.set_deferred("monitorable", false)
+	#%IFrame.start()
+	#FSM.force_change_state("Hurt")
+
+func damage_taken():
+	pass
+
 
 func _on_i_frame_timeout() -> void:
 	%HurtBox.set_deferred("monitorable", true)
