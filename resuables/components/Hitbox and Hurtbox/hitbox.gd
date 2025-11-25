@@ -1,5 +1,16 @@
 extends Area2D
+class_name ComponentHitbox
+var parent
+var damage : int = 0
 
+func _ready() -> void:
+	parent = self.get_parent()
 
 func _on_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+	if parent.has_method("get_damage"):
+		damage = parent.get_damage()
+	var area_parent = area.get_parent()
+	if area_parent.has_method("take_damage"):
+		area_parent.take_damage(damage)
+	else:
+		print(parent.name + " has no take damage function")

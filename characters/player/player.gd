@@ -77,3 +77,6 @@ func shoot():
 	bullet.global_rotation = %Marker2D.global_rotation
 	
 	get_tree().root.add_child(bullet) #Instantiate the bullet
+
+func get_damage():
+	return STATS.MELEE_DMG

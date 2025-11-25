@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dcrdodo35gyjr" path="res://scenes/levelTest/lvl_test.gd" id="1_y3b4w"]
 [ext_resource type="PackedScene" uid="uid://s13cfswf86q1" path="res://characters/npc/hurty.tscn" id="4_oodsc"]
 [ext_resource type="Texture2D" uid="uid://oknw5acrv0iw" path="res://textures/Pixel Art Top Down - Basic v1.2.0/Texture/TX Tileset Grass.png" id="5_uftbt"]
-[ext_resource type="PackedScene" uid="uid://yng3x2icw85h" path="res://characters/enemy/spider/enemy_spider.tscn" id="7_87j3k"]
+[ext_resource type="PackedScene" uid="uid://dkn6mu0v75054" path="res://characters/enemy/test_basic_enemy/test_enemy.tscn" id="7_7jvr5"]
 [ext_resource type="Texture2D" uid="uid://dfanb38e8dq22" path="res://textures/Pixel Art Top Down - Basic v1.2.0/Texture/Extra/TX Plant with Shadow.png" id="8_g47hi"]
 [ext_resource type="Texture2D" uid="uid://ddr0rmq6paf5m" path="res://textures/Pixel Art Top Down - Basic v1.2.0/Texture/TX Struct.png" id="9_qiwk8"]
 
@@ -526,5 +526,5 @@ position = Vector2(269, 204)
 [node name="player" parent="." instance=ExtResource("1_5o5pt")]
 position = Vector2(233, 243)
 
-[node name="enemy_spider" parent="." instance=ExtResource("7_87j3k")]
-position = Vector2(68, 224)
+[node name="test_enemy" parent="." instance=ExtResource("7_7jvr5")]
+position = Vector2(167, 247)

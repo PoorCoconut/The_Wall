@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://bwyyko6bjn4hw"]
+[gd_scene load_steps=120 format=3 uid="uid://bwyyko6bjn4hw"]
 
 [ext_resource type="Script" uid="uid://cwsj5d0hp6cvp" path="res://characters/player/player.gd" id="1_1uybl"]
 [ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://resuables/components/Stats Component/stats_component.tscn" id="3_n342w"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://bmuovlyby71qn" path="res://characters/player/FSM/state_shoot.gd" id="12_1rh3m"]
 [ext_resource type="Script" uid="uid://63d2ig4v6vpc" path="res://characters/player/Misc/player_anim.gd" id="13_mf6ab"]
 [ext_resource type="Script" uid="uid://df2e1af20srmy" path="res://characters/player/FSM/state_death.gd" id="14_jmusd"]
+[ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://resuables/components/Hitbox and Hurtbox/hitbox.tscn" id="18_d2agh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg4e1"]
 bg_color = Color(0, 0, 0, 1)
@@ -103,6 +104,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [33, 34, 35, 36]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_2ioxi"]
 resource_name = "Atk_Down2"
@@ -131,6 +156,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [37, 38, 39, 40]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_xuoga"]
@@ -161,6 +210,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [41, 42, 43, 44]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5707964]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_ahqg8"]
 resource_name = "Atk_Left2"
@@ -189,6 +262,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [45, 46, 47, 48]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5707964]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_br1pq"]
@@ -219,6 +316,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [41, 42, 43, 44]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5707964]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_e0r8a"]
 resource_name = "Atk_Right2"
@@ -247,6 +368,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [45, 46, 47, 48]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5707964]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_1je43"]
@@ -277,6 +422,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [49, 50, 51, 52]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.1415927]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_4ptur"]
 resource_name = "Atk_Up2"
@@ -305,6 +474,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [53, 54, 55, 56]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.1415927]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_pti4p"]
@@ -819,6 +1012,30 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(4, 2)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hitbox:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hitbox:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_qjtrx"]
 resource_name = "Run_Down"
@@ -1282,6 +1499,9 @@ states/Shoot/position = Vector2(846, 310.738)
 transitions = ["Dash", "Run", SubResource("AnimationNodeStateMachineTransition_ljtlk"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_7na6v"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_jo80b"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_c51oc"), "Run", "Dash", SubResource("AnimationNodeStateMachineTransition_x3lyn"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_eyira"), "Run", "Hurt", SubResource("AnimationNodeStateMachineTransition_wvcuu"), "Dash", "Hurt", SubResource("AnimationNodeStateMachineTransition_bx4kp"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_5xnh4"), "Hurt", "Run", SubResource("AnimationNodeStateMachineTransition_45tql"), "Idle", "Atk1", SubResource("AnimationNodeStateMachineTransition_q54ot"), "Atk1", "Atk2", SubResource("AnimationNodeStateMachineTransition_pkcke"), "Atk2", "Run", SubResource("AnimationNodeStateMachineTransition_cncfm"), "Atk2", "Hurt", SubResource("AnimationNodeStateMachineTransition_fag52"), "Atk2", "Shoot", SubResource("AnimationNodeStateMachineTransition_n4fxc"), "Atk2", "Atk1", SubResource("AnimationNodeStateMachineTransition_6mucm"), "Run", "Atk1", SubResource("AnimationNodeStateMachineTransition_faxkq"), "Atk1", "Hurt", SubResource("AnimationNodeStateMachineTransition_josxs"), "Shoot", "Hurt", SubResource("AnimationNodeStateMachineTransition_mtccg"), "Atk1", "Shoot", SubResource("AnimationNodeStateMachineTransition_uvckt"), "Idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_1vdpy"), "Run", "Shoot", SubResource("AnimationNodeStateMachineTransition_ffmgw"), "Shoot", "Run", SubResource("AnimationNodeStateMachineTransition_li8kq"), "Atk1", "Run", SubResource("AnimationNodeStateMachineTransition_6ldms")]
 graph_offset = Vector2(117.877, -119.487)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpo3a"]
+size = Vector2(30, 19)
+
 [sub_resource type="Gradient" id="Gradient_aqrcq"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
@@ -1314,7 +1534,7 @@ show_percentage = false
 MAX_HP = 5
 CUR_HP = 5
 BULLETS = 5
-MELEE_DMG = 1
+MELEE_DMG = 5
 RANGE_DMG = 1
 CHARGE_DMG = 2
 MAX_SPEED = 115
@@ -1449,6 +1669,14 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
 parameters/Shoot/blend_position = Vector2(0.410339, -0.522124)
 
+[node name="Hitbox" parent="." instance=ExtResource("18_d2agh")]
+collision_mask = 32
+monitoring = false
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 16.5)
+shape = SubResource("RectangleShape2D_fpo3a")
+
 [node name="FSM" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_38wst")
 initial_state = NodePath("Idle")
@@ -1538,3 +1766,5 @@ texture = SubResource("GradientTexture2D_d2agh")
 [connection signal="timeout" from="FSM/Atk2/ComboTimer" to="FSM/Atk2" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="FSM/Shoot/Gun_CD" to="FSM/Shoot" method="_on_gun_cd_timeout"]
 [connection signal="timeout" from="IFrame" to="." method="_on_i_frame_timeout"]
+
+[editable path="Hitbox"]
