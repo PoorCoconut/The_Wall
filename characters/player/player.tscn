@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://bwyyko6bjn4hw"]
+[gd_scene load_steps=122 format=3 uid="uid://bwyyko6bjn4hw"]
 
 [ext_resource type="Script" uid="uid://cwsj5d0hp6cvp" path="res://characters/player/player.gd" id="1_1uybl"]
 [ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://resuables/components/Stats Component/stats_component.tscn" id="3_n342w"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b2plp3vxgp522" path="res://characters/player/FSM/state_run.gd" id="6_wdudx"]
 [ext_resource type="Script" uid="uid://civu6u7lxnawv" path="res://characters/player/FSM/state_dash.gd" id="7_bemkg"]
 [ext_resource type="Texture2D" uid="uid://vga40wswf8s0" path="res://textures/characters/PlayerDashes.png" id="7_cidxy"]
+[ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://resuables/components/Hitbox and Hurtbox/hurtbox.tscn" id="8_fpo3a"]
 [ext_resource type="Script" uid="uid://f0jccyhd3edb" path="res://characters/player/FSM/state_hurt.gd" id="8_gxt3p"]
 [ext_resource type="Script" uid="uid://07uiwqv6ap1t" path="res://characters/player/FSM/state_atk1.gd" id="9_fvcfl"]
 [ext_resource type="Script" uid="uid://blikevan384uj" path="res://characters/player/FSM/state_atk2.gd" id="10_s44gf"]
@@ -1499,6 +1500,10 @@ states/Shoot/position = Vector2(846, 310.738)
 transitions = ["Dash", "Run", SubResource("AnimationNodeStateMachineTransition_ljtlk"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_7na6v"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_jo80b"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_c51oc"), "Run", "Dash", SubResource("AnimationNodeStateMachineTransition_x3lyn"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_eyira"), "Run", "Hurt", SubResource("AnimationNodeStateMachineTransition_wvcuu"), "Dash", "Hurt", SubResource("AnimationNodeStateMachineTransition_bx4kp"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_5xnh4"), "Hurt", "Run", SubResource("AnimationNodeStateMachineTransition_45tql"), "Idle", "Atk1", SubResource("AnimationNodeStateMachineTransition_q54ot"), "Atk1", "Atk2", SubResource("AnimationNodeStateMachineTransition_pkcke"), "Atk2", "Run", SubResource("AnimationNodeStateMachineTransition_cncfm"), "Atk2", "Hurt", SubResource("AnimationNodeStateMachineTransition_fag52"), "Atk2", "Shoot", SubResource("AnimationNodeStateMachineTransition_n4fxc"), "Atk2", "Atk1", SubResource("AnimationNodeStateMachineTransition_6mucm"), "Run", "Atk1", SubResource("AnimationNodeStateMachineTransition_faxkq"), "Atk1", "Hurt", SubResource("AnimationNodeStateMachineTransition_josxs"), "Shoot", "Hurt", SubResource("AnimationNodeStateMachineTransition_mtccg"), "Atk1", "Shoot", SubResource("AnimationNodeStateMachineTransition_uvckt"), "Idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_1vdpy"), "Run", "Shoot", SubResource("AnimationNodeStateMachineTransition_ffmgw"), "Shoot", "Run", SubResource("AnimationNodeStateMachineTransition_li8kq"), "Atk1", "Run", SubResource("AnimationNodeStateMachineTransition_6ldms")]
 graph_offset = Vector2(117.877, -119.487)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyfeq"]
+radius = 5.0
+height = 14.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fpo3a"]
 size = Vector2(30, 19)
 
@@ -1669,6 +1674,13 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
 parameters/Shoot/blend_position = Vector2(0.410339, -0.522124)
 
+[node name="Hurtbox" parent="." instance=ExtResource("8_fpo3a")]
+position = Vector2(0, 8)
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_kyfeq")
+
 [node name="Hitbox" parent="." instance=ExtResource("18_d2agh")]
 collision_mask = 32
 monitoring = false
@@ -1767,4 +1779,5 @@ texture = SubResource("GradientTexture2D_d2agh")
 [connection signal="timeout" from="FSM/Shoot/Gun_CD" to="FSM/Shoot" method="_on_gun_cd_timeout"]
 [connection signal="timeout" from="IFrame" to="." method="_on_i_frame_timeout"]
 
+[editable path="Hurtbox"]
 [editable path="Hitbox"]

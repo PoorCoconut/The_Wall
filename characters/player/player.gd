@@ -80,3 +80,6 @@ func shoot():
 
 func get_damage():
 	return STATS.MELEE_DMG
+
+func take_damage(damage: int):
+	print("player took ", damage, " damage")
