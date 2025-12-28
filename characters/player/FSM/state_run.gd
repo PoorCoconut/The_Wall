@@ -1,7 +1,7 @@
 extends State
 class_name PlayerRun
 
-@export var player : CharacterBody2D
+@export var PLAYER : Player
 @export var STATS : Stats_Component
 
 func enter():
@@ -17,19 +17,21 @@ func update(delta:float):
 		Input.get_action_strength("down") - Input.get_action_strength("up")
 		)
 	if last_input.length() > 0:
-		player.last_dir = last_input
+		PLAYER.last_dir = last_input
 	
 	
 	
 	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
-		player.last_dir_x = Input.get_action_strength("right") - Input.get_action_strength("left")
+		PLAYER.last_dir_x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	if Input.is_action_pressed("down") or Input.is_action_pressed("up"):
-		player.last_dir_y = Input.get_action_strength("up") - Input.get_action_strength("down")
+		PLAYER.last_dir_y = Input.get_action_strength("up") - Input.get_action_strength("down")
 	
-	if Input.is_action_just_pressed("dash") and STATS.dash == true: #Looks if about to dash
+	if Input.is_action_just_pressed("dash") and STATS.dash and PLAYER.canDash:  #Looks if about to dash
 		transition.emit(self, "Dash")
+		
 	elif(Input.is_action_just_pressed("attack")):
 		transition.emit(self, "Atk1")
+		
 	elif(Input.is_action_just_pressed("attack_range")):
 		transition.emit(self, "Shoot")
 
@@ -50,13 +52,13 @@ func get_input():
 
 func movement(delta : float):
 	var direction = get_input()
-	player.cur_dir = direction
+	PLAYER.cur_dir = direction
 	if direction.length() > 0:
-		player.velocity = player.velocity.lerp(direction * STATS.MAX_SPEED, STATS.ACCELERATION * delta)
+		PLAYER.velocity = PLAYER.velocity.lerp(direction * STATS.MAX_SPEED, STATS.ACCELERATION * delta)
 	else:
-		player.velocity = player.velocity.move_toward(Vector2.ZERO, STATS.FRICTION * delta)
+		PLAYER.velocity = PLAYER.velocity.move_toward(Vector2.ZERO, STATS.FRICTION * delta)
 	
 	#Transition to Idle
-	if player.velocity == Vector2.ZERO:
+	if PLAYER.velocity == Vector2.ZERO:
 		transition.emit(self, "Idle")
-	player.move_and_slide()
+	PLAYER.move_and_slide()

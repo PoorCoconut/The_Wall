@@ -2,6 +2,7 @@ extends State
 class_name PlayerIdle
 
 @export var STATS : Stats_Component
+@export var PLAYER : Player
 
 func enter():
 	pass
@@ -10,7 +11,7 @@ func update(_delta:float): #"Generally holds the transitions"
 	if(Input.get_vector("left", "right", "up", "down")):
 		#Transition to Run State
 		transition.emit(self, "Run")
-	elif(Input.is_action_just_pressed("dash") and STATS.dash):
+	elif(Input.is_action_just_pressed("dash") and STATS.dash and PLAYER.canDash):
 		transition.emit(self, "Dash")
 	elif(Input.is_action_just_pressed("attack")):
 		transition.emit(self, "Atk1")

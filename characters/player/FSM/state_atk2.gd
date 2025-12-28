@@ -1,7 +1,7 @@
 extends State
 class_name Player_Atk2
 
-@export var Player : CharacterBody2D
+@export var PLAYER : Player
 @export var STATS : Stats_Component
 var combo : bool = false
 var can_combo : bool = true
@@ -11,10 +11,13 @@ func enter():
 	combo = false
 	can_combo = true
 	ComboTimer.start()
+	
+	%attack.pitch_scale = randf_range(1.0,1.3)
+	%attack.play()
 
 func update(delta:float): #"Generally holds the transitions"
-	Player.velocity = Player.velocity.move_toward(Vector2.ZERO, STATS.FRICTION * delta)
-	Player.move_and_slide()
+	PLAYER.velocity = PLAYER.velocity.move_toward(Vector2.ZERO, STATS.FRICTION * delta)
+	PLAYER.move_and_slide()
 	if Input.is_action_just_pressed("attack_range") and can_combo:
 		combo = true
 		transition.emit(self, "Shoot")

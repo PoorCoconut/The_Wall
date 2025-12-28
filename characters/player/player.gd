@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var FSM : StateMachine #Looks for current movement state
 @export var STATS : Stats_Component
@@ -15,6 +16,7 @@ var mouse_pos : Vector2
 
 ##Dash
 var dash_chain : int = 0
+var canDash : bool = true
 
 ##Player vars
 var enem_knockback : float
@@ -26,6 +28,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	update_debug()
+	#print("Can Dash: ", canDash)
 	#update_playerUI()
 
 func update_debug():
@@ -63,7 +66,6 @@ func _physics_process(_delta: float) -> void:
 func damage_taken():
 	pass
 
-
 func _on_i_frame_timeout() -> void:
 	%HurtBox.set_deferred("monitorable", true)
 
@@ -75,7 +77,6 @@ func shoot():
 	bullet.dir = %Marker2D.rotation
 	bullet.global_position = %Marker2D.global_position
 	bullet.global_rotation = %Marker2D.global_rotation
-	
 	get_tree().root.add_child(bullet) #Instantiate the bullet
 
 func get_damage():

@@ -12,13 +12,13 @@
 [ext_resource type="Script" uid="uid://civu6u7lxnawv" path="res://characters/player/FSM/state_dash.gd" id="7_bemkg"]
 [ext_resource type="Texture2D" uid="uid://vga40wswf8s0" path="res://textures/characters/PlayerDashes.png" id="7_cidxy"]
 [ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://resuables/components/Hitbox and Hurtbox/hurtbox.tscn" id="8_fpo3a"]
-[ext_resource type="Script" uid="uid://f0jccyhd3edb" path="res://characters/player/FSM/state_hurt.gd" id="8_gxt3p"]
 [ext_resource type="Script" uid="uid://07uiwqv6ap1t" path="res://characters/player/FSM/state_atk1.gd" id="9_fvcfl"]
 [ext_resource type="Script" uid="uid://blikevan384uj" path="res://characters/player/FSM/state_atk2.gd" id="10_s44gf"]
 [ext_resource type="Script" uid="uid://bmuovlyby71qn" path="res://characters/player/FSM/state_shoot.gd" id="12_1rh3m"]
 [ext_resource type="Script" uid="uid://63d2ig4v6vpc" path="res://characters/player/Misc/player_anim.gd" id="13_mf6ab"]
 [ext_resource type="Script" uid="uid://df2e1af20srmy" path="res://characters/player/FSM/state_death.gd" id="14_jmusd"]
 [ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://resuables/components/Hitbox and Hurtbox/hitbox.tscn" id="18_d2agh"]
+[ext_resource type="AudioStream" uid="uid://bm8melcb1f7gg" path="res://sfx/lightsaber-359562.mp3" id="20_kyfeq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg4e1"]
 bg_color = Color(0, 0, 0, 1)
@@ -1546,8 +1546,8 @@ MAX_SPEED = 115
 FRICTION = 350
 ACCELERATION = 5
 dash = true
-DASH_DIST = 250
-DASH_ACCEL = 110
+DASH_DIST = 300
+DASH_ACCEL = 500
 DASH_FRICTION = 50
 
 [node name="Particles" type="Node2D" parent="."]
@@ -1693,64 +1693,53 @@ shape = SubResource("RectangleShape2D_fpo3a")
 script = ExtResource("4_38wst")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="FSM" node_paths=PackedStringArray("STATS")]
+[node name="Idle" type="Node" parent="FSM" node_paths=PackedStringArray("STATS", "PLAYER")]
 script = ExtResource("5_jmiis")
 STATS = NodePath("../../StatsComponent")
+PLAYER = NodePath("../..")
 
-[node name="Run" type="Node" parent="FSM" node_paths=PackedStringArray("player", "STATS")]
+[node name="Run" type="Node" parent="FSM" node_paths=PackedStringArray("PLAYER", "STATS")]
 script = ExtResource("6_wdudx")
-player = NodePath("../..")
+PLAYER = NodePath("../..")
 STATS = NodePath("../../StatsComponent")
 
-[node name="Dash" type="Node" parent="FSM" node_paths=PackedStringArray("player", "STATS", "Dash_Trail")]
+[node name="Dash" type="Node" parent="FSM" node_paths=PackedStringArray("PLAYER", "STATS", "Dash_Trail")]
 script = ExtResource("7_bemkg")
-player = NodePath("../..")
+PLAYER = NodePath("../..")
 STATS = NodePath("../../StatsComponent")
 Dash_Trail = NodePath("../../Particles/DashTrail")
-Early_Time = 0.4
-Window_Time = 0.1
-Reset_Time = 0.4
-CHAIN_FORCE = 0.03
 
-[node name="dashTimer" type="Timer" parent="FSM/Dash"]
+[node name="DashCooldown" type="Timer" parent="FSM/Dash"]
+one_shot = true
+
+[node name="DashDuration" type="Timer" parent="FSM/Dash"]
 wait_time = 0.1
 one_shot = true
 
-[node name="chainTimer" type="Timer" parent="FSM/Dash"]
-one_shot = true
-
-[node name="Atk1" type="Node" parent="FSM" node_paths=PackedStringArray("Player", "STATS")]
+[node name="Atk1" type="Node" parent="FSM" node_paths=PackedStringArray("STATS")]
 script = ExtResource("9_fvcfl")
-Player = NodePath("../..")
 STATS = NodePath("../../StatsComponent")
 
 [node name="ComboTimer" type="Timer" parent="FSM/Atk1"]
 wait_time = 0.5
 one_shot = true
 
-[node name="Atk2" type="Node" parent="FSM" node_paths=PackedStringArray("Player", "STATS")]
+[node name="Atk2" type="Node" parent="FSM" node_paths=PackedStringArray("STATS")]
 script = ExtResource("10_s44gf")
-Player = NodePath("../..")
 STATS = NodePath("../../StatsComponent")
 
 [node name="ComboTimer" type="Timer" parent="FSM/Atk2"]
 wait_time = 0.5
 one_shot = true
 
-[node name="Shoot" type="Node" parent="FSM" node_paths=PackedStringArray("Player", "STATS")]
+[node name="Shoot" type="Node" parent="FSM" node_paths=PackedStringArray("STATS")]
 script = ExtResource("12_1rh3m")
-Player = NodePath("../..")
 STATS = NodePath("../../StatsComponent")
 
 [node name="Gun_CD" type="Timer" parent="FSM/Shoot"]
 unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
-
-[node name="Hurt" type="Node" parent="FSM" node_paths=PackedStringArray("Player", "STATS")]
-script = ExtResource("8_gxt3p")
-Player = NodePath("../..")
-STATS = NodePath("../../StatsComponent")
 
 [node name="Death" type="Node" parent="FSM"]
 script = ExtResource("14_jmusd")
@@ -1772,8 +1761,16 @@ shadow_filter = 1
 shadow_filter_smooth = 4.0
 texture = SubResource("GradientTexture2D_d2agh")
 
-[connection signal="timeout" from="FSM/Dash/dashTimer" to="FSM/Dash" method="_on_dash_timer_timeout"]
-[connection signal="timeout" from="FSM/Dash/chainTimer" to="FSM/Dash" method="_on_chain_timer_timeout"]
+[node name="sfx" type="Node" parent="."]
+
+[node name="attack" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("20_kyfeq")
+volume_db = -5.0
+pitch_scale = 1.2
+
+[connection signal="timeout" from="FSM/Dash/DashCooldown" to="FSM/Dash" method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="FSM/Dash/DashDuration" to="FSM/Dash" method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="FSM/Atk1/ComboTimer" to="FSM/Atk1" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="FSM/Atk2/ComboTimer" to="FSM/Atk2" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="FSM/Shoot/Gun_CD" to="FSM/Shoot" method="_on_gun_cd_timeout"]

@@ -30,5 +30,6 @@ class_name Stats_Component
 @export var DASH_DIST : int
 @export var DASH_ACCEL : int
 @export var DASH_FRICTION : int
+@export var DASH_CD : float
 ##The radius of GLOW
 @export var LIGHT_AURA : int
