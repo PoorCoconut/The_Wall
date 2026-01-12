@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnjumm8qb5p2s"]
+
+[ext_resource type="AudioStream" uid="uid://rkwah16qjfkh" path="res://sfx/metal-hit-12-193278.mp3" id="1_4mffb"]
+[ext_resource type="Script" uid="uid://13as1bp1lugk" path="res://sfx/sound_bank.gd" id="1_vq1tu"]
+[ext_resource type="AudioStream" uid="uid://cbe14f5n3la3o" path="res://sfx/metal-hit-95-200424.mp3" id="2_vq1tu"]
+[ext_resource type="AudioStream" uid="uid://bi6hvo7ojaeem" path="res://sfx/punch-04-383965.mp3" id="3_abqtb"]
+
+[node name="SoundBank" type="Node2D"]
+script = ExtResource("1_vq1tu")
+
+[node name="hit_metal1" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("1_4mffb")
+max_distance = 500.0
+bus = &"SFX"
+
+[node name="hit_metal2" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_vq1tu")
+max_distance = 600.0
+bus = &"SFX"
+
+[node name="hit_organic" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_abqtb")
+bus = &"SFX"
+
+[connection signal="finished" from="hit_metal1" to="." method="_on_hit_metal_1_finished"]
+[connection signal="finished" from="hit_metal2" to="." method="_on_hit_metal_2_finished"]
+[connection signal="finished" from="hit_organic" to="." method="_on_hit_organic_finished"]

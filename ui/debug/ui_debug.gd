@@ -13,7 +13,7 @@ var pcur_state : String
 var pchain : int
 
 func _ready() -> void:
-	#visible = false #Enable me to hide DEBUG MENU when READYING
+	visible = false #Enable me to hide DEBUG MENU when READYING
 	pass
 
 func _process(_delta: float) -> void:

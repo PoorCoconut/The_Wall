@@ -4,6 +4,7 @@ class_name Stats_Component
 @export_category("Base Stats")
 @export var MAX_HP : int
 @export var CUR_HP : int
+@export var START_MAX_HP : bool
 @export var BULLETS : int
 ##The amount of knockback this entity gives
 @export var KNOCKBACK : float
@@ -33,3 +34,7 @@ class_name Stats_Component
 @export var DASH_CD : float
 ##The radius of GLOW
 @export var LIGHT_AURA : int
+
+func _ready() -> void:
+	if START_MAX_HP:
+		CUR_HP = MAX_HP

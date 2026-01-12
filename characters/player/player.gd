@@ -5,8 +5,6 @@ class_name Player
 @export var STATS : Stats_Component
 const bullet_path : PackedScene = preload("res://resuables/projectile/bullet.tscn")
 
-var damage_received : int
-
 ##Positioning
 var last_dir : Vector2 = Vector2(0,1)
 var last_dir_x : float
@@ -21,8 +19,13 @@ var canDash : bool = true
 ##Player vars
 var enem_knockback : float
 
-#DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG
+##Gun vars
+@onready var GunMarker := %GunMarker
+@onready var GunSprite : Sprite2D = $GunMarker/GunSprite
+
+##THIS READY FUNCTION ONLY EXISTS TO SERVE FOR DEBUGGING PROCESSES
 func _ready() -> void:
+	PlayerHud.update_visual(STATS.MAX_HP, STATS.CUR_HP)
 	%HP_BAR.max_value = STATS.MAX_HP
 	%HP_BAR.value = STATS.CUR_HP
 
@@ -47,40 +50,27 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("attack_range") or Input.is_action_just_pressed("attack"):
 		mouse_pos = get_local_mouse_position()
 		last_dir = -(last_dir - mouse_pos).normalized()
-	%Marker2D.look_at(get_global_mouse_position())
-
-#func got_hit(damage:int, knockback:float): #Forces a STATE CHANGE
-	#print("Player got hit for ", damage, " damage and ", knockback, " knockback strength")
-	#enem_knockback = knockback
-	##Saves player from a One Shot death
-	#if STATS.CUR_HP == STATS.MAX_HP and damage >= STATS.CUR_HP: 
-		#STATS.CUR_HP = 1
-		##print("saved from ONE SHOT")
-	#else:
-		#STATS.CUR_HP = clamp(STATS.CUR_HP - damage, 0, STATS.MAX_HP)
-	#%HP_BAR.value = STATS.CUR_HP
-	#%HurtBox.set_deferred("monitorable", false)
-	#%IFrame.start()
-	#FSM.force_change_state("Hurt")
-
-func damage_taken():
-	pass
+	GunMarker.look_at(get_global_mouse_position())
 
 func _on_i_frame_timeout() -> void:
 	%HurtBox.set_deferred("monitorable", true)
 
+##COMBAT SYSTEM
+#SHOOTING
 func shoot():
 	var bullet = bullet_path.instantiate() #Place an instance of a bullet in the variable
-	
 	#Initialize properties of the variable
-	bullet.DMG = STATS.RANGE_DMG
-	bullet.dir = %Marker2D.rotation
-	bullet.global_position = %Marker2D.global_position
-	bullet.global_rotation = %Marker2D.global_rotation
+	bullet.set_damage(STATS.RANGE_DMG)
+	bullet.dir = GunMarker.rotation
+	bullet.global_rotation = GunMarker.global_rotation
+	bullet.global_position = GunSprite.global_position
 	get_tree().root.add_child(bullet) #Instantiate the bullet
 
-func get_damage():
+#DAMAGE
+func get_damage(): #The hitbox node uses this to send an attack damage number to the "victim" of the attack
 	return STATS.MELEE_DMG
 
 func take_damage(damage: int):
+	STATS.CUR_HP -= damage
 	print("player took ", damage, " damage")
+	PlayerHud.update_visual(STATS.MAX_HP, STATS.CUR_HP)

@@ -1,9 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkn6mu0v75054"]
+[gd_scene load_steps=17 format=3 uid="uid://dkn6mu0v75054"]
 
 [ext_resource type="Script" uid="uid://8hu1ti3t7qtx" path="res://characters/enemy/test_basic_enemy/test_enemy.gd" id="1_4qekv"]
 [ext_resource type="Texture2D" uid="uid://cecw15jir0wal" path="res://textures/enemies/spider.png" id="1_d2nw4"]
 [ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://resuables/components/Hitbox and Hurtbox/hurtbox.tscn" id="2_eu3en"]
+[ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://resuables/components/Stats Component/stats_component.tscn" id="2_n0rj0"]
+[ext_resource type="PackedScene" uid="uid://drgmuwxuu5oib" path="res://vfx/particle_enemy_gore.tscn" id="2_qdvu2"]
+[ext_resource type="PackedScene" uid="uid://bdjcv2p22v7ds" path="res://vfx/particle_explosion.tscn" id="3_mgonl"]
 [ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://resuables/components/Hitbox and Hurtbox/hitbox.tscn" id="4_0fgnf"]
+[ext_resource type="PackedScene" uid="uid://cnjumm8qb5p2s" path="res://sfx/sound_bank.tscn" id="4_mgonl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eu3en"]
 atlas = ExtResource("1_d2nw4")
@@ -36,8 +40,23 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_0fgnf"]
 radius = 7.071068
 
-[node name="test_enemy" type="CharacterBody2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdvu2"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgonl"]
+bg_color = Color(0.25882354, 1, 0, 1)
+
+[node name="test_enemy" type="CharacterBody2D" node_paths=PackedStringArray("STATS")]
 script = ExtResource("1_4qekv")
+STATS = NodePath("StatsComponent")
+particle_path_gore = ExtResource("2_qdvu2")
+particle_path_explosion = ExtResource("3_mgonl")
+sound_bank_path = ExtResource("4_mgonl")
+
+[node name="StatsComponent" parent="." instance=ExtResource("2_n0rj0")]
+MAX_HP = 10
+START_MAX_HP = true
+MELEE_DMG = 1
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0fgnf")
@@ -58,6 +77,17 @@ collision_mask = 8
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_0fgnf")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -17.0
+offset_top = 10.0
+offset_right = 17.0
+offset_bottom = 18.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qdvu2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mgonl")
+step = 1.0
+show_percentage = false
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

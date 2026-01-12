@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1qu8cyvkujxx"]
+[gd_scene load_steps=10 format=3 uid="uid://b1qu8cyvkujxx"]
 
-[ext_resource type="Script" path="res://ui/playerUI/player_hud.gd" id="1_fj0jm"]
+[ext_resource type="Script" uid="uid://clhbvw1x86f0j" path="res://ui/playerUI/player_hud.gd" id="1_fj0jm"]
+[ext_resource type="Texture2D" uid="uid://bsyix1bw2xanw" path="res://textures/ui/tw_ui_sprites.png" id="2_h1iiw"]
 
 [sub_resource type="Gradient" id="Gradient_a5ni2"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -14,43 +15,37 @@ colors = PackedColorArray(0, 1, 0.0666666, 1, 0, 1, 0.0666667, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_esh6k"]
 gradient = SubResource("Gradient_qcpqg")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j1lfu"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
-anti_aliasing = false
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1iiw"]
+atlas = ExtResource("2_h1iiw")
+region = Rect2(64, 0, 48, 48)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xb082"]
-bg_color = Color(0.6, 0, 0, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
-anti_aliasing = false
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tblmn"]
+load_path = "res://.godot/imported/tw_ui_sprites.png-6f90693506a5af6902531211207de9b4.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djlau"]
+atlas = SubResource("CompressedTexture2D_tblmn")
+region = Rect2(112, 0, 48, 48)
 
 [node name="playerHUD" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_fj0jm")
 
 [node name="HP_Bar" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 offset_left = 8.0
-offset_top = 424.0
+offset_top = 16.0
 offset_right = 232.0
-offset_bottom = 456.0
+offset_bottom = 32.0
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture2D_8kq8w")
 texture_progress = SubResource("GradientTexture2D_esh6k")
 
-[node name="Bullet_Bar" type="ProgressBar" parent="."]
+[node name="Bullet_Bar" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 offset_left = 8.0
-offset_top = 460.0
-offset_right = 96.0
-offset_bottom = 476.0
-theme_override_styles/background = SubResource("StyleBoxFlat_j1lfu")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xb082")
-step = 1.0
-show_percentage = false
+offset_top = 32.0
+offset_right = 120.0
+offset_bottom = 48.0
+max_value = 5.0
+nine_patch_stretch = true
+texture_under = SubResource("AtlasTexture_h1iiw")
+texture_progress = SubResource("AtlasTexture_djlau")

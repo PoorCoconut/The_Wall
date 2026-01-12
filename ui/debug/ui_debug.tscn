@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://1315wi6a3pnl"]
 
-[ext_resource type="Script" path="res://ui/debug/ui_debug.gd" id="1_yhsrp"]
+[ext_resource type="Script" uid="uid://cn3kp0iikwchc" path="res://ui/debug/ui_debug.gd" id="1_yhsrp"]
 
 [node name="ui_debug" type="CanvasLayer"]
 script = ExtResource("1_yhsrp")
@@ -13,6 +13,7 @@ anchor_right = 0.9875
 anchor_bottom = 0.983333
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" type="VBoxContainer" parent="Control"]

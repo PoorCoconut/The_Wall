@@ -1,5 +1,7 @@
 THE WALL TO-DO LIST
 
+Current Camera Screen Size is 640 x 480
+
 -Ysort is  must
 -Fix Dash Trail Mirroring
 -KNOCKBACK

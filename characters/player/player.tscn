@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://bwyyko6bjn4hw"]
+[gd_scene load_steps=123 format=3 uid="uid://bwyyko6bjn4hw"]
 
 [ext_resource type="Script" uid="uid://cwsj5d0hp6cvp" path="res://characters/player/player.gd" id="1_1uybl"]
 [ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://resuables/components/Stats Component/stats_component.tscn" id="3_n342w"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b2plp3vxgp522" path="res://characters/player/FSM/state_run.gd" id="6_wdudx"]
 [ext_resource type="Script" uid="uid://civu6u7lxnawv" path="res://characters/player/FSM/state_dash.gd" id="7_bemkg"]
 [ext_resource type="Texture2D" uid="uid://vga40wswf8s0" path="res://textures/characters/PlayerDashes.png" id="7_cidxy"]
+[ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="7_kyfeq"]
 [ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://resuables/components/Hitbox and Hurtbox/hurtbox.tscn" id="8_fpo3a"]
 [ext_resource type="Script" uid="uid://07uiwqv6ap1t" path="res://characters/player/FSM/state_atk1.gd" id="9_fvcfl"]
 [ext_resource type="Script" uid="uid://blikevan384uj" path="res://characters/player/FSM/state_atk2.gd" id="10_s44gf"]
@@ -80,7 +81,7 @@ height = 8.0
 [sub_resource type="Animation" id="Animation_ikukg"]
 resource_name = "Atk_Down1"
 length = 0.3
-step = 0.01
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -120,20 +121,20 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.099999994),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_2ioxi"]
 resource_name = "Atk_Down2"
 length = 0.3
-step = 0.01
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -173,20 +174,20 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.099999994),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_xuoga"]
 resource_name = "Atk_Left1"
 length = 0.3
-step = 0.01
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -226,20 +227,20 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_ahqg8"]
 resource_name = "Atk_Left2"
 length = 0.3
-step = 0.01
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -279,20 +280,20 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.099999994),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_br1pq"]
 resource_name = "Atk_Right1"
 length = 0.3
-step = 0.01
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -332,20 +333,20 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.099999994),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_e0r8a"]
 resource_name = "Atk_Right2"
 length = 0.3
-step = 0.01
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -385,20 +386,20 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.099999994),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_1je43"]
 resource_name = "Atk_Up1"
 length = 0.3
-step = 0.01
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -438,20 +439,20 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.099999994),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_4ptur"]
 resource_name = "Atk_Up2"
 length = 0.3
-step = 0.01
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -491,14 +492,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox:monitoring")
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.099999994),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_pti4p"]
@@ -645,18 +646,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(4, 2)]
-}
 
 [sub_resource type="Animation" id="Animation_gq0k4"]
 resource_name = "Gun_Left"
@@ -685,18 +674,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [59, 60]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(-11, -3)]
 }
 
 [sub_resource type="Animation" id="Animation_6irqf"]
@@ -727,18 +704,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [59, 60]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(11, -3)]
-}
 
 [sub_resource type="Animation" id="Animation_57kkq"]
 resource_name = "Gun_Up"
@@ -767,18 +732,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(0, -9)]
 }
 
 [sub_resource type="Animation" id="Animation_3bync"]
@@ -827,18 +780,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4, 2)]
-}
 
 [sub_resource type="Animation" id="Animation_08e71"]
 resource_name = "Idle_Left"
@@ -867,18 +808,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-11, -3)]
 }
 
 [sub_resource type="Animation" id="Animation_msus0"]
@@ -909,18 +838,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(11, -3)]
-}
 
 [sub_resource type="Animation" id="Animation_fd4qs"]
 resource_name = "Idle_Up"
@@ -949,18 +866,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -9)]
 }
 
 [sub_resource type="Animation" id="Animation_2l8tm"]
@@ -1004,38 +909,26 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Marker2D:position")
+tracks/3/path = NodePath("Hitbox:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(4, 2)]
+"values": [0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Hitbox:rotation")
+tracks/4/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Hitbox:monitoring")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_qjtrx"]
@@ -1067,18 +960,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4, 2)]
-}
 
 [sub_resource type="Animation" id="Animation_t6p83"]
 resource_name = "Run_Left"
@@ -1108,18 +989,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [16, 17, 18, 19]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-11, -3)]
 }
 
 [sub_resource type="Animation" id="Animation_g0clk"]
@@ -1151,18 +1020,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [16, 17, 18, 19]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(11, -3)]
-}
 
 [sub_resource type="Animation" id="Animation_w5we8"]
 resource_name = "Run_Up"
@@ -1192,18 +1049,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [12, 13, 14, 15]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -9)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5wive"]
@@ -1517,7 +1362,8 @@ fill_from = Vector2(0.5046729, 0.5140187)
 fill_to = Vector2(0.19626169, 0.2897196)
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("FSM", "STATS") groups=["Player"]]
-collision_mask = 6
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_1uybl")
 FSM = NodePath("FSM")
 STATS = NodePath("StatsComponent")
@@ -1537,10 +1383,10 @@ show_percentage = false
 
 [node name="StatsComponent" parent="." instance=ExtResource("3_n342w")]
 MAX_HP = 5
-CUR_HP = 5
+START_MAX_HP = true
 BULLETS = 5
-MELEE_DMG = 5
-RANGE_DMG = 1
+MELEE_DMG = 1
+RANGE_DMG = 2
 CHARGE_DMG = 2
 MAX_SPEED = 115
 FRICTION = 350
@@ -1549,6 +1395,7 @@ dash = true
 DASH_DIST = 300
 DASH_ACCEL = 500
 DASH_FRICTION = 50
+DASH_CD = 1.0
 
 [node name="Particles" type="Node2D" parent="."]
 
@@ -1635,15 +1482,19 @@ scale_amount_min = 0.2
 scale_amount_max = 0.5
 color_ramp = SubResource("Gradient_q0ixk")
 
-[node name="Marker2D" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(4, 2)
-scale = Vector2(0.05, 0.05)
-
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_nvg7b")
 hframes = 8
 vframes = 8
+
+[node name="GunMarker" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="GunSprite" type="Sprite2D" parent="GunMarker"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(6, 0)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("7_kyfeq")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11)
@@ -1651,7 +1502,6 @@ shape = SubResource("CapsuleShape2D_yoru2")
 debug_color = Color(0.967122, 2.88785e-07, 0.476246, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 
@@ -1683,11 +1533,11 @@ shape = SubResource("CapsuleShape2D_kyfeq")
 
 [node name="Hitbox" parent="." instance=ExtResource("18_d2agh")]
 collision_mask = 32
-monitoring = false
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(0, 16.5)
+position = Vector2(1.4861871e-06, 17)
 shape = SubResource("RectangleShape2D_fpo3a")
+disabled = true
 
 [node name="FSM" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_38wst")
@@ -1716,24 +1566,27 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
-[node name="Atk1" type="Node" parent="FSM" node_paths=PackedStringArray("STATS")]
+[node name="Atk1" type="Node" parent="FSM" node_paths=PackedStringArray("PLAYER", "STATS")]
 script = ExtResource("9_fvcfl")
+PLAYER = NodePath("../..")
 STATS = NodePath("../../StatsComponent")
 
 [node name="ComboTimer" type="Timer" parent="FSM/Atk1"]
 wait_time = 0.5
 one_shot = true
 
-[node name="Atk2" type="Node" parent="FSM" node_paths=PackedStringArray("STATS")]
+[node name="Atk2" type="Node" parent="FSM" node_paths=PackedStringArray("PLAYER", "STATS")]
 script = ExtResource("10_s44gf")
+PLAYER = NodePath("../..")
 STATS = NodePath("../../StatsComponent")
 
 [node name="ComboTimer" type="Timer" parent="FSM/Atk2"]
 wait_time = 0.5
 one_shot = true
 
-[node name="Shoot" type="Node" parent="FSM" node_paths=PackedStringArray("STATS")]
+[node name="Shoot" type="Node" parent="FSM" node_paths=PackedStringArray("PLAYER", "STATS")]
 script = ExtResource("12_1rh3m")
+PLAYER = NodePath("../..")
 STATS = NodePath("../../StatsComponent")
 
 [node name="Gun_CD" type="Timer" parent="FSM/Shoot"]
@@ -1754,6 +1607,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1, 2)
 scale = Vector2(4, 4)
 enabled = false
 shadow_enabled = true
@@ -1768,6 +1622,7 @@ unique_name_in_owner = true
 stream = ExtResource("20_kyfeq")
 volume_db = -5.0
 pitch_scale = 1.2
+bus = &"SFX"
 
 [connection signal="timeout" from="FSM/Dash/DashCooldown" to="FSM/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="FSM/Dash/DashDuration" to="FSM/Dash" method="_on_dash_duration_timeout"]
