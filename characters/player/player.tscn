@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://bwyyko6bjn4hw"]
+[gd_scene load_steps=126 format=3 uid="uid://bwyyko6bjn4hw"]
 
 [ext_resource type="Script" uid="uid://cwsj5d0hp6cvp" path="res://characters/player/player.gd" id="1_1uybl"]
 [ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://resuables/components/Stats Component/stats_component.tscn" id="3_n342w"]
@@ -19,7 +19,10 @@
 [ext_resource type="Script" uid="uid://63d2ig4v6vpc" path="res://characters/player/Misc/player_anim.gd" id="13_mf6ab"]
 [ext_resource type="Script" uid="uid://df2e1af20srmy" path="res://characters/player/FSM/state_death.gd" id="14_jmusd"]
 [ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://resuables/components/Hitbox and Hurtbox/hitbox.tscn" id="18_d2agh"]
+[ext_resource type="Script" uid="uid://cpjj1j0co4irn" path="res://characters/player/FSM/state_hit.gd" id="18_lv4bx"]
 [ext_resource type="AudioStream" uid="uid://bm8melcb1f7gg" path="res://sfx/lightsaber-359562.mp3" id="20_kyfeq"]
+[ext_resource type="AudioStream" uid="uid://e05gpsc78hbl" path="res://sfx/silenced-gunshot-81063.mp3" id="21_yybc7"]
+[ext_resource type="AudioStream" uid="uid://dh11jdauibrbm" path="res://sfx/empty-gun-shot-6209.mp3" id="22_yybc7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg4e1"]
 bg_color = Color(0, 0, 0, 1)
@@ -1350,7 +1353,7 @@ radius = 5.0
 height = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fpo3a"]
-size = Vector2(30, 19)
+size = Vector2(48, 40.5)
 
 [sub_resource type="Gradient" id="Gradient_aqrcq"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -1384,14 +1387,15 @@ show_percentage = false
 [node name="StatsComponent" parent="." instance=ExtResource("3_n342w")]
 MAX_HP = 5
 START_MAX_HP = true
-BULLETS = 5
+MAX_BULLETS = 7
+START_MAX_BULLETS = true
+KNOCKBACK = 100.0
 MELEE_DMG = 1
-RANGE_DMG = 2
+RANGE_DMG = 1
 CHARGE_DMG = 2
 MAX_SPEED = 115
 FRICTION = 350
 ACCELERATION = 5
-dash = true
 DASH_DIST = 300
 DASH_ACCEL = 500
 DASH_FRICTION = 50
@@ -1502,6 +1506,8 @@ shape = SubResource("CapsuleShape2D_yoru2")
 debug_color = Color(0.967122, 2.88785e-07, 0.476246, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 
@@ -1535,7 +1541,7 @@ shape = SubResource("CapsuleShape2D_kyfeq")
 collision_mask = 32
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(1.4861871e-06, 17)
+position = Vector2(0, 27.75)
 shape = SubResource("RectangleShape2D_fpo3a")
 disabled = true
 
@@ -1594,6 +1600,11 @@ unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
 
+[node name="Hit" type="Node" parent="FSM" node_paths=PackedStringArray("PLAYER", "STATS")]
+script = ExtResource("18_lv4bx")
+PLAYER = NodePath("../..")
+STATS = NodePath("../../StatsComponent")
+
 [node name="Death" type="Node" parent="FSM"]
 script = ExtResource("14_jmusd")
 
@@ -1617,11 +1628,24 @@ texture = SubResource("GradientTexture2D_d2agh")
 
 [node name="sfx" type="Node" parent="."]
 
-[node name="attack" type="AudioStreamPlayer" parent="sfx"]
+[node name="attack_sword" type="AudioStreamPlayer" parent="sfx"]
 unique_name_in_owner = true
 stream = ExtResource("20_kyfeq")
 volume_db = -5.0
 pitch_scale = 1.2
+bus = &"SFX"
+
+[node name="attack_gun" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("21_yybc7")
+volume_db = -10.0
+pitch_scale = 0.36
+bus = &"SFX"
+
+[node name="attack_gun_empty" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("22_yybc7")
+volume_db = -10.0
 bus = &"SFX"
 
 [connection signal="timeout" from="FSM/Dash/DashCooldown" to="FSM/Dash" method="_on_dash_cooldown_timeout"]

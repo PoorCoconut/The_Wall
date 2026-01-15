@@ -1,13 +1,23 @@
-[gd_scene load_steps=17 format=3 uid="uid://dkn6mu0v75054"]
+[gd_scene load_steps=23 format=3 uid="uid://dkn6mu0v75054"]
 
 [ext_resource type="Script" uid="uid://8hu1ti3t7qtx" path="res://characters/enemy/test_basic_enemy/test_enemy.gd" id="1_4qekv"]
 [ext_resource type="Texture2D" uid="uid://cecw15jir0wal" path="res://textures/enemies/spider.png" id="1_d2nw4"]
+[ext_resource type="Shader" uid="uid://dl6ljofs1qdoi" path="res://vfx/shaders/entity_hit_blink.gdshader" id="1_pnwlf"]
 [ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://resuables/components/Hitbox and Hurtbox/hurtbox.tscn" id="2_eu3en"]
 [ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://resuables/components/Stats Component/stats_component.tscn" id="2_n0rj0"]
 [ext_resource type="PackedScene" uid="uid://drgmuwxuu5oib" path="res://vfx/particle_enemy_gore.tscn" id="2_qdvu2"]
 [ext_resource type="PackedScene" uid="uid://bdjcv2p22v7ds" path="res://vfx/particle_explosion.tscn" id="3_mgonl"]
 [ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://resuables/components/Hitbox and Hurtbox/hitbox.tscn" id="4_0fgnf"]
 [ext_resource type="PackedScene" uid="uid://cnjumm8qb5p2s" path="res://sfx/sound_bank.tscn" id="4_mgonl"]
+[ext_resource type="PackedScene" uid="uid://baahldfh4kwvn" path="res://resuables/components/Movement Components/Basic Movement/basic_movement_component.tscn" id="5_0x6d2"]
+[ext_resource type="Script" uid="uid://cmuyuwctivsw6" path="res://resuables/components/Movement Components/Basic Movement/basic_movement_component.gd" id="6_2yc2l"]
+[ext_resource type="PackedScene" uid="uid://7jg5f5lwc4u1" path="res://resuables/components/Ranges/attack_range.tscn" id="11_2yc2l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnwlf"]
+resource_local_to_scene = true
+shader = ExtResource("1_pnwlf")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eu3en"]
 atlas = ExtResource("1_d2nw4")
@@ -46,6 +56,9 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgonl"]
 bg_color = Color(0.25882354, 1, 0, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnwlf"]
+radius = 235.07658
+
 [node name="test_enemy" type="CharacterBody2D" node_paths=PackedStringArray("STATS")]
 script = ExtResource("1_4qekv")
 STATS = NodePath("StatsComponent")
@@ -53,12 +66,19 @@ particle_path_gore = ExtResource("2_qdvu2")
 particle_path_explosion = ExtResource("3_mgonl")
 sound_bank_path = ExtResource("4_mgonl")
 
+[node name="BasicMovementComponent" parent="." instance=ExtResource("5_0x6d2")]
+script = ExtResource("6_2yc2l")
+
 [node name="StatsComponent" parent="." instance=ExtResource("2_n0rj0")]
-MAX_HP = 10
+MAX_HP = 3
 START_MAX_HP = true
 MELEE_DMG = 1
+MAX_SPEED = 50
+FRICTION = 5
+ACCELERATION = 2
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_pnwlf")
 sprite_frames = SubResource("SpriteFrames_0fgnf")
 autoplay = "default"
 frame_progress = 0.44587666
@@ -89,5 +109,25 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_mgonl")
 step = 1.0
 show_percentage = false
 
+[node name="AttackRange" parent="." instance=ExtResource("11_2yc2l")]
+collision_layer = 5
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="AttackRange" index="0"]
+shape = SubResource("CircleShape2D_pnwlf")
+
+[node name="LookerNode" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="StunTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
+
 [editable path="Hurtbox"]
 [editable path="Hitbox"]
+[editable path="AttackRange"]

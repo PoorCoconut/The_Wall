@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://78t0nmghggyd"]
+
+[ext_resource type="Script" uid="uid://chuy2uggl8qvd" path="res://managers/Music Manager/music_manager.gd" id="1_qdkfo"]
+[ext_resource type="AudioStream" uid="uid://b3wnqk7jh6xv" path="res://managers/Music Manager/track resources/DEPRECATED_forest_ost_audiostreamsync.tres" id="2_e31hy"]
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_qdkfo")
+
+[node name="Forest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_e31hy")
+bus = &"Music"

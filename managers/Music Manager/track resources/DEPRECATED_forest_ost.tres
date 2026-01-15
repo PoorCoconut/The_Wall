@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MusicTrack" load_steps=3 format=3 uid="uid://cl34wr4srohkx"]
+
+[ext_resource type="Script" uid="uid://d1wntciipddek" path="res://managers/Music Manager/DEPRECATED_music_track.gd" id="1_5qjns"]
+[ext_resource type="AudioStream" uid="uid://b3wnqk7jh6xv" path="res://managers/Music Manager/track resources/DEPRECATED_forest_ost_audiostreamsync.tres" id="2_k57t6"]
+
+[resource]
+script = ExtResource("1_5qjns")
+stream = ExtResource("2_k57t6")
+layer_map = {
+0: [0, 1],
+1: [2, 3, 4, 5, 6],
+2: [7, 8]
+}
+metadata/_custom_type_script = "uid://d1wntciipddek"

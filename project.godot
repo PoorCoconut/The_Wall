@@ -22,14 +22,15 @@ config/icon="res://icon.svg"
 UiDebug="*res://ui/debug/ui_debug.tscn"
 PlayerHud="*res://ui/playerUI/playerHUD.tscn"
 GameManager="*res://managers/Game Manager/game_manager.tscn"
+MusicManager="*res://managers/Music Manager/music_manager.tscn"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=4
 window/size/resizable=false
-window/size/borderless=true
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
@@ -43,6 +44,7 @@ enabled=PackedStringArray("res://addons/native_dialogs/plugin.cfg")
 
 Player="The Player Character"
 Enemy="Entity that DEALS DAMAGE "
+Camera=""
 
 [input]
 
@@ -106,5 +108,6 @@ common/physics_interpolation=true
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+viewport/hdr_2d=true
 textures/decals/filter=0
 textures/light_projectors/filter=0

@@ -7,7 +7,7 @@ class_name Bullet
 var DMG : int
 var dir : float
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#print(global_position)
 	velocity = Vector2(SPEED,0).rotated(dir)
 	move_and_slide()

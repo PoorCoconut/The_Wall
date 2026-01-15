@@ -18,16 +18,20 @@ var canDash : bool = true
 
 ##Player vars
 var enem_knockback : float
+var knockback : Vector2 = Vector2.ZERO
+var knockback_timer : float = 0.0
 
 ##Gun vars
 @onready var GunMarker := %GunMarker
 @onready var GunSprite : Sprite2D = $GunMarker/GunSprite
 
+##World / Scene Access vars
+@onready var camera = get_tree().get_first_node_in_group("Camera")
+
 ##THIS READY FUNCTION ONLY EXISTS TO SERVE FOR DEBUGGING PROCESSES
 func _ready() -> void:
-	PlayerHud.update_visual(STATS.MAX_HP, STATS.CUR_HP)
-	%HP_BAR.max_value = STATS.MAX_HP
-	%HP_BAR.value = STATS.CUR_HP
+	PlayerHud.update_health_visual(STATS.MAX_HP, STATS.CUR_HP)
+	PlayerHud.update_bullets_visual(STATS.MAX_BULLETS, STATS.CUR_BULLETS)
 
 func _process(_delta: float) -> void:
 	update_debug()
@@ -46,7 +50,15 @@ func update_debug():
 func update_playerUI():
 	PlayerHud.STATS = STATS
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if knockback_timer > 0.0:
+		velocity = knockback
+		knockback_timer -= delta
+		if knockback_timer <= 0.0:
+			knockback = Vector2.ZERO
+	else:
+		pass
+		
 	if Input.is_action_just_pressed("attack_range") or Input.is_action_just_pressed("attack"):
 		mouse_pos = get_local_mouse_position()
 		last_dir = -(last_dir - mouse_pos).normalized()
@@ -58,6 +70,9 @@ func _on_i_frame_timeout() -> void:
 ##COMBAT SYSTEM
 #SHOOTING
 func shoot():
+	var camera_tween = get_tree().create_tween()
+	camera_tween.tween_method(camera.startCameraShake, 5.0, 1.0, 0.5)
+	
 	var bullet = bullet_path.instantiate() #Place an instance of a bullet in the variable
 	#Initialize properties of the variable
 	bullet.set_damage(STATS.RANGE_DMG)
@@ -73,4 +88,12 @@ func get_damage(): #The hitbox node uses this to send an attack damage number to
 func take_damage(damage: int):
 	STATS.CUR_HP -= damage
 	print("player took ", damage, " damage")
-	PlayerHud.update_visual(STATS.MAX_HP, STATS.CUR_HP)
+	PlayerHud.update_health_visual(STATS.MAX_HP, STATS.CUR_HP)
+
+#KNOCKBACK
+func get_knockback():
+	return STATS.KNOCKBACK
+
+func apply_knockback(direction: Vector2, force: float, knockback_duration: float)->void:
+	knockback = direction * force
+	knockback_timer = knockback_duration

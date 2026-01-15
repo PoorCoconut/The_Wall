@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://7jg5f5lwc4u1"]
+
+[node name="AttackRange" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.9999998, 0.0032771989, 0.044217683, 0)

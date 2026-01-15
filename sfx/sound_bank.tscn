@@ -11,13 +11,11 @@ script = ExtResource("1_vq1tu")
 [node name="hit_metal1" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("1_4mffb")
-max_distance = 500.0
 bus = &"SFX"
 
 [node name="hit_metal2" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_vq1tu")
-max_distance = 600.0
 bus = &"SFX"
 
 [node name="hit_organic" type="AudioStreamPlayer2D" parent="."]

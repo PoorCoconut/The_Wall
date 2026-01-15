@@ -4,7 +4,7 @@ func play(sfx_name : String) -> void:
 	var foundFlag : bool = false
 	for node in get_children():
 		if sfx_name.to_lower() == node.name.to_lower():
-			node.pitch_scale = randf_range(0.9, 1.2)
+			node.pitch_scale = randf_range(0.7, 1.2)
 			node.play()
 			foundFlag = true
 			break

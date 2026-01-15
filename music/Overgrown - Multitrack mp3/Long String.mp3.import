@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://df5674vjhwmuh"
+path="res://.godot/imported/Long String.mp3-4ba2fdcbe7430e238d5b1c1051e01e0a.mp3str"
+
+[deps]
+
+source_file="res://music/Overgrown - Multitrack mp3/Long String.mp3"
+dest_files=["res://.godot/imported/Long String.mp3-4ba2fdcbe7430e238d5b1c1051e01e0a.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

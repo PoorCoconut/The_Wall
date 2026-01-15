@@ -15,6 +15,7 @@ point_count = 2
 colors = PackedColorArray(1, 0.2, 0.16862746, 1, 1, 1, 0, 1)
 
 [node name="ParticleExplosion" type="CPUParticles2D"]
+modulate = Color(2.454227, 2.454227, 2.454227, 1)
 emitting = false
 amount = 50
 texture = SubResource("AtlasTexture_mgonl")

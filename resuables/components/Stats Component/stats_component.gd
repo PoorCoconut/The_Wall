@@ -5,7 +5,10 @@ class_name Stats_Component
 @export var MAX_HP : int
 @export var CUR_HP : int
 @export var START_MAX_HP : bool
-@export var BULLETS : int
+##Set to large amount or -1 for infinite bullets
+@export var MAX_BULLETS : int
+@export var CUR_BULLETS : int
+@export var START_MAX_BULLETS : bool
 ##The amount of knockback this entity gives
 @export var KNOCKBACK : float
 ##The greater the weight, the lesser the knockback received
@@ -38,3 +41,5 @@ class_name Stats_Component
 func _ready() -> void:
 	if START_MAX_HP:
 		CUR_HP = MAX_HP
+	if START_MAX_BULLETS:
+		CUR_BULLETS = MAX_BULLETS
