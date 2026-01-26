@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnjumm8qb5p2s"]
+[gd_scene load_steps=6 format=3 uid="uid://cnjumm8qb5p2s"]
 
-[ext_resource type="AudioStream" uid="uid://rkwah16qjfkh" path="res://sfx/metal-hit-12-193278.mp3" id="1_4mffb"]
+[ext_resource type="AudioStream" uid="uid://rkwah16qjfkh" path="res://sfx/weapons/hit/metal-hit-12-193278.mp3" id="1_4mffb"]
 [ext_resource type="Script" uid="uid://13as1bp1lugk" path="res://sfx/sound_bank.gd" id="1_vq1tu"]
-[ext_resource type="AudioStream" uid="uid://cbe14f5n3la3o" path="res://sfx/metal-hit-95-200424.mp3" id="2_vq1tu"]
-[ext_resource type="AudioStream" uid="uid://bi6hvo7ojaeem" path="res://sfx/punch-04-383965.mp3" id="3_abqtb"]
+[ext_resource type="AudioStream" uid="uid://cbe14f5n3la3o" path="res://sfx/weapons/hit/metal-hit-95-200424.mp3" id="2_vq1tu"]
+[ext_resource type="AudioStream" uid="uid://bi6hvo7ojaeem" path="res://sfx/weapons/hit/punch-04-383965.mp3" id="3_abqtb"]
+[ext_resource type="AudioStream" uid="uid://clxqrm3wy68p0" path="res://sfx/weapons/hit/sfx_enemy_kill2.mp3" id="5_abqtb"]
 
 [node name="SoundBank" type="Node2D"]
 script = ExtResource("1_vq1tu")
@@ -23,6 +24,12 @@ unique_name_in_owner = true
 stream = ExtResource("3_abqtb")
 bus = &"SFX"
 
+[node name="kill_enemy" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_abqtb")
+bus = &"SFX"
+
 [connection signal="finished" from="hit_metal1" to="." method="_on_hit_metal_1_finished"]
 [connection signal="finished" from="hit_metal2" to="." method="_on_hit_metal_2_finished"]
 [connection signal="finished" from="hit_organic" to="." method="_on_hit_organic_finished"]
+[connection signal="finished" from="kill_enemy" to="." method="_on_kill_enemy_finished"]

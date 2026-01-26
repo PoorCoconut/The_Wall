@@ -46,5 +46,5 @@ func _on_area_entered(area: Area2D) -> void:
 		print(area_parent.name , " has no knockback function, it will not receive knockback")
 		
 	
-	GameManager.threat_level += 0.2
-	print(GameManager.threat_level)
+	#GameManager.threat_level += 0.2
+	#print(GameManager.threat_level)

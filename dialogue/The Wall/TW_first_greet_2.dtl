@@ -1,0 +1,13 @@
+if {nameChange} == true:
+	the_wall: What then must we call [wave]You[/wave]?
+	[text_input var="playerName"]
+	[signal arg="name_changed"]
+	jump TW_first_greet_1/confirm_name
+else:
+	the_wall: As it was Foretold
+the_wall: {playerName} heed this Transmission\:
+the_wall: There is something beyond nothing[n]\
+A start in the end[n]\
+Opposition does not mean Impossible[n]\
+For ███ ████ of your Universe is not The End
+[signal arg="dialogue_done"]

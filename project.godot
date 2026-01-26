@@ -23,12 +23,78 @@ UiDebug="*res://ui/debug/ui_debug.tscn"
 PlayerHud="*res://ui/playerUI/playerHUD.tscn"
 GameManager="*res://managers/Game Manager/game_manager.tscn"
 MusicManager="*res://managers/Music Manager/music_manager.tscn"
+Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+
+[dialogic]
+
+directories/dch_directory={
+"malloc": "res://dialogue/Malloc/malloc.dch",
+"the_wall": "res://dialogue/The Wall/the_wall.dch",
+"tracer": "res://dialogue/Tracer/tracer.dch",
+"ux": "res://dialogue/UX/ux.dch",
+"varia": "res://dialogue/Varia/varia.dch"
+}
+directories/dtl_directory={
+"TW_first_greet_1": "res://dialogue/The Wall/TW_first_greet_1.dtl",
+"TW_first_greet_2": "res://dialogue/The Wall/TW_first_greet_2.dtl",
+"test": "res://dialogue/test.dtl"
+}
+layout/style_directory={
+"": "res://dialogue/The Wall/the_wall_dialogue_style.tres",
+"malloc_dialogue_style": "res://dialogue/Malloc/malloc_dialogue_style.tres",
+"the_wall_dialogue_style": "res://dialogue/The Wall/the_wall_dialogue_style.tres",
+"tracer_dialogue_style": "res://dialogue/Tracer/tracer_dialogue_style.tres",
+"ux_dialogue_style": "res://dialogue/UX/ux_dialogue_style.tres",
+"varia_dialogue_style": "res://dialogue/Varia/varia_dialogue_style.tres"
+}
+layout/style_list=["res://dialogue/The Wall/the_wall_dialogue_style.tres", "res://dialogue/Varia/varia_dialogue_style.tres", "res://dialogue/Malloc/malloc_dialogue_style.tres", "res://dialogue/Tracer/tracer_dialogue_style.tres", "res://dialogue/UX/ux_dialogue_style.tres"]
+layout/default_style="res://dialogue/The Wall/the_wall_dialogue_style.tres"
+variables={
+"answered": false,
+"nameChange": false,
+"playerName": "Player"
+}
+extensions_folder="res://addons/dialogic_additions"
+text/letter_speed=0.01
+text/initial_text_reveal_skippable=true
+text/text_reveal_skip_delay=0.1
+text/advance_delay=0.1
+text/autoadvance_per_character_delay=0.1
+text/autoadvance_ignored_characters_enabled=true
+animations/join_default_length=0.5
+animations/join_default_wait=true
+animations/leave_default_length=0.5
+animations/leave_default_wait=true
+animations/cross_fade_default_length=0.5
+choices/autofocus_first=true
+choices/delay=0.2
+choices/reveal_delay=0
+choices/reveal_by_input=false
+save/autosave_delay=60.0
+save/encryption_on_exports_only=true
+audio/type_sound_bus="SFX"
+text/autopauses={}
+audio/channel_defaults={
+"": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": false,
+"volume": 0.0
+},
+"music": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": true,
+"volume": 0.0
+}
+}
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/resizable=false
+window/size/always_on_top=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/subwindows/embed_subwindows=false
@@ -38,13 +104,17 @@ window/per_pixel_transparency/allowed=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/native_dialogs/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/native_dialogs/plugin.cfg")
 
 [global_group]
 
 Player="The Player Character"
 Enemy="Entity that DEALS DAMAGE "
 Camera=""
+
+[gui]
+
+theme/custom_font="uid://ddqixrbdw5jbr"
 
 [input]
 
@@ -88,6 +158,15 @@ attack_range={
 debug={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":47,"key_label":0,"unicode":47,"location":0,"echo":false,"script":null)
+]
+}
+dialogic_default_action={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194309,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":88,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
 

@@ -38,6 +38,9 @@ class_name Stats_Component
 ##The radius of GLOW
 @export var LIGHT_AURA : int
 
+@export_category("Enemy Only Stats")
+@export var THREAT_LEVEL : float
+
 func _ready() -> void:
 	if START_MAX_HP:
 		CUR_HP = MAX_HP

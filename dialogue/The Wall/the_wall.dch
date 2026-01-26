@@ -1,0 +1,32 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(1, 1, 1, 1),
+&"custom_info": {
+"prefix": "",
+"sound_mood_default": "default",
+"sound_moods": {
+"default": {
+"mode": 2,
+"name": "default",
+"pitch_base": 1.2,
+"pitch_variance": -0.3,
+"skip_characters": 0.0,
+"sound_path": "res://sfx/ambience/sfx_TW_talk.mp3",
+"volume_base": -3.0,
+"volume_variance": -3.0
+}
+},
+"style": "the_wall_dialogue_style",
+"suffix": ""
+},
+&"default_portrait": "",
+&"description": "",
+&"display_name": "The Wall",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 0),
+&"portraits": {},
+&"scale": 1.0
+}

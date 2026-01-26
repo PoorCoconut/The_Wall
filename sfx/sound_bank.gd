@@ -20,3 +20,6 @@ func _on_hit_metal_2_finished() -> void:
 
 func _on_hit_organic_finished() -> void:
 	queue_free()
+
+func _on_kill_enemy_finished() -> void:
+	queue_free()

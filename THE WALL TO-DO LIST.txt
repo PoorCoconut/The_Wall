@@ -1,5 +1,12 @@
 THE WALL TO-DO LIST
 
+BBCODE TEXT EFFECTS CHEATSHEET
+[pulse freq=1.0 color=#ffffff40 ease=-2.0]{text}[/pulse]
+[wave amp=50.0 freq=5.0 connected=1]{text}[/wave]
+[tornado radius=10.0 freq=1.0 connected=1]{text}[/tornado]
+[shake rate=20.0 level=5 connected=1]
+[fade start=4 length=14]{text}[/fade]
+█
 Current Camera Screen Size is 640 x 480
 
 -Ysort is  must

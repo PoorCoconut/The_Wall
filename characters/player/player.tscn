@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://bwyyko6bjn4hw"]
+[gd_scene load_steps=128 format=3 uid="uid://bwyyko6bjn4hw"]
 
 [ext_resource type="Script" uid="uid://cwsj5d0hp6cvp" path="res://characters/player/player.gd" id="1_1uybl"]
 [ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://resuables/components/Stats Component/stats_component.tscn" id="3_n342w"]
@@ -20,9 +20,10 @@
 [ext_resource type="Script" uid="uid://df2e1af20srmy" path="res://characters/player/FSM/state_death.gd" id="14_jmusd"]
 [ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://resuables/components/Hitbox and Hurtbox/hitbox.tscn" id="18_d2agh"]
 [ext_resource type="Script" uid="uid://cpjj1j0co4irn" path="res://characters/player/FSM/state_hit.gd" id="18_lv4bx"]
-[ext_resource type="AudioStream" uid="uid://bm8melcb1f7gg" path="res://sfx/lightsaber-359562.mp3" id="20_kyfeq"]
-[ext_resource type="AudioStream" uid="uid://e05gpsc78hbl" path="res://sfx/silenced-gunshot-81063.mp3" id="21_yybc7"]
-[ext_resource type="AudioStream" uid="uid://dh11jdauibrbm" path="res://sfx/empty-gun-shot-6209.mp3" id="22_yybc7"]
+[ext_resource type="AudioStream" uid="uid://ggu35xlflvat" path="res://sfx/weapons/melee/sfx_sword1.mp3" id="21_lv4bx"]
+[ext_resource type="AudioStream" uid="uid://b14r7l7obufdv" path="res://sfx/weapons/melee/sfx_sword2.mp3" id="22_jgd8i"]
+[ext_resource type="AudioStream" uid="uid://c817rrewfr8hx" path="res://sfx/weapons/range/sfx_shoot2.mp3" id="22_lv4bx"]
+[ext_resource type="AudioStream" uid="uid://dh11jdauibrbm" path="res://sfx/weapons/range/empty-gun-shot-6209.mp3" id="22_yybc7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg4e1"]
 bg_color = Color(0, 0, 0, 1)
@@ -1348,6 +1349,9 @@ states/Shoot/position = Vector2(846, 310.738)
 transitions = ["Dash", "Run", SubResource("AnimationNodeStateMachineTransition_ljtlk"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_7na6v"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_jo80b"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_c51oc"), "Run", "Dash", SubResource("AnimationNodeStateMachineTransition_x3lyn"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_eyira"), "Run", "Hurt", SubResource("AnimationNodeStateMachineTransition_wvcuu"), "Dash", "Hurt", SubResource("AnimationNodeStateMachineTransition_bx4kp"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_5xnh4"), "Hurt", "Run", SubResource("AnimationNodeStateMachineTransition_45tql"), "Idle", "Atk1", SubResource("AnimationNodeStateMachineTransition_q54ot"), "Atk1", "Atk2", SubResource("AnimationNodeStateMachineTransition_pkcke"), "Atk2", "Run", SubResource("AnimationNodeStateMachineTransition_cncfm"), "Atk2", "Hurt", SubResource("AnimationNodeStateMachineTransition_fag52"), "Atk2", "Shoot", SubResource("AnimationNodeStateMachineTransition_n4fxc"), "Atk2", "Atk1", SubResource("AnimationNodeStateMachineTransition_6mucm"), "Run", "Atk1", SubResource("AnimationNodeStateMachineTransition_faxkq"), "Atk1", "Hurt", SubResource("AnimationNodeStateMachineTransition_josxs"), "Shoot", "Hurt", SubResource("AnimationNodeStateMachineTransition_mtccg"), "Atk1", "Shoot", SubResource("AnimationNodeStateMachineTransition_uvckt"), "Idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_1vdpy"), "Run", "Shoot", SubResource("AnimationNodeStateMachineTransition_ffmgw"), "Shoot", "Run", SubResource("AnimationNodeStateMachineTransition_li8kq"), "Atk1", "Run", SubResource("AnimationNodeStateMachineTransition_6ldms")]
 graph_offset = Vector2(117.877, -119.487)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lv4bx"]
+radius = 448.0714
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyfeq"]
 radius = 5.0
 height = 14.0
@@ -1505,12 +1509,6 @@ position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_yoru2")
 debug_color = Color(0.967122, 2.88785e-07, 0.476246, 0.42)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-enabled = false
-position_smoothing_enabled = true
-position_smoothing_speed = 4.0
-
 [node name="playerAnim" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
@@ -1529,6 +1527,18 @@ parameters/Dash/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
 parameters/Shoot/blend_position = Vector2(0.410339, -0.522124)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+
+[node name="ThreatDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThreatDetector"]
+shape = SubResource("CircleShape2D_lv4bx")
+debug_color = Color(0, 1.1700428, 1.353256, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("8_fpo3a")]
 position = Vector2(0, 8)
@@ -1628,18 +1638,21 @@ texture = SubResource("GradientTexture2D_d2agh")
 
 [node name="sfx" type="Node" parent="."]
 
-[node name="attack_sword" type="AudioStreamPlayer" parent="sfx"]
+[node name="attack_sword1" type="AudioStreamPlayer" parent="sfx"]
 unique_name_in_owner = true
-stream = ExtResource("20_kyfeq")
-volume_db = -5.0
+stream = ExtResource("21_lv4bx")
+pitch_scale = 1.2
+bus = &"SFX"
+
+[node name="attack_sword2" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("22_jgd8i")
 pitch_scale = 1.2
 bus = &"SFX"
 
 [node name="attack_gun" type="AudioStreamPlayer" parent="sfx"]
 unique_name_in_owner = true
-stream = ExtResource("21_yybc7")
-volume_db = -10.0
-pitch_scale = 0.36
+stream = ExtResource("22_lv4bx")
 bus = &"SFX"
 
 [node name="attack_gun_empty" type="AudioStreamPlayer" parent="sfx"]
@@ -1648,6 +1661,8 @@ stream = ExtResource("22_yybc7")
 volume_db = -10.0
 bus = &"SFX"
 
+[connection signal="body_entered" from="ThreatDetector" to="." method="_on_threat_detector_body_entered"]
+[connection signal="body_exited" from="ThreatDetector" to="." method="_on_threat_detector_body_exited"]
 [connection signal="timeout" from="FSM/Dash/DashCooldown" to="FSM/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="FSM/Dash/DashDuration" to="FSM/Dash" method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="FSM/Atk1/ComboTimer" to="FSM/Atk1" method="_on_combo_timer_timeout"]

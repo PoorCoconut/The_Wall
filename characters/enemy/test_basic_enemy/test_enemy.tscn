@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dkn6mu0v75054"]
+[gd_scene load_steps=24 format=3 uid="uid://dkn6mu0v75054"]
 
 [ext_resource type="Script" uid="uid://8hu1ti3t7qtx" path="res://characters/enemy/test_basic_enemy/test_enemy.gd" id="1_4qekv"]
 [ext_resource type="Texture2D" uid="uid://cecw15jir0wal" path="res://textures/enemies/spider.png" id="1_d2nw4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://drgmuwxuu5oib" path="res://vfx/particle_enemy_gore.tscn" id="2_qdvu2"]
 [ext_resource type="PackedScene" uid="uid://bdjcv2p22v7ds" path="res://vfx/particle_explosion.tscn" id="3_mgonl"]
 [ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://resuables/components/Hitbox and Hurtbox/hitbox.tscn" id="4_0fgnf"]
+[ext_resource type="PackedScene" uid="uid://c616atxpkuxhr" path="res://vfx/particle_enemy_bot_hit.tscn" id="4_e76aq"]
 [ext_resource type="PackedScene" uid="uid://cnjumm8qb5p2s" path="res://sfx/sound_bank.tscn" id="4_mgonl"]
 [ext_resource type="PackedScene" uid="uid://baahldfh4kwvn" path="res://resuables/components/Movement Components/Basic Movement/basic_movement_component.tscn" id="5_0x6d2"]
 [ext_resource type="Script" uid="uid://cmuyuwctivsw6" path="res://resuables/components/Movement Components/Basic Movement/basic_movement_component.gd" id="6_2yc2l"]
@@ -59,11 +60,13 @@ bg_color = Color(0.25882354, 1, 0, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_pnwlf"]
 radius = 235.07658
 
-[node name="test_enemy" type="CharacterBody2D" node_paths=PackedStringArray("STATS")]
+[node name="test_enemy" type="CharacterBody2D" node_paths=PackedStringArray("STATS") groups=["Enemy"]]
+collision_layer = 4
 script = ExtResource("1_4qekv")
 STATS = NodePath("StatsComponent")
 particle_path_gore = ExtResource("2_qdvu2")
 particle_path_explosion = ExtResource("3_mgonl")
+particle_path_hit = ExtResource("4_e76aq")
 sound_bank_path = ExtResource("4_mgonl")
 
 [node name="BasicMovementComponent" parent="." instance=ExtResource("5_0x6d2")]
@@ -76,6 +79,7 @@ MELEE_DMG = 1
 MAX_SPEED = 50
 FRICTION = 5
 ACCELERATION = 2
+THREAT_LEVEL = 0.4
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_pnwlf")

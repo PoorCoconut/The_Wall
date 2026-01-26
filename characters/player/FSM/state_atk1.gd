@@ -15,8 +15,8 @@ func enter():
 	can_combo = true
 	ComboTimer.start()
 	
-	%attack_sword.pitch_scale = randf_range(1.0,1.3)
-	%attack_sword.play()
+	%attack_sword1.pitch_scale = randf_range(0.8,1.3)
+	%attack_sword1.play()
 
 func update(delta:float): #"Generally holds the transitions"
 	#THIS IS THE SLIDE

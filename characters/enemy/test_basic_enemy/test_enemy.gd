@@ -2,6 +2,7 @@ extends CharacterBody2D
 @export var STATS : Stats_Component
 @export var particle_path_gore : PackedScene
 @export var particle_path_explosion : PackedScene
+@export var particle_path_hit : PackedScene
 @export var sound_bank_path : PackedScene 
 @onready var looker : Marker2D = %LookerNode
 @onready var sprite: AnimatedSprite2D = $Sprite2D
@@ -11,6 +12,7 @@ var knockback_timer : float = 0.0
 var target : CharacterBody2D 
 var following : bool = false
 var stunned : bool = false
+var is_detected = false
 @onready var camera = get_tree().get_first_node_in_group("Camera")
 
 func _ready() -> void:
@@ -42,7 +44,7 @@ func get_damage():
 	return STATS.MELEE_DMG
 
 func take_damage(damage : int):
-	print(name + " took ", damage,  " damage!")
+	#print(name + " took ", damage,  " damage!")
 	update_hp(damage)
 	
 	#Blink effect
@@ -53,6 +55,11 @@ func take_damage(damage : int):
 		%StunTimer.start()
 		following = false
 	play_hit_sound()
+	
+	var particle_hit = particle_path_hit.instantiate()
+	particle_hit.global_position = global_position
+	
+	get_tree().root.add_child(particle_hit)
 
 func SetShader_BlinkIntensity(newValue:float):
 	sprite.material.set_shader_parameter("blink_intensity", newValue)
@@ -70,6 +77,11 @@ func play_hit_sound() -> void:
 		sound_bank.play("hit_metal1")
 	else:
 		sound_bank.play("hit_metal2")
+
+func play_death_sound() -> void:
+	var sound_bank = sound_bank_path.instantiate()
+	get_tree().root.add_child(sound_bank)
+	sound_bank.play("kill_enemy")
 
 func death():
 	var camera_tween = get_tree().create_tween()
@@ -97,7 +109,6 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 		following = true
 
 func _on_attack_range_body_exited(body: Node2D) -> void:
-	print("body exited!")
 	if body.is_in_group("Player"):
 		target = null
 		following = false
@@ -105,3 +116,12 @@ func _on_attack_range_body_exited(body: Node2D) -> void:
 func _on_stun_timer_timeout() -> void:
 	following = true
 	stunned = false
+
+func set_threat(): #This function toggles the threat level imposed by this entity.
+	if is_detected:
+		is_detected = false
+		GameManager.threat_level -= STATS.THREAT_LEVEL
+		return
+	
+	is_detected = true
+	GameManager.threat_level += STATS.THREAT_LEVEL

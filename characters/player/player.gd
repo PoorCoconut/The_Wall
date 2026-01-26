@@ -97,3 +97,18 @@ func get_knockback():
 func apply_knockback(direction: Vector2, force: float, knockback_duration: float)->void:
 	knockback = direction * force
 	knockback_timer = knockback_duration
+
+#THREAT / ENEMY DETECTION
+func _on_threat_detector_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Enemy"):
+		if body.has_method("set_threat"):
+			#print(body.name, "setting threat")
+			body.set_threat()
+			#print(GameManager.threat_level)
+
+func _on_threat_detector_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Enemy"):
+		if body.has_method("set_threat"):
+			#print(body.name, "removing threat")
+			body.set_threat()
+			#print(GameManager.threat_level)

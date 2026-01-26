@@ -12,8 +12,8 @@ func enter():
 	can_combo = true
 	ComboTimer.start()
 	
-	%attack_sword.pitch_scale = randf_range(1.0,1.3)
-	%attack_sword.play()
+	%attack_sword2.pitch_scale = randf_range(0.8,1.3)
+	%attack_sword2.play()
 
 func update(delta:float): #"Generally holds the transitions"
 	PLAYER.velocity = PLAYER.velocity.move_toward(Vector2.ZERO, STATS.FRICTION * delta)

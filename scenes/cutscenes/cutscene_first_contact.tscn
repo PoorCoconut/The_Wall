@@ -1,11 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://csevvsdmf34yb"]
+[gd_scene load_steps=10 format=3 uid="uid://csevvsdmf34yb"]
 
 [ext_resource type="Script" uid="uid://cn2aamk6ncw6e" path="res://scenes/cutscenes/cutscene_first_contact.gd" id="1_aywi8"]
+[ext_resource type="PackedScene" uid="uid://blx88hy0dwjs2" path="res://scenes/levelTest/lvl_test.tscn" id="2_36v3o"]
+[ext_resource type="Texture2D" uid="uid://50u1mytsm071" path="res://textures/misc/rand_sprites.png" id="3_36v3o"]
+[ext_resource type="AudioStream" uid="uid://cfimkq5vhuyxw" path="res://sfx/music_TW_presence.mp3" id="3_sgr8y"]
+[ext_resource type="AudioStream" uid="uid://cx8a3ep2wxs5b" path="res://sfx/ambience/sfx_TW_talk.mp3" id="4_sgr8y"]
+[ext_resource type="Shader" uid="uid://dxwqq6vyyt3wi" path="res://vfx/shaders/kaleidoscope.gdshader" id="5_36v3o"]
+[ext_resource type="FontFile" uid="uid://128w3cykpt7i" path="res://textures/fonts/jupiter-crash-brk/jupiterc.ttf" id="7_dnlw2"]
+[ext_resource type="FontFile" uid="uid://btvvj2fho6hcr" path="res://textures/fonts/pixel_berry_08_84_ltd_edition/Pixel_Berry_08_84_Ltd.Edition.TTF" id="8_ctu6c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dnlw2"]
+shader = ExtResource("5_36v3o")
+shader_parameter/segments = 6.0
+shader_parameter/segmentReflect = true
+shader_parameter/polarOffset = Vector2(0.5, 0.5)
+shader_parameter/polarAngle = 0.0
+shader_parameter/sourceOffset = Vector2(0.5, 0.5)
+shader_parameter/sourceScale = 3.0
+shader_parameter/sourceAngle = 1.0000000475
 
 [node name="cutscene_first_contact" type="Node2D"]
 script = ExtResource("1_aywi8")
+next_scene = ExtResource("2_36v3o")
+
+[node name="Kaleidoscope" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_dnlw2")
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("3_36v3o")
 
 [node name="Background" type="ColorRect" parent="."]
+unique_name_in_owner = true
 offset_left = -138.0
 offset_top = -105.0
 offset_right = 138.0
@@ -15,22 +40,41 @@ color = Color(0, 0, 0, 1)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
 
-[node name="DialogueText" type="RichTextLabel" parent="."]
-unique_name_in_owner = true
-offset_left = -103.0
-offset_top = -88.0
-offset_right = 103.0
-offset_bottom = 88.0
-theme_override_font_sizes/normal_font_size = 8
-bbcode_enabled = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Anim_Dialogue" type="AnimationPlayer" parent="."]
-
 [node name="Window_YesNo" type="NativeConfirmationDialog" parent="."]
 buttons_texts = 1
 title = "???"
-dialog_icon = 2
 unique_name_in_owner = true
+
+[node name="TW_AMBIENCE" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_sgr8y")
+volume_db = -80.0
+pitch_scale = 0.5
+autoplay = true
+bus = &"Music"
+
+[node name="TW_SPEAK" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_sgr8y")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_top = -128.0
+offset_right = 880.0
+theme_override_fonts/normal_font = ExtResource("7_dnlw2")
+theme_override_font_sizes/normal_font_size = 20
+text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_top = -184.0
+offset_right = 880.0
+offset_bottom = -56.0
+theme_override_fonts/normal_font = ExtResource("8_ctu6c")
+theme_override_font_sizes/normal_font_size = 12
+text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz"
+
+[connection signal="canceled" from="Window_YesNo" to="." method="_on_window_yes_no_canceled"]
+[connection signal="confirmed" from="Window_YesNo" to="." method="_on_window_yes_no_confirmed"]

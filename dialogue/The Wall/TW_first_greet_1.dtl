@@ -1,0 +1,5 @@
+the_wall: [lspeed = 0.01]Welcome.
+the_wall: [lspeed = 0.05]We... [pause=1.0] have waited upon your arrival.
+label confirm_name
+the_wall: [lspeed = 0.1][shake rate=1]We[/shake] recognize you as {playerName} .[n][pause=0.5] [br]Is that correct?
+[signal arg="window_confirm"]

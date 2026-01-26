@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=13 format=3 uid="uid://boq02i4alxkjl"]
+
+[ext_resource type="PackedScene" uid="uid://cqpb3ie51rwl5" path="res://addons/dialogic/Modules/DefaultLayoutParts/Base_Default/default_layout_base.tscn" id="1_6hjqw"]
+[ext_resource type="Script" uid="uid://bwg6yncmh2cml" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_t81kt"]
+[ext_resource type="PackedScene" uid="uid://dcqidvkij3okl" path="res://dialogue/The Wall/VisualNovelTextbox/custom_visual_novel_textbox.tscn" id="4_7jt20"]
+[ext_resource type="PackedScene" uid="uid://cn674foxwedqu" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Input/full_advance_input_layer.tscn" id="5_pujjb"]
+[ext_resource type="PackedScene" uid="uid://dhk6j6eb6e3q" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/vn_choice_layer.tscn" id="8_gnt08"]
+[ext_resource type="PackedScene" uid="uid://cvgf4c6gg0tsy" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_TextInput/text_input_layer.tscn" id="9_dyyu0"]
+[ext_resource type="Script" uid="uid://dv08k6ljua6fm" path="res://addons/dialogic/Resources/dialogic_style.gd" id="11_5aps8"]
+
+[sub_resource type="Resource" id="Resource_a14ki"]
+script = ExtResource("2_t81kt")
+scene = ExtResource("1_6hjqw")
+
+[sub_resource type="Resource" id="Resource_5f0ch"]
+script = ExtResource("2_t81kt")
+scene = ExtResource("5_pujjb")
+
+[sub_resource type="Resource" id="Resource_t4qy5"]
+script = ExtResource("2_t81kt")
+scene = ExtResource("4_7jt20")
+overrides = {
+"autoadvance_progressbar": "false",
+"box_animation_in": "0",
+"box_animation_out": "0",
+"box_color_custom": "Color(0, 0, 0, 0)",
+"box_color_use_global": "false",
+"box_margin_bottom": "0.0",
+"name_label_box_modulate": "Color(0, 0, 0, 0)",
+"name_label_box_use_global_color": "false",
+"name_label_custom_color": "Color(1, 1, 1, 0)",
+"name_label_use_character_color": "false",
+"name_label_use_global_color": "false",
+"next_indicator_animation": "1",
+"next_indicator_show_on_questions": "false",
+"next_indicator_size": "Vector2(10, 10)",
+"normal_font": "\"res://textures/fonts/monaco/monaco.ttf\"",
+"text_alignment": "1",
+"text_size": "32.0",
+"text_use_global_font": "false",
+"text_use_global_size": "false",
+"typing_sounds_mode": "2",
+"typing_sounds_sounds_folder": "\"res://sfx/ambience\""
+}
+
+[sub_resource type="Resource" id="Resource_6ynkh"]
+script = ExtResource("2_t81kt")
+scene = ExtResource("8_gnt08")
+
+[sub_resource type="Resource" id="Resource_gx6hn"]
+script = ExtResource("2_t81kt")
+scene = ExtResource("9_dyyu0")
+
+[resource]
+script = ExtResource("11_5aps8")
+name = "the_wall_dialogue_style"
+layer_list = Array[String](["12", "13", "15", "16"])
+layer_info = {
+"": SubResource("Resource_a14ki"),
+"12": SubResource("Resource_5f0ch"),
+"13": SubResource("Resource_t4qy5"),
+"15": SubResource("Resource_6ynkh"),
+"16": SubResource("Resource_gx6hn")
+}
+metadata/_latest_layer = "13"
