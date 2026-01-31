@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="The Wall"
 run/main_scene="res://scenes/levelTest/lvl_test.tscn"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
@@ -23,7 +27,7 @@ UiDebug="*res://ui/debug/ui_debug.tscn"
 PlayerHud="*res://ui/playerUI/playerHUD.tscn"
 GameManager="*res://managers/Game Manager/game_manager.tscn"
 MusicManager="*res://managers/Music Manager/music_manager.tscn"
-Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
@@ -93,14 +97,15 @@ audio/channel_defaults={
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/mode=4
 window/size/resizable=false
-window/size/always_on_top=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 window/per_pixel_transparency/allowed=true
+mouse_cursor/custom_image="uid://btehqqni61teh"
 
 [editor_plugins]
 
