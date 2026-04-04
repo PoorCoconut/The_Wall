@@ -15,19 +15,27 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="The Wall"
-run/main_scene="res://scenes/levelTest/lvl_test.tscn"
+run/main_scene="res://game_scenes/levelTest/lvl_test.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://dqpfumudla4vk"
+
 [autoload]
 
 UiDebug="*res://ui/debug/ui_debug.tscn"
-PlayerHud="*res://ui/playerUI/playerHUD.tscn"
-GameManager="*res://managers/Game Manager/game_manager.tscn"
-MusicManager="*res://managers/Music Manager/music_manager.tscn"
+MusicManager="*res://globals/Music Manager/music_manager.tscn"
 Dialogic="*uid://ds2q0uclmolvu"
+GameManager="*uid://c7guh55seakpu"
+Events="*uid://dp7ruldhwh5ke"
+LoadingScreen="*uid://1cdnr1bl805e"
+ScreenTransition="*uid://rgy5yu73bm2h"
+SettingsManager="*uid://boav6xpuq74ks"
+SoundBank="*uid://ce7kxbchc8ajm"
 
 [dialogic]
 
@@ -41,7 +49,8 @@ directories/dch_directory={
 directories/dtl_directory={
 "TW_first_greet_1": "res://dialogue/The Wall/TW_first_greet_1.dtl",
 "TW_first_greet_2": "res://dialogue/The Wall/TW_first_greet_2.dtl",
-"test": "res://dialogue/test.dtl"
+"test": "res://dialogue/test.dtl",
+"v_greet": "res://dialogue/Varia/v_greet.dtl"
 }
 layout/style_directory={
 "": "res://dialogue/The Wall/the_wall_dialogue_style.tres",
@@ -97,7 +106,6 @@ audio/channel_defaults={
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=4
 window/size/resizable=false
 window/size/window_width_override=1280
 window/size/window_height_override=720
@@ -110,6 +118,20 @@ mouse_cursor/custom_image="uid://btehqqni61teh"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/native_dialogs/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://actors/": "red",
+"res://game_assets/": "orange",
+"res://game_scenes/": "orange",
+"res://globals/": "yellow",
+"res://objects/": "red",
+"res://sound/": "green",
+"res://sound/sfx/": "green",
+"res://systems/": "teal",
+"res://vfx/": "purple"
+}
 
 [global_group]
 
@@ -145,8 +167,7 @@ down={
 }
 dash={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 ]
 }
@@ -158,6 +179,11 @@ attack={
 attack_range={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+interact={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
 ]
 }
 debug={
@@ -181,7 +207,9 @@ dialogic_default_action={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Player_Hurtbox"
+2d_physics/layer_5="Player_Hitbox"
 2d_physics/layer_6="Enemy_Hurtbox"
+2d_physics/layer_7="Enemy_Hitbox"
 
 [physics]
 

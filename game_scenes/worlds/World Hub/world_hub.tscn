@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dnnejm0f10avr"]
+
+[ext_resource type="PackedScene" uid="uid://885lqs8bymlc" path="res://systems/components/Scenes Component/world_cam.tscn" id="1_brg5k"]
+[ext_resource type="PackedScene" uid="uid://bwyyko6bjn4hw" path="res://actors/player/player.tscn" id="2_reh3m"]
+[ext_resource type="PackedScene" uid="uid://b1qu8cyvkujxx" path="res://ui/playerUI/playerHUD.tscn" id="3_l6sg4"]
+
+[node name="Node2D" type="Node2D" unique_id=1248599795]
+
+[node name="WorldCam" parent="." unique_id=291004198 node_paths=PackedStringArray("target") instance=ExtResource("1_brg5k")]
+target = NodePath("../player")
+
+[node name="player" parent="." unique_id=567391177 instance=ExtResource("2_reh3m")]
+
+[node name="playerHUD" parent="." unique_id=55426212 instance=ExtResource("3_l6sg4")]

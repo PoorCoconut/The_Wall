@@ -1,0 +1,43 @@
+extends State
+class_name Player_Atk1
+
+@export var PLAYER : Player
+
+# We just need one flag to remember if they pressed the button during the swing
+var wants_to_combo : bool = false
+
+@onready var ComboTimer : Timer = $ComboTimer
+
+func enter():
+	wants_to_combo = false
+	ComboTimer.start()
+	
+	%attack_sword1.pitch_scale = randf_range(0.8, 1.3)
+	%attack_sword1.play()
+	
+	# (We will turn on the Hitbox component here later!)
+
+func update(delta: float):
+	# 1. COMPONENT PHYSICS (The combat slide)
+	PLAYER.movement_component.apply_friction(delta)
+	PLAYER.movement_component.move()
+	
+	# 2. BUFFER THE INPUT
+	# We don't transition yet! We just remember they want to combo.
+	if Input.is_action_just_pressed("attack"):
+		wants_to_combo = true
+
+func _on_combo_timer_timeout() -> void:
+	if wants_to_combo:
+		transition.emit(self, "Atk2")
+		
+	#Check for the hold and the power if unlocked
+	elif Input.is_action_pressed("attack") and GameManager.has_strike: 
+		transition.emit(self, "Charge")
+		
+	else:
+		# If they are holding the button but DON'T have the power, return to normal movement
+		if Input.get_vector("left", "right", "up", "down") == Vector2.ZERO:
+			transition.emit(self, "Idle")
+		else:
+			transition.emit(self, "Run")

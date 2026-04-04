@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://psv7p0iimql6"]
+
+[ext_resource type="Script" uid="uid://bbagkuxkdjtq1" path="res://objects/projectile/Bullet/bullet.gd" id="1_dgm76"]
+[ext_resource type="Texture2D" uid="uid://o5tljqq3vr32" path="res://game_assets/textures/objects/Bullets-Sheet.png" id="2_4cvm2"]
+[ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HitBox/hitbox_component.tscn" id="3_i48to"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkuhk"]
+atlas = ExtResource("2_4cvm2")
+region = Rect2(54, 38, 4, 4)
+
+[sub_resource type="Curve" id="Curve_76wyl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.733333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_uaapq"]
+curve = SubResource("Curve_76wyl")
+
+[sub_resource type="Curve" id="Curve_gek7t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.41578948, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wrscb"]
+curve = SubResource("Curve_gek7t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rvlxq"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -5.0
+tangential_accel_max = 5.0
+scale_min = 0.0
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_wrscb")
+color = Color(0.984314, 0, 0.603922, 1)
+alpha_curve = SubResource("CurveTexture_uaapq")
+turbulence_noise_strength = 12.84
+turbulence_noise_scale = 9.895
+turbulence_noise_speed_random = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8wfu"]
+atlas = ExtResource("2_4cvm2")
+region = Rect2(54, 38, 4, 4)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kmmqn"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -2, 0)
+tangential_accel_min = -5.0
+tangential_accel_max = 5.0
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_wrscb")
+color = Color(0.984382, 3.7542e-06, 0.60376, 1)
+turbulence_noise_strength = 12.84
+turbulence_noise_scale = 9.895
+turbulence_noise_speed_random = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1prjv"]
+atlas = ExtResource("2_4cvm2")
+region = Rect2(54, 38, 4, 4)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d20as"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_wrscb")
+color = Color(1, 0.213608, 0.654852, 1)
+turbulence_noise_strength = 12.84
+turbulence_noise_scale = 9.895
+turbulence_noise_speed_random = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7be46"]
+radius = 6.0
+
+[node name="Bullet" type="CharacterBody2D" unique_id=515527385 node_paths=PackedStringArray("hitbox_component")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_dgm76")
+SPEED = 300.0
+hitbox_component = NodePath("Hitbox")
+
+[node name="Trail" type="GPUParticles2D" parent="." unique_id=1222837956]
+amount = 100
+texture = SubResource("AtlasTexture_nkuhk")
+lifetime = 0.3
+speed_scale = 1.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_rvlxq")
+
+[node name="BG" type="GPUParticles2D" parent="." unique_id=470681200]
+amount = 200
+texture = SubResource("AtlasTexture_r8wfu")
+preprocess = 1.0
+speed_scale = 1.5
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_kmmqn")
+
+[node name="Front" type="GPUParticles2D" parent="." unique_id=591468161]
+amount = 100
+texture = SubResource("AtlasTexture_1prjv")
+preprocess = 1.0
+speed_scale = 1.5
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_d20as")
+
+[node name="OnScreenDetector" type="VisibleOnScreenNotifier2D" parent="." unique_id=1920435586]
+position = Vector2(0, -7.9999995)
+scale = Vector2(2, 2)
+rect = Rect2(-3.9999995, -2.3841858e-07, 7.9999995, 8)
+
+[node name="Hitbox" parent="." unique_id=1596047665 instance=ExtResource("3_i48to")]
+knockback_force = 100.0
+
+[node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=939226382]
+shape = SubResource("CircleShape2D_7be46")
+
+[connection signal="screen_exited" from="OnScreenDetector" to="." method="_on_on_screen_detector_screen_exited"]
+
+[editable path="Hitbox"]

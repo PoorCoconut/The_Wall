@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d2laiwiq4q0rl"]
+
+[ext_resource type="Script" uid="uid://qihcmbre6ohc" path="res://systems/BulletSprayer/bullet_sprayer.gd" id="1_6uf2y"]
+
+[node name="BulletSprayer" type="Node2D" unique_id=1670276737]
+script = ExtResource("1_6uf2y")
+
+[node name="Shoot_Cooldown" type="Timer" parent="." unique_id=177496255]
+unique_name_in_owner = true
+
+[node name="rotator" type="Node2D" parent="." unique_id=1820355348]
+unique_name_in_owner = true
+scale = Vector2(0.25, 0.25)
+
+[connection signal="timeout" from="Shoot_Cooldown" to="." method="_on_shoot_cooldown_timeout"]

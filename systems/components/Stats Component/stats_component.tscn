@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bvyswxgki0fkx"]
+
+[ext_resource type="Script" uid="uid://b2lxdglq8mebq" path="res://systems/components/Stats Component/stats_component.gd" id="1_obnak"]
+
+
+[node name="StatsComponent" type="Node"]
+script = ExtResource("1_obnak")

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b7612u2u3r30x"]
+
+[ext_resource type="PackedScene" uid="uid://psv7p0iimql6" path="res://objects/projectile/Bullet/bullet.tscn" id="1_75yrp"]
+
+[node name="EnemyGenericBullet" unique_id=515527385 instance=ExtResource("1_75yrp")]
+
+[editable path="Hitbox"]

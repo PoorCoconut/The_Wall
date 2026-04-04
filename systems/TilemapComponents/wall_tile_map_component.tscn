@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d1s7qvam7lkfe"]
+
+[ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="1_sccu2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ag4sj"]
+texture = ExtResource("1_sccu2")
+texture_region_size = Vector2i(32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_fnbpq"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 7
+sources/0 = SubResource("TileSetAtlasSource_ag4sj")
+
+[node name="WallTileMapComponent" type="TileMapLayer" unique_id=1838101538]
+modulate = Color(0, 0, 0, 1)
+tile_set = SubResource("TileSet_fnbpq")

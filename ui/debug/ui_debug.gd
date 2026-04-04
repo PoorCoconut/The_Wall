@@ -11,6 +11,7 @@ var pvelocity : Vector2
 var top_pvelocity : Vector2 = Vector2.ZERO
 var pcur_state : String
 var pchain : int
+var pcur_dmg : int
 
 func _ready() -> void:
 	visible = false #Enable me to hide DEBUG MENU when READYING
@@ -33,6 +34,7 @@ func _process(_delta: float) -> void:
 	%top_v.text = "Top V:" + str(top_pvelocity)
 	%cur_state.text = "Mov State: " + pcur_state
 	%dash_chain.text = "Chains: " + str(pchain)
+	%player_curr_damage.text = "Current Damage: " + str(pcur_dmg)
 
 func player_lastdir_string():
 	if plast_dir == Vector2(1,0):

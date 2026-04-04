@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://btbcu7i2ahwq5"]
+
+[ext_resource type="Script" uid="uid://dax15qxwg4uwj" path="res://systems/HUD/player_hud.gd" id="1_cadqa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cadqa"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0keh"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rhs8c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhs8c"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gw1j"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kxea"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1tei2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tei2"]
+bg_color = Color(0.9937212, 0.00032266855, 0.8857717, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
+
+[node name="PlayerHUD" type="CanvasLayer" unique_id=1878162404]
+script = ExtResource("1_cadqa")
+
+[node name="HealthDisplay" type="Node2D" parent="." unique_id=1156197549]
+
+[node name="BarChaserTexture" type="ProgressBar" parent="HealthDisplay" unique_id=72051859]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 272.0
+offset_bottom = 39.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cadqa")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i0keh")
+show_percentage = false
+
+[node name="WhiteBarTexture" type="ProgressBar" parent="HealthDisplay" unique_id=2024980034]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 272.0
+offset_bottom = 39.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_rhs8c")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rhs8c")
+show_percentage = false
+
+[node name="AmmoDisplay" type="Node2D" parent="." unique_id=44506540]
+
+[node name="AmmoBarChaser" type="ProgressBar" parent="AmmoDisplay" unique_id=942982653]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 144.0
+offset_bottom = 64.0
+theme_override_styles/background = SubResource("StyleBoxFlat_2gw1j")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7kxea")
+show_percentage = false
+
+[node name="AmmoBar" type="ProgressBar" parent="AmmoDisplay" unique_id=360275087]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 144.0
+offset_bottom = 64.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_1tei2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1tei2")
+show_percentage = false

@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://1315wi6a3pnl"]
+[gd_scene format=3 uid="uid://1315wi6a3pnl"]
 
 [ext_resource type="Script" uid="uid://cn3kp0iikwchc" path="res://ui/debug/ui_debug.gd" id="1_yhsrp"]
 
-[node name="ui_debug" type="CanvasLayer"]
+[node name="ui_debug" type="CanvasLayer" unique_id=3288541]
 script = ExtResource("1_yhsrp")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1423902190]
 layout_mode = 3
 anchor_left = 0.0125
 anchor_top = 0.0166667
@@ -16,42 +16,47 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Player" type="VBoxContainer" parent="Control"]
+[node name="Player" type="VBoxContainer" parent="Control" unique_id=859348238]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="last_dir" type="Label" parent="Control/Player"]
+[node name="last_dir" type="Label" parent="Control/Player" unique_id=783811187]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Last Dir: "
 
-[node name="unq_last_dir" type="Label" parent="Control/Player"]
+[node name="unq_last_dir" type="Label" parent="Control/Player" unique_id=1221073303]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Uniq Last Dir: "
 
-[node name="cur_dir" type="Label" parent="Control/Player"]
+[node name="cur_dir" type="Label" parent="Control/Player" unique_id=1482685389]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Cur Dir: "
 
-[node name="velocity" type="Label" parent="Control/Player"]
+[node name="velocity" type="Label" parent="Control/Player" unique_id=501172742]
 unique_name_in_owner = true
 layout_mode = 2
 text = "V: "
 
-[node name="top_v" type="Label" parent="Control/Player"]
+[node name="top_v" type="Label" parent="Control/Player" unique_id=1760608103]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Top V: "
 
-[node name="cur_state" type="Label" parent="Control/Player"]
+[node name="cur_state" type="Label" parent="Control/Player" unique_id=7679468]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Cur State: "
 
-[node name="dash_chain" type="Label" parent="Control/Player"]
+[node name="dash_chain" type="Label" parent="Control/Player" unique_id=1730286768]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Chains: 0 "
+
+[node name="player_curr_damage" type="Label" parent="Control/Player" unique_id=1941801160]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Current Damage: 0 "

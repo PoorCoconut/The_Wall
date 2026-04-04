@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://885lqs8bymlc"]
-
-[ext_resource type="Script" uid="uid://duahwbpavd32h" path="res://resuables/components/Scenes Component/world_cam.gd" id="1_0lkdb"]
-
-[node name="WorldCam" type="Camera2D" groups=["Camera"]]
-position_smoothing_enabled = true
-script = ExtResource("1_0lkdb")
