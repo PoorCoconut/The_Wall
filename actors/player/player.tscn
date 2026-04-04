@@ -15,7 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="7_kyfeq"]
 [ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HurtBox/hurtbox_component.tscn" id="8_fpo3a"]
 [ext_resource type="Script" uid="uid://07uiwqv6ap1t" path="res://actors/player/FSM/state_atk1.gd" id="9_fvcfl"]
+[ext_resource type="PackedScene" uid="uid://kq5421dak6je" path="res://systems/InteractionAreaComponent/interaction_area_component.tscn" id="10_1c637"]
 [ext_resource type="Script" uid="uid://blikevan384uj" path="res://actors/player/FSM/state_atk2.gd" id="10_s44gf"]
+[ext_resource type="Script" uid="uid://kxvis2gq1kw" path="res://systems/InteractionAreaComponent/interaction_area_component.gd" id="11_4ihbh"]
 [ext_resource type="Script" uid="uid://bmuovlyby71qn" path="res://actors/player/FSM/state_shoot.gd" id="12_1rh3m"]
 [ext_resource type="Script" uid="uid://63d2ig4v6vpc" path="res://actors/player/Misc/player_anim.gd" id="13_mf6ab"]
 [ext_resource type="Script" uid="uid://df2e1af20srmy" path="res://actors/player/FSM/state_death.gd" id="14_jmusd"]
@@ -785,7 +787,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("InteractionArea:rotation")
+tracks/2/path = NodePath("InteractionAreaComponent:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -826,7 +828,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("InteractionArea:rotation")
+tracks/2/path = NodePath("InteractionAreaComponent:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -867,7 +869,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("InteractionArea:rotation")
+tracks/2/path = NodePath("InteractionAreaComponent:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -908,7 +910,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("InteractionArea:rotation")
+tracks/2/path = NodePath("InteractionAreaComponent:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -983,7 +985,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("InteractionArea:rotation")
+tracks/5/path = NodePath("InteractionAreaComponent:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1025,7 +1027,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("InteractionArea:rotation")
+tracks/2/path = NodePath("InteractionAreaComponent:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1067,7 +1069,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("InteractionArea:rotation")
+tracks/2/path = NodePath("InteractionAreaComponent:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1109,7 +1111,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("InteractionArea:rotation")
+tracks/2/path = NodePath("InteractionAreaComponent:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1151,7 +1153,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("InteractionArea:rotation")
+tracks/2/path = NodePath("InteractionAreaComponent:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1455,9 +1457,6 @@ states/Shoot/position = Vector2(846, 310.738)
 transitions = ["Dash", "Run", SubResource("AnimationNodeStateMachineTransition_ljtlk"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_7na6v"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_jo80b"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_c51oc"), "Run", "Dash", SubResource("AnimationNodeStateMachineTransition_x3lyn"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_eyira"), "Run", "Hurt", SubResource("AnimationNodeStateMachineTransition_wvcuu"), "Dash", "Hurt", SubResource("AnimationNodeStateMachineTransition_bx4kp"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_5xnh4"), "Hurt", "Run", SubResource("AnimationNodeStateMachineTransition_45tql"), "Idle", "Atk1", SubResource("AnimationNodeStateMachineTransition_q54ot"), "Atk1", "Atk2", SubResource("AnimationNodeStateMachineTransition_pkcke"), "Atk2", "Run", SubResource("AnimationNodeStateMachineTransition_cncfm"), "Atk2", "Hurt", SubResource("AnimationNodeStateMachineTransition_fag52"), "Atk2", "Shoot", SubResource("AnimationNodeStateMachineTransition_n4fxc"), "Atk2", "Atk1", SubResource("AnimationNodeStateMachineTransition_6mucm"), "Run", "Atk1", SubResource("AnimationNodeStateMachineTransition_faxkq"), "Atk1", "Hurt", SubResource("AnimationNodeStateMachineTransition_josxs"), "Shoot", "Hurt", SubResource("AnimationNodeStateMachineTransition_mtccg"), "Atk1", "Shoot", SubResource("AnimationNodeStateMachineTransition_uvckt"), "Idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_1vdpy"), "Run", "Shoot", SubResource("AnimationNodeStateMachineTransition_ffmgw"), "Shoot", "Run", SubResource("AnimationNodeStateMachineTransition_li8kq"), "Atk1", "Run", SubResource("AnimationNodeStateMachineTransition_6ldms")]
 graph_offset = Vector2(117.877, -119.487)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgd8i"]
-size = Vector2(24, 40.5)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_lv4bx"]
 radius = 448.0714
 
@@ -1621,12 +1620,10 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
 parameters/Shoot/blend_position = Vector2(0.410339, -0.522124)
 
-[node name="InteractionArea" type="Area2D" parent="." unique_id=1405646332]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=29224859]
-position = Vector2(0, 20.25)
-shape = SubResource("RectangleShape2D_jgd8i")
-disabled = true
+[node name="InteractionAreaComponent" parent="." unique_id=2138184127 instance=ExtResource("10_1c637")]
+collision_layer = 0
+collision_mask = 128
+script = ExtResource("11_4ihbh")
 
 [node name="ThreatDetector" type="Area2D" parent="." unique_id=1915531002]
 collision_layer = 0

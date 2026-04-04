@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bux1io6n2c78a"]
+
+[ext_resource type="Script" uid="uid://nx3ar4m1tfck" path="res://actors/npc/npc_base.gd" id="1_wbaty"]
+[ext_resource type="Texture2D" uid="uid://cgeaim5r3kw0h" path="res://game_assets/textures/characters/characters.png" id="2_r3va4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g37s"]
+atlas = ExtResource("2_r3va4")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vont2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g37s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="NPC_BASE" type="CharacterBody2D" unique_id=1388448960]
+script = ExtResource("1_wbaty")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=405592476]
+sprite_frames = SubResource("SpriteFrames_vont2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=367019019]
+debug_color = Color(0, 0.6, 0.69803923, 0.36078432)
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1859598403]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=431916937]
+debug_color = Color(0, 0.64705884, 0.22745098, 0)

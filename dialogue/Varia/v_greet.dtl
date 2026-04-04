@@ -1,0 +1,13 @@
+varia: Hmm?
+varia (neutral_left): Oh.
+varia (smile_center): Hey there.
+varia (smile_left): What brings you here in [wave]Apocrypha[/wave]?
+- A calling.
+	varia (neutral_center): Oh, you're just like that robot who went on board to this place as well.[n]Said that it seeked for an answer.
+- For fame.
+	varia (smile_center): Interesting![n]Seems like we're much alike then.
+	varia: I'm hoping to get some fame in this mission. [pause=0.5]Heh.
+- To discover new things.
+	varia (smile_center): There's definitely plenty to discover here.
+varia (neutral_left): In any case...
+varia (smile_center): Good Luck in your journey!

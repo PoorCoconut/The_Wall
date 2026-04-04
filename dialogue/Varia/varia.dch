@@ -10,16 +10,187 @@
 "style": "varia_dialogue_style",
 "suffix": ""
 },
-&"default_portrait": "New portrait",
+&"default_portrait": "neutral_center",
 &"description": "",
 &"display_name": "Varia",
 &"mirror": false,
 &"nicknames": [""],
 &"offset": Vector2(0, 0),
 &"portraits": {
-"New portrait": {
+"angry_center": {
 "export_overrides": {
-"image": ""
+"image": "\"res://actors/npc/Varia/portrait/v_angry_center.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"angry_closed": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_angry_closed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"angry_left": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_angry_left.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"annoyed_center": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_annoyed_center.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"annoyed_closed": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_annoyed_closed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"annoyed_left": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_annoyed_left.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"confused_center": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_confused_center.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"confused_left": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_confused_left.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"confused_right": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_confused_right.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"evil_center": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_evil_center.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"evil_closed": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_evil_closed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"evil_left": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_evil_left.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"neutral_center": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_neutral_center.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"neutral_left": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_neutral_left.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"sinister_center": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_sinister_center.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"sinister_closed": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_sinister_closed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"sinister_left": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_sinister_left.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"smile_center": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_smile_center.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"smile_left": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_smile_left.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"unimpressed": {
+"export_overrides": {
+"image": "\"res://actors/npc/Varia/portrait/v_unimpressed.png\""
 },
 "mirror": false,
 "offset": Vector2(0, 0),

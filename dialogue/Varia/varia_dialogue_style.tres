@@ -28,7 +28,7 @@ script = ExtResource("2_74pfx")
 scene = ExtResource("5_fbglf")
 overrides = {
 "box_size": "Vector2(600, 100)",
-"custom_normal_font": "\"res://textures/fonts/jupiter-crash-brk/jupiterc.ttf\"",
+"custom_normal_font": "\"res://game_assets/textures/fonts/jupiter-crash-brk/jupiterc.ttf\"",
 "name_label_color_mode": "1",
 "portrait_stretch_factor": "0.2",
 "use_global_fonts": "false"

@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://dmo6ff4hqlv5f"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1f7cq"]
-
-[node name="PortraitVaria" type="AnimatedSprite2D" unique_id=1666163489]
-sprite_frames = SubResource("SpriteFrames_1f7cq")

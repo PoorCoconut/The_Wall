@@ -74,12 +74,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	update_debug()
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("interact"):
-		$InteractionArea/CollisionShape2D.disabled = false
-		await get_tree().create_timer(0.1).timeout
-		$InteractionArea/CollisionShape2D.disabled = true
-
 func update_debug():
 	UiDebug.plast_dir = last_dir
 	UiDebug.plast_dir_x = last_dir_x

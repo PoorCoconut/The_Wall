@@ -68,7 +68,7 @@ variables={
 "playerName": "Player"
 }
 extensions_folder="res://addons/dialogic_additions"
-text/letter_speed=0.01
+text/letter_speed=0.03
 text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
 text/advance_delay=0.1
@@ -78,10 +78,10 @@ animations/join_default_length=0.5
 animations/join_default_wait=true
 animations/leave_default_length=0.5
 animations/leave_default_wait=true
-animations/cross_fade_default_length=0.5
+animations/cross_fade_default_length=0.0
 choices/autofocus_first=true
 choices/delay=0.2
-choices/reveal_delay=0
+choices/reveal_delay=0.05
 choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
@@ -89,18 +89,22 @@ audio/type_sound_bus="SFX"
 text/autopauses={}
 audio/channel_defaults={
 "": {
-"audio_bus": "",
+"audio_bus": "SFX",
 "fade_length": 0.0,
 "loop": false,
 "volume": 0.0
 },
 "music": {
-"audio_bus": "",
+"audio_bus": "Music",
 "fade_length": 0.0,
 "loop": true,
 "volume": 0.0
 }
 }
+glossary/default_case_sensitive=true
+animations/join_default="Instant In"
+animations/leave_default="Instant Out"
+animations/cross_fade_default="Fade Cross"
 
 [display]
 
@@ -210,6 +214,7 @@ dialogic_default_action={
 2d_physics/layer_5="Player_Hitbox"
 2d_physics/layer_6="Enemy_Hurtbox"
 2d_physics/layer_7="Enemy_Hitbox"
+2d_physics/layer_8="Interactable"
 
 [physics]
 

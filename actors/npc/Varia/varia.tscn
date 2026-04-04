@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://6qsiwl1nt0ap"]
+
+[ext_resource type="PackedScene" uid="uid://bux1io6n2c78a" path="res://actors/npc/npc_base.tscn" id="1_43idd"]
+[ext_resource type="Script" uid="uid://cmf80t3l2revl" path="res://actors/npc/Varia/varia.gd" id="2_0r72l"]
+[ext_resource type="Texture2D" uid="uid://cgeaim5r3kw0h" path="res://game_assets/textures/characters/characters.png" id="3_k57rg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brsu4"]
+atlas = ExtResource("3_k57rg")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r3vda"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brsu4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k57rg"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brsu4"]
+radius = 16.0
+
+[node name="Varia" unique_id=1388448960 instance=ExtResource("1_43idd")]
+script = ExtResource("2_0r72l")
+
+[node name="AnimatedSprite" parent="." index="0" unique_id=405592476]
+sprite_frames = SubResource("SpriteFrames_r3vda")
+offset = Vector2(0, -10)
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=367019019]
+shape = SubResource("CircleShape2D_k57rg")
+
+[node name="InteractionArea" parent="." index="2" unique_id=1859598403]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="InteractionArea" index="0" unique_id=431916937]
+shape = SubResource("CircleShape2D_brsu4")

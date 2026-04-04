@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dkn6mu0v75054" path="res://actors/enemy/test_basic_enemy/test_enemy.tscn" id="7_7jvr5"]
 [ext_resource type="Texture2D" uid="uid://dfanb38e8dq22" path="res://game_assets/textures/Pixel Art Top Down - Basic v1.2.0/Texture/Extra/TX Plant with Shadow.png" id="8_g47hi"]
 [ext_resource type="Texture2D" uid="uid://ddr0rmq6paf5m" path="res://game_assets/textures/Pixel Art Top Down - Basic v1.2.0/Texture/TX Struct.png" id="9_qiwk8"]
+[ext_resource type="PackedScene" uid="uid://6qsiwl1nt0ap" path="res://actors/npc/Varia/varia.tscn" id="10_g20jh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ek4vm"]
 texture = ExtResource("5_uftbt")
@@ -586,72 +587,6 @@ position = Vector2(112, 244)
 [node name="test_enemy3" parent="Enemies" unique_id=1306187205 instance=ExtResource("7_7jvr5")]
 position = Vector2(281, 100)
 
-[node name="test_enemy4" parent="Enemies" unique_id=347027556 instance=ExtResource("7_7jvr5")]
-position = Vector2(401, 118)
-
-[node name="test_enemy5" parent="Enemies" unique_id=1132441227 instance=ExtResource("7_7jvr5")]
-position = Vector2(496, 255)
-
-[node name="test_enemy6" parent="Enemies" unique_id=1046193594 instance=ExtResource("7_7jvr5")]
-position = Vector2(-122, 69)
-
-[node name="test_enemy7" parent="Enemies" unique_id=804449343 instance=ExtResource("7_7jvr5")]
-position = Vector2(-156, 220)
-
-[node name="test_enemy8" parent="Enemies" unique_id=1736490063 instance=ExtResource("7_7jvr5")]
-position = Vector2(-119, 302)
-
-[node name="test_enemy9" parent="Enemies" unique_id=1937001512 instance=ExtResource("7_7jvr5")]
-position = Vector2(-50, 242)
-
-[node name="test_enemy10" parent="Enemies" unique_id=1026462910 instance=ExtResource("7_7jvr5")]
-position = Vector2(56, 61)
-
-[node name="test_enemy11" parent="Enemies" unique_id=1031988728 instance=ExtResource("7_7jvr5")]
-position = Vector2(56, 61)
-
-[node name="test_enemy12" parent="Enemies" unique_id=628934055 instance=ExtResource("7_7jvr5")]
-position = Vector2(78, 467)
-
-[node name="test_enemy13" parent="Enemies" unique_id=961056952 instance=ExtResource("7_7jvr5")]
-position = Vector2(327, 433)
-
-[node name="test_enemy14" parent="Enemies" unique_id=1590033475 instance=ExtResource("7_7jvr5")]
-position = Vector2(500, 373)
-
-[node name="test_enemy15" parent="Enemies" unique_id=137129709 instance=ExtResource("7_7jvr5")]
-position = Vector2(-122, 434)
-
-[node name="test_enemy16" parent="Enemies" unique_id=1343933224 instance=ExtResource("7_7jvr5")]
-position = Vector2(-6, 358)
-
-[node name="test_enemy17" parent="Enemies" unique_id=599123597 instance=ExtResource("7_7jvr5")]
-position = Vector2(-243, 345)
-
-[node name="test_enemy18" parent="Enemies" unique_id=1397597136 instance=ExtResource("7_7jvr5")]
-position = Vector2(199, 36)
-
-[node name="test_enemy19" parent="Enemies" unique_id=1636902410 instance=ExtResource("7_7jvr5")]
-position = Vector2(627, 251)
-
-[node name="test_enemy20" parent="Enemies" unique_id=1131064465 instance=ExtResource("7_7jvr5")]
-position = Vector2(426, 506)
-
-[node name="test_enemy21" parent="Enemies" unique_id=1753383564 instance=ExtResource("7_7jvr5")]
-position = Vector2(196, 575)
-
-[node name="test_enemy22" parent="Enemies" unique_id=1365824169 instance=ExtResource("7_7jvr5")]
-position = Vector2(732, 557)
-
-[node name="test_enemy23" parent="Enemies" unique_id=42729990 instance=ExtResource("7_7jvr5")]
-position = Vector2(652, 696)
-
-[node name="test_enemy24" parent="Enemies" unique_id=327985626 instance=ExtResource("7_7jvr5")]
-position = Vector2(-475, 65)
-
-[node name="test_enemy25" parent="Enemies" unique_id=719600705 instance=ExtResource("7_7jvr5")]
-position = Vector2(-5, -181)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1995096517]
 environment = SubResource("Environment_4678b")
 
@@ -660,3 +595,6 @@ environment = SubResource("Environment_4678b")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=754980988]
 libraries/ = SubResource("AnimationLibrary_odci3")
 autoplay = &"sunset"
+
+[node name="Varia" parent="." unique_id=1388448960 instance=ExtResource("10_g20jh")]
+position = Vector2(461, 449)
