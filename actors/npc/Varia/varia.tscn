@@ -23,7 +23,7 @@ animations = [{
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_brsu4"]
-radius = 16.0
+radius = 14.035668
 
 [node name="Varia" unique_id=1388448960 instance=ExtResource("1_43idd")]
 script = ExtResource("2_0r72l")
@@ -35,9 +35,9 @@ offset = Vector2(0, -10)
 [node name="CollisionShape2D" parent="." index="1" unique_id=367019019]
 shape = SubResource("CircleShape2D_k57rg")
 
-[node name="InteractionArea" parent="." index="2" unique_id=1859598403]
-collision_layer = 128
-collision_mask = 0
-
-[node name="CollisionShape2D" parent="InteractionArea" index="0" unique_id=431916937]
+[node name="CollisionShape2D" parent="InteractArea" parent_id_path=PackedInt32Array(1878328389) index="0" unique_id=912471119]
 shape = SubResource("CircleShape2D_brsu4")
+
+[connection signal="interacted" from="InteractArea" to="." method="_on_interact_area_interacted"]
+
+[editable path="InteractArea"]

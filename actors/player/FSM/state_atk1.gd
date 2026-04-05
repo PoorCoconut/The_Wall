@@ -7,6 +7,7 @@ class_name Player_Atk1
 var wants_to_combo : bool = false
 
 @onready var ComboTimer : Timer = $ComboTimer
+@export var lunge_strength : float = 150.0
 
 func enter():
 	wants_to_combo = false
@@ -15,15 +16,14 @@ func enter():
 	%attack_sword1.pitch_scale = randf_range(0.8, 1.3)
 	%attack_sword1.play()
 	
-	# (We will turn on the Hitbox component here later!)
+	var mouse_pos = PLAYER.get_global_mouse_position()
+	var dir_to_mouse = PLAYER.global_position.direction_to(mouse_pos)
+	PLAYER.movement_component.current_velocity = dir_to_mouse * lunge_strength
 
 func update(delta: float):
-	# 1. COMPONENT PHYSICS (The combat slide)
 	PLAYER.movement_component.apply_friction(delta)
 	PLAYER.movement_component.move()
 	
-	# 2. BUFFER THE INPUT
-	# We don't transition yet! We just remember they want to combo.
 	if Input.is_action_just_pressed("attack"):
 		wants_to_combo = true
 

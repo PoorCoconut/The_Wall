@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://b14r7l7obufdv" path="res://sound/sfx/weapons/melee/sfx_sword2.mp3" id="22_jgd8i"]
 [ext_resource type="AudioStream" uid="uid://c817rrewfr8hx" path="res://sound/sfx/weapons/range/sfx_shoot2.mp3" id="22_lv4bx"]
 [ext_resource type="AudioStream" uid="uid://dh11jdauibrbm" path="res://sound/sfx/weapons/range/empty-gun-shot-6209.mp3" id="22_yybc7"]
+[ext_resource type="Script" uid="uid://oowlxrnjm2ma" path="res://actors/player/FSM/state_dialogue.gd" id="23_4ihbh"]
 [ext_resource type="AudioStream" uid="uid://fxp7nkgmj3f5" path="res://sound/sfx/misc/sfx_dash.mp3" id="27_2vokq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ldci"]
@@ -1713,6 +1714,10 @@ PLAYER = NodePath("../..")
 unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
+
+[node name="Dialogue" type="Node" parent="FSM" unique_id=1808985674 node_paths=PackedStringArray("PLAYER")]
+script = ExtResource("23_4ihbh")
+PLAYER = NodePath("../..")
 
 [node name="Hit" type="Node" parent="FSM" unique_id=924834039 node_paths=PackedStringArray("PLAYER")]
 script = ExtResource("18_lv4bx")

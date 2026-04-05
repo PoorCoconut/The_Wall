@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://nx3ar4m1tfck" path="res://actors/npc/npc_base.gd" id="1_wbaty"]
 [ext_resource type="Texture2D" uid="uid://cgeaim5r3kw0h" path="res://game_assets/textures/characters/characters.png" id="2_r3va4"]
+[ext_resource type="PackedScene" uid="uid://db3o7r26hm084" path="res://systems/InteractArea/interact_area.tscn" id="3_vont2"]
+[ext_resource type="Script" uid="uid://m32rmgobn81i" path="res://systems/InteractArea/interact_area.gd" id="4_yg8oh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2g37s"]
 atlas = ExtResource("2_r3va4")
@@ -27,7 +29,5 @@ sprite_frames = SubResource("SpriteFrames_vont2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=367019019]
 debug_color = Color(0, 0.6, 0.69803923, 0.36078432)
 
-[node name="InteractionArea" type="Area2D" parent="." unique_id=1859598403]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=431916937]
-debug_color = Color(0, 0.64705884, 0.22745098, 0)
+[node name="InteractArea" parent="." unique_id=1878328389 instance=ExtResource("3_vont2")]
+script = ExtResource("4_yg8oh")

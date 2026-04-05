@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bi8524qm1yaj"]
+
+[ext_resource type="Script" uid="uid://cju0qarbtrmbd" path="res://objects/save obelisk/save_obelisk.gd" id="1_47ivx"]
+[ext_resource type="Texture2D" uid="uid://bwo2pcll8w3s3" path="res://objects/save obelisk/save_obelisk.png" id="1_fdy05"]
+[ext_resource type="PackedScene" uid="uid://db3o7r26hm084" path="res://systems/InteractArea/interact_area.tscn" id="2_47ivx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqiu5"]
+radius = 26.076809
+
+[node name="SaveObelisk" type="Node2D" unique_id=2105329902]
+script = ExtResource("1_47ivx")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1594933923]
+texture = ExtResource("1_fdy05")
+offset = Vector2(0, -48)
+
+[node name="InteractionArea" parent="." unique_id=1878328389 instance=ExtResource("2_47ivx")]
+
+[node name="CollisionShape2D" parent="InteractionArea" index="0" unique_id=912471119]
+shape = SubResource("CircleShape2D_uqiu5")
+
+[connection signal="interacted" from="InteractionArea" to="." method="_on_interaction_area_interacted"]
+
+[editable path="InteractionArea"]

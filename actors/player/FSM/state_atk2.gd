@@ -5,6 +5,7 @@ class_name Player_Atk2
 var wants_to_combo : bool = false
 
 @onready var ComboTimer : Timer = $ComboTimer
+@export var lunge_strength : float = 150.0
 
 func enter():
 	wants_to_combo = false
@@ -12,6 +13,10 @@ func enter():
 	
 	%attack_sword2.pitch_scale = randf_range(0.8, 1.3)
 	%attack_sword2.play()
+	
+	var mouse_pos = PLAYER.get_global_mouse_position()
+	var dir_to_mouse = PLAYER.global_position.direction_to(mouse_pos)
+	PLAYER.movement_component.current_velocity = dir_to_mouse * lunge_strength
 
 func update(delta: float):
 	PLAYER.movement_component.apply_friction(delta)

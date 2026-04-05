@@ -1,13 +1,22 @@
-varia: Hmm?
-varia (neutral_left): Oh.
-varia (smile_center): Hey there.
-varia (smile_left): What brings you here in [wave]Apocrypha[/wave]?
-- A calling.
-	varia (neutral_center): Oh, you're just like that robot who went on board to this place as well.[n]Said that it seeked for an answer.
-- For fame.
-	varia (smile_center): Interesting![n]Seems like we're much alike then.
-	varia: I'm hoping to get some fame in this mission. [pause=0.5]Heh.
-- To discover new things.
-	varia (smile_center): There's definitely plenty to discover here.
-varia (neutral_left): In any case...
-varia (smile_center): Good Luck in your journey!
+if {v_talked} == false:
+	varia: Hmm?
+	varia (neutral_left): Oh.
+	varia (smile_center): Hey there.
+	varia (smile_left): What brings you here in [wave]Apocrypha[/wave]?
+	- A calling.
+		varia (neutral_center): Oh, you're just like that robot who went on board to this place as well.[n]Said that it seeked for an answer.
+	- For fame.
+		varia (smile_center): Interesting![n]Seems like we're much alike then.
+		varia: I'm hoping to get some fame in this mission. [pause=0.5]Heh.
+	- To discover new things.
+		varia (smile_center): There's definitely plenty to discover here.
+	varia (neutral_left): In any case...
+	varia (smile_center): Good Luck in your journey!
+else:
+	varia: Hmm?
+	varia (confused_left): Oh- [pause=0.2]Apologies for my manners.
+	varia (confused_right): I completely forgot to introduce myself.
+	varia (smile_center): The name is Varia. [pause=0.2]I am an adventurer like you.[input] Though I'm here more to protect y'all.
+	varia (neutral_center): Section Commander from the Tri-sun district tasked me for this job.[input] Wonder which district you belong in.
+	varia (smile_center): In any case, nice meeting you!
+set {v_talked} = true

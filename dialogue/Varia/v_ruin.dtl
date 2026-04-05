@@ -1,0 +1,4 @@
+if {v_met} == false:
+	varia (neutral_center): Greetings.
+	varia: You are an adventurer, yes?
+	varia (smile_center): I am Varia, an adventurer as well.

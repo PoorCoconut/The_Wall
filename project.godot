@@ -50,7 +50,8 @@ directories/dtl_directory={
 "TW_first_greet_1": "res://dialogue/The Wall/TW_first_greet_1.dtl",
 "TW_first_greet_2": "res://dialogue/The Wall/TW_first_greet_2.dtl",
 "test": "res://dialogue/test.dtl",
-"v_greet": "res://dialogue/Varia/v_greet.dtl"
+"v_greet": "res://dialogue/Varia/v_greet.dtl",
+"v_ruin": "res://dialogue/Varia/v_ruin.dtl"
 }
 layout/style_directory={
 "": "res://dialogue/The Wall/the_wall_dialogue_style.tres",
@@ -65,7 +66,9 @@ layout/default_style="res://dialogue/The Wall/the_wall_dialogue_style.tres"
 variables={
 "answered": false,
 "nameChange": false,
-"playerName": "Player"
+"playerName": "Player",
+"v_met": false,
+"v_talked": false
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.03

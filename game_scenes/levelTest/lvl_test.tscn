@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="2_vbbi6"]
 [ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="2_yjork"]
 [ext_resource type="Texture2D" uid="uid://oknw5acrv0iw" path="res://game_assets/textures/Pixel Art Top Down - Basic v1.2.0/Texture/TX Tileset Grass.png" id="5_uftbt"]
-[ext_resource type="PackedScene" uid="uid://dkn6mu0v75054" path="res://actors/enemy/test_basic_enemy/test_enemy.tscn" id="7_7jvr5"]
 [ext_resource type="Texture2D" uid="uid://dfanb38e8dq22" path="res://game_assets/textures/Pixel Art Top Down - Basic v1.2.0/Texture/Extra/TX Plant with Shadow.png" id="8_g47hi"]
 [ext_resource type="Texture2D" uid="uid://ddr0rmq6paf5m" path="res://game_assets/textures/Pixel Art Top Down - Basic v1.2.0/Texture/TX Struct.png" id="9_qiwk8"]
 [ext_resource type="PackedScene" uid="uid://6qsiwl1nt0ap" path="res://actors/npc/Varia/varia.tscn" id="10_g20jh"]
+[ext_resource type="PackedScene" uid="uid://bi8524qm1yaj" path="res://objects/save obelisk/save_obelisk.tscn" id="10_hyeq8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ek4vm"]
 texture = ExtResource("5_uftbt")
@@ -578,15 +578,6 @@ position = Vector2(320, 280)
 
 [node name="Enemies" type="Node" parent="." unique_id=463887465]
 
-[node name="test_enemy" parent="Enemies" unique_id=768199026 instance=ExtResource("7_7jvr5")]
-position = Vector2(164, 245)
-
-[node name="test_enemy2" parent="Enemies" unique_id=1225056158 instance=ExtResource("7_7jvr5")]
-position = Vector2(112, 244)
-
-[node name="test_enemy3" parent="Enemies" unique_id=1306187205 instance=ExtResource("7_7jvr5")]
-position = Vector2(281, 100)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1995096517]
 environment = SubResource("Environment_4678b")
 
@@ -598,3 +589,6 @@ autoplay = &"sunset"
 
 [node name="Varia" parent="." unique_id=1388448960 instance=ExtResource("10_g20jh")]
 position = Vector2(461, 449)
+
+[node name="SaveObelisk" parent="." unique_id=2105329902 instance=ExtResource("10_hyeq8")]
+position = Vector2(392, 360)

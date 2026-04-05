@@ -12,11 +12,12 @@ func trigger_interaction() -> void:
 	var closest_interactable = null
 	var closest_distance = INF
 	for area in overlapping_areas:
-		if area.get_parent().has_method("_on_interact"): 
+		if area: 
 			var distance = global_position.distance_to(area.global_position)
 			if distance < closest_distance:
 				closest_distance = distance
-				closest_interactable = area.get_parent()
+				closest_interactable = area
 				
-	if closest_interactable:
-		closest_interactable._on_interact()
+	if closest_interactable is InteractableArea:
+		
+		closest_interactable.interacted.emit()

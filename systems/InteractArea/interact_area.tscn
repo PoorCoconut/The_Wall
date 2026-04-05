@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://db3o7r26hm084"]
+
+[ext_resource type="Script" uid="uid://m32rmgobn81i" path="res://systems/InteractArea/interact_area.gd" id="1_o5f0v"]
+
+[node name="InteractionArea" type="Area2D" unique_id=1878328389]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("1_o5f0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=912471119]
+debug_color = Color(0, 0.64705884, 0.22745098, 0)

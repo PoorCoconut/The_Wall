@@ -32,6 +32,8 @@ var threat_level: float = 0.0:
 
 func _ready() -> void:
 	Dialogic.signal_event.connect(_on_dialogic_signal)
+	Dialogic.timeline_started.connect(_on_timeline_started)
+	Dialogic.timeline_ended.connect(_on_timeline_ended)
 	load_game()
 
 func setPlayerName(_player_name : String) -> void:
@@ -62,33 +64,30 @@ func save_game(player_pos: Vector2) -> void:
 	}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file.store_string(JSON.stringify(save_data, "\t"))
-	print("Game Saved!")
+	
+	# Sync Dialogic narrative data to a default slot
+	Dialogic.Save.save("slot_1") 
+	print("Game and Narrative Saved!")
 
 func load_game():
-	#Check if the player has ever saved the game before
 	if not FileAccess.file_exists(SAVE_PATH):
 		print("No save file found. Starting from the bottom!")
-		return null # Returning null lets the Player node know to use its default spawn
+		return null
 		
-	#Open the file and read the text
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-	var json_text = file.get_as_text()
+	var save_data = JSON.parse_string(file.get_as_text())
 	
-	#Parse the JSON back into a dictionary
-	var save_data = JSON.parse_string(json_text)
+	var loaded_pos = null # Store it here instead of returning immediately
 	
-	#Extract the coordinates and return them as a usable Vector2
 	if save_data:
 		if save_data.has("player_name"):
 			player_name = save_data["player_name"]
 			
 		if save_data.has("player_x") and save_data.has("player_y"):
-			var loaded_pos = Vector2(save_data["player_x"], save_data["player_y"])
-			print("Save loaded! Teleporting player to: ", loaded_pos)
-			return loaded_pos
+			loaded_pos = Vector2(save_data["player_x"], save_data["player_y"])
 			
 		if save_data.has("current_location"):
-			current_location = save_data["current_location"]
+			current_location = int(save_data["current_location"]) # Cast back to int for safety
 			
 		if save_data.has("dash") and save_data.has("glow") and save_data.has("strike"):
 			has_dash = save_data["dash"]
@@ -98,7 +97,12 @@ func load_game():
 		if save_data.has("world_state"):
 			current_world_state = save_data["world_state"]
 			
-	return null
+	# Sync Dialogic narrative data
+	if Dialogic.Save.has_slot("slot_1"):
+		Dialogic.Save.load("slot_1")
+		
+	print("Save loaded! Teleporting player to: ", loaded_pos)
+	return loaded_pos # Return safely at the end
 
 ##Next Level Helper Functions
 func load_next_level(next_level_path : String) -> void:
@@ -115,7 +119,11 @@ func do_camera_shake(intensity:float, time:float):
 		await get_tree().create_timer(time).timeout
 		camera.resetCameraOffset()
 
-#func move_camera_to_player(player_pos : Vector2):
-	#if get_tree().get_first_node_in_group("camera"):
-		#var camera = get_tree().get_first_node_in_group("camera")
-		#camera.moveCameraToEntity(player_pos)
+func _on_timeline_started() -> void:
+	print("something")
+	current_world_state = "Dialogue" # Change the state
+	var PLAYER : Player = get_tree().get_first_node_in_group("Player")
+	PLAYER.FSM.force_change_state("Dialogue")
+
+func _on_timeline_ended() -> void:
+	current_world_state = "Exploration" # Revert the state
