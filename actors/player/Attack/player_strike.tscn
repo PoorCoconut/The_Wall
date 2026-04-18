@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://26s0smxf7xqu"]
 
 [ext_resource type="Script" uid="uid://chhnet8wnfg01" path="res://actors/player/Attack/player_strike.gd" id="1_ckulb"]
-[ext_resource type="Texture2D" uid="uid://deutla8tjguyt" path="res://game_assets/textures/characters/player.png" id="1_kjodn"]
+[ext_resource type="Texture2D" uid="uid://deutla8tjguyt" path="res://game_assets/characters/player.png" id="1_kjodn"]
 
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r8xum"]

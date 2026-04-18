@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bdjcv2p22v7ds"]
 
-[ext_resource type="Texture2D" uid="uid://o5tljqq3vr32" path="res://game_assets/textures/objects/Bullets-Sheet.png" id="1_ckiee"]
+[ext_resource type="Texture2D" uid="uid://o5tljqq3vr32" path="res://game_assets/objects/Bullets-Sheet.png" id="1_ckiee"]
 [ext_resource type="Script" uid="uid://csqf61p8t2dnr" path="res://vfx/particles/Explosion/particle_explosion.gd" id="2_4fv57"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgonl"]

@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://cwsj5d0hp6cvp" path="res://actors/player/player.gd" id="1_1uybl"]
 [ext_resource type="PackedScene" uid="uid://cd0gji0ohlvxv" path="res://systems/Entity Components/Health Component/HealthComponent.tscn" id="2_qct7d"]
 [ext_resource type="PackedScene" uid="uid://baahldfh4kwvn" path="res://systems/Entity Components/Movement Component/MovementComponent.tscn" id="3_2vokq"]
-[ext_resource type="Texture2D" uid="uid://1omgn2l32j8b" path="res://game_assets/textures/characters/player_spritesheet.png" id="3_nvg7b"]
+[ext_resource type="Texture2D" uid="uid://1omgn2l32j8b" path="res://game_assets/characters/player_spritesheet.png" id="3_nvg7b"]
 [ext_resource type="Script" uid="uid://cljyk5ifq86ly" path="res://systems/FSM/fsm_Handler.gd" id="4_38wst"]
 [ext_resource type="Script" uid="uid://cue32okcucr2d" path="res://actors/player/Misc/dash_trail.gd" id="4_cp0mr"]
 [ext_resource type="Script" uid="uid://b2dj56hshhkkh" path="res://actors/player/FSM/state_idle.gd" id="5_jmiis"]
 [ext_resource type="Gradient" uid="uid://ckkbnch5drdfo" path="res://systems/Resources/ColorRamp/player_dash.tres" id="5_pggrf"]
-[ext_resource type="Texture2D" uid="uid://o5tljqq3vr32" path="res://game_assets/textures/objects/Bullets-Sheet.png" id="6_sl2h0"]
+[ext_resource type="Texture2D" uid="uid://o5tljqq3vr32" path="res://game_assets/objects/Bullets-Sheet.png" id="6_sl2h0"]
 [ext_resource type="Script" uid="uid://b2plp3vxgp522" path="res://actors/player/FSM/state_run.gd" id="6_wdudx"]
 [ext_resource type="Script" uid="uid://civu6u7lxnawv" path="res://actors/player/FSM/state_dash.gd" id="7_bemkg"]
-[ext_resource type="Texture2D" uid="uid://vga40wswf8s0" path="res://game_assets/textures/characters/PlayerDashes.png" id="7_cidxy"]
+[ext_resource type="Texture2D" uid="uid://vga40wswf8s0" path="res://game_assets/characters/PlayerDashes.png" id="7_cidxy"]
 [ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="7_kyfeq"]
 [ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HurtBox/hurtbox_component.tscn" id="8_fpo3a"]
 [ext_resource type="Script" uid="uid://07uiwqv6ap1t" path="res://actors/player/FSM/state_atk1.gd" id="9_fvcfl"]
@@ -29,8 +29,9 @@
 [ext_resource type="AudioStream" uid="uid://b14r7l7obufdv" path="res://sound/sfx/weapons/melee/sfx_sword2.mp3" id="22_jgd8i"]
 [ext_resource type="AudioStream" uid="uid://c817rrewfr8hx" path="res://sound/sfx/weapons/range/sfx_shoot2.mp3" id="22_lv4bx"]
 [ext_resource type="AudioStream" uid="uid://dh11jdauibrbm" path="res://sound/sfx/weapons/range/empty-gun-shot-6209.mp3" id="22_yybc7"]
-[ext_resource type="Script" uid="uid://oowlxrnjm2ma" path="res://actors/player/FSM/state_dialogue.gd" id="23_4ihbh"]
+[ext_resource type="Script" uid="uid://oowlxrnjm2ma" path="res://actors/player/FSM/state_lock.gd" id="23_4ihbh"]
 [ext_resource type="AudioStream" uid="uid://fxp7nkgmj3f5" path="res://sound/sfx/misc/sfx_dash.mp3" id="27_2vokq"]
+[ext_resource type="AudioStream" uid="uid://dwgmmcwywyrsw" path="res://sound/sfx/misc/sfx_teleport.mp3" id="32_4jc6f"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ldci"]
 particles_animation = true
@@ -1458,6 +1459,9 @@ states/Shoot/position = Vector2(846, 310.738)
 transitions = ["Dash", "Run", SubResource("AnimationNodeStateMachineTransition_ljtlk"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_7na6v"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_jo80b"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_c51oc"), "Run", "Dash", SubResource("AnimationNodeStateMachineTransition_x3lyn"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_eyira"), "Run", "Hurt", SubResource("AnimationNodeStateMachineTransition_wvcuu"), "Dash", "Hurt", SubResource("AnimationNodeStateMachineTransition_bx4kp"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_5xnh4"), "Hurt", "Run", SubResource("AnimationNodeStateMachineTransition_45tql"), "Idle", "Atk1", SubResource("AnimationNodeStateMachineTransition_q54ot"), "Atk1", "Atk2", SubResource("AnimationNodeStateMachineTransition_pkcke"), "Atk2", "Run", SubResource("AnimationNodeStateMachineTransition_cncfm"), "Atk2", "Hurt", SubResource("AnimationNodeStateMachineTransition_fag52"), "Atk2", "Shoot", SubResource("AnimationNodeStateMachineTransition_n4fxc"), "Atk2", "Atk1", SubResource("AnimationNodeStateMachineTransition_6mucm"), "Run", "Atk1", SubResource("AnimationNodeStateMachineTransition_faxkq"), "Atk1", "Hurt", SubResource("AnimationNodeStateMachineTransition_josxs"), "Shoot", "Hurt", SubResource("AnimationNodeStateMachineTransition_mtccg"), "Atk1", "Shoot", SubResource("AnimationNodeStateMachineTransition_uvckt"), "Idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_1vdpy"), "Run", "Shoot", SubResource("AnimationNodeStateMachineTransition_ffmgw"), "Shoot", "Run", SubResource("AnimationNodeStateMachineTransition_li8kq"), "Atk1", "Run", SubResource("AnimationNodeStateMachineTransition_6ldms")]
 graph_offset = Vector2(117.877, -119.487)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ihbh"]
+size = Vector2(16, 24)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_lv4bx"]
 radius = 448.0714
 
@@ -1626,6 +1630,10 @@ collision_layer = 0
 collision_mask = 128
 script = ExtResource("11_4ihbh")
 
+[node name="CollisionShape2D" parent="InteractionAreaComponent" index="0" unique_id=370761401]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_4ihbh")
+
 [node name="ThreatDetector" type="Area2D" parent="." unique_id=1915531002]
 collision_layer = 0
 collision_mask = 4
@@ -1715,7 +1723,7 @@ unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
 
-[node name="Dialogue" type="Node" parent="FSM" unique_id=1808985674 node_paths=PackedStringArray("PLAYER")]
+[node name="Lock" type="Node" parent="FSM" unique_id=1808985674 node_paths=PackedStringArray("PLAYER")]
 script = ExtResource("23_4ihbh")
 PLAYER = NodePath("../..")
 
@@ -1781,6 +1789,11 @@ unique_name_in_owner = true
 stream = ExtResource("27_2vokq")
 bus = &"SFX"
 
+[node name="charged" type="AudioStreamPlayer" parent="sfx" unique_id=599073826]
+unique_name_in_owner = true
+stream = ExtResource("32_4jc6f")
+bus = &"SFX"
+
 [connection signal="body_entered" from="ThreatDetector" to="." method="_on_threat_detector_body_entered"]
 [connection signal="body_exited" from="ThreatDetector" to="." method="_on_threat_detector_body_exited"]
 [connection signal="timeout" from="FSM/Dash/DashCooldown" to="FSM/Dash" method="_on_dash_cooldown_timeout"]
@@ -1792,5 +1805,6 @@ bus = &"SFX"
 [connection signal="timeout" from="Timers/IFrame" to="." method="_on_i_frame_timeout"]
 [connection signal="timeout" from="Timers/DashChainDamageTimer" to="." method="_on_dash_chain_damage_timer_timeout"]
 
+[editable path="InteractionAreaComponent"]
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

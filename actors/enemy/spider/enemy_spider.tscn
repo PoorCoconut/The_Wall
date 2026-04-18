@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yng3x2icw85h"]
 
-[ext_resource type="Texture2D" uid="uid://cecw15jir0wal" path="res://game_assets/textures/enemies/spider.png" id="1_dkfnc"]
+[ext_resource type="Texture2D" uid="uid://cecw15jir0wal" path="res://game_assets/enemies/spider.png" id="1_dkfnc"]
 [ext_resource type="Script" uid="uid://cepq0eiqddc18" path="res://actors/enemy/spider/enemy_spider.gd" id="1_tjd5t"]
 [ext_resource type="PackedScene" uid="uid://cd0gji0ohlvxv" path="res://systems/Entity Components/Health Component/HealthComponent.tscn" id="2_fe8sv"]
 [ext_resource type="PackedScene" uid="uid://bvyswxgki0fkx" path="res://systems/components/Stats Component/stats_component.tscn" id="3_0fuac"]

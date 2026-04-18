@@ -2,3 +2,4 @@ extends Area2D
 class_name InteractableArea
 
 signal interacted
+signal toggle_display_hint

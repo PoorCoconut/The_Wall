@@ -2,7 +2,7 @@ extends Area2D
 class_name InteractionAreaComponent
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") and GameManager.current_world_state != "freeze":
 		trigger_interaction()
 
 func trigger_interaction() -> void:
@@ -19,5 +19,12 @@ func trigger_interaction() -> void:
 				closest_interactable = area
 				
 	if closest_interactable is InteractableArea:
-		
 		closest_interactable.interacted.emit()
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is InteractableArea:
+		area.toggle_display_hint.emit()
+
+func _on_area_exited(area: Area2D) -> void:
+	if area is InteractableArea:
+		area.toggle_display_hint.emit()

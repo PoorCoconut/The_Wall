@@ -1,6 +1,7 @@
 extends Control
 
-@onready var button_play: Button = %Button_Play
+@onready var button_play: Button = %Button_NewGame
+@onready var button_continue: Button = %Button_Continue
 @onready var button_settings: Button = %Button_Settings
 @onready var button_credits: Button = %Button_Credits
 @onready var button_exit: Button = %Button_Exit
@@ -13,20 +14,33 @@ extends Control
 @export_file("*.tscn") var credits_path : String
 
 func _ready() -> void:
-	MusicManager.change_music("mainmenu_theme", 0.5)
+	if GameManager.launched_game == false:
+		%Anim_IntroScene.play("IntroScene")
+		GameManager.launched_game = true
+	else:
+		%Anim_IntroScene.play("set_ready_menu")
+		%Music.play(8.7)
+	
 	slider_ma_vol.value = SettingsManager.master_vol
 	slider_mu_vol.value = SettingsManager.music_vol
 	slider_s_vol.value = SettingsManager.sfx_vol
 
+func _on_button_new_game_pressed() -> void:
+	pass # Replace with function body.
+
 func _on_button_play_pressed() -> void:
-	MusicManager.change_music("game_theme", 1.0)
+	var tween = get_tree().create_tween()
+	tween.tween_property(%Music, "volume_db", -80, 1)
+	%Anim_TransitionContinue.play("transition")
+
+func _on_anim_transition_continue_animation_finished(_anim_name: StringName) -> void:
 	GameManager.load_next_level(next_level_path)
 
 func _on_button_settings_pressed() -> void:
 	%SettingsContainer.show()
 
 func _on_button_credits_pressed() -> void:
-	GameManager.load_next_level(credits_path)
+	pass
 
 func _on_button_exit_pressed() -> void:
 	get_tree().quit()

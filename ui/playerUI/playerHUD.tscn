@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b1qu8cyvkujxx"]
 
 [ext_resource type="Script" uid="uid://clhbvw1x86f0j" path="res://ui/playerUI/player_hud.gd" id="1_fj0jm"]
-[ext_resource type="Texture2D" uid="uid://bsyix1bw2xanw" path="res://game_assets/textures/ui/tw_ui_sprites.png" id="2_h1iiw"]
+[ext_resource type="Texture2D" uid="uid://bsyix1bw2xanw" path="res://game_assets/ui/tw_ui_sprites.png" id="2_h1iiw"]
 
 [sub_resource type="Gradient" id="Gradient_a5ni2"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)

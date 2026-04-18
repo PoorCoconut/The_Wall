@@ -34,7 +34,7 @@ overrides = {
 "next_indicator_animation": "1",
 "next_indicator_show_on_questions": "false",
 "next_indicator_size": "Vector2(10, 10)",
-"normal_font": "\"res://game_assets/textures/fonts/monaco/monaco.ttf\"",
+"normal_font": "\"res://game_assets/fonts/monaco/monaco.ttf\"",
 "text_alignment": "1",
 "text_size": "32.0",
 "text_use_global_font": "false",

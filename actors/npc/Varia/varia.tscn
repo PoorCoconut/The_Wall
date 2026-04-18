@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bux1io6n2c78a" path="res://actors/npc/npc_base.tscn" id="1_43idd"]
 [ext_resource type="Script" uid="uid://cmf80t3l2revl" path="res://actors/npc/Varia/varia.gd" id="2_0r72l"]
-[ext_resource type="Texture2D" uid="uid://cgeaim5r3kw0h" path="res://game_assets/textures/characters/characters.png" id="3_k57rg"]
+[ext_resource type="PackedScene" uid="uid://bnodbsyi5e52j" path="res://systems/Interact Hint Component/interact_hint.tscn" id="3_brsu4"]
+[ext_resource type="Texture2D" uid="uid://cgeaim5r3kw0h" path="res://game_assets/characters/characters.png" id="3_k57rg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brsu4"]
 atlas = ExtResource("3_k57rg")
@@ -27,17 +28,26 @@ radius = 14.035668
 
 [node name="Varia" unique_id=1388448960 instance=ExtResource("1_43idd")]
 script = ExtResource("2_0r72l")
+dialogue = "v_greet"
 
-[node name="AnimatedSprite" parent="." index="0" unique_id=405592476]
+[node name="InteractHint" parent="." index="0" unique_id=362226030 instance=ExtResource("3_brsu4")]
+unique_name_in_owner = true
+offset_left = -64.0
+offset_top = -40.0
+offset_right = 64.0
+offset_bottom = -24.0
+
+[node name="AnimatedSprite" parent="." index="1" unique_id=405592476]
 sprite_frames = SubResource("SpriteFrames_r3vda")
 offset = Vector2(0, -10)
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=367019019]
+[node name="CollisionShape2D" parent="." index="2" unique_id=367019019]
 shape = SubResource("CircleShape2D_k57rg")
 
 [node name="CollisionShape2D" parent="InteractArea" parent_id_path=PackedInt32Array(1878328389) index="0" unique_id=912471119]
 shape = SubResource("CircleShape2D_brsu4")
 
 [connection signal="interacted" from="InteractArea" to="." method="_on_interact_area_interacted"]
+[connection signal="toggle_display_hint" from="InteractArea" to="." method="_on_interact_area_toggle_display_hint"]
 
 [editable path="InteractArea"]

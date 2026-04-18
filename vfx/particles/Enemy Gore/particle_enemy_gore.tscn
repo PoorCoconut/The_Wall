@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://drgmuwxuu5oib"]
 
-[ext_resource type="Texture2D" uid="uid://wju0el8h1bvt" path="res://game_assets/textures/enemies/enemy_atlas.tres" id="1_lkgok"]
+[ext_resource type="Texture2D" uid="uid://wju0el8h1bvt" path="res://game_assets/enemies/enemy_atlas.tres" id="1_lkgok"]
 [ext_resource type="Script" uid="uid://bb0h1jh3s77ay" path="res://vfx/particles/Enemy Gore/particle_enemy_gore.gd" id="2_5p4lo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qdvu2"]

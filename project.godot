@@ -15,10 +15,9 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="The Wall"
-run/main_scene="res://game_scenes/levelTest/lvl_test.tscn"
+run/main_scene="uid://camlgx74mlna4"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [audio]
@@ -64,11 +63,14 @@ layout/style_directory={
 layout/style_list=["res://dialogue/The Wall/the_wall_dialogue_style.tres", "res://dialogue/Varia/varia_dialogue_style.tres", "res://dialogue/Malloc/malloc_dialogue_style.tres", "res://dialogue/Tracer/tracer_dialogue_style.tres", "res://dialogue/UX/ux_dialogue_style.tres"]
 layout/default_style="res://dialogue/The Wall/the_wall_dialogue_style.tres"
 variables={
+"Varia": {
+"v_greet_talked": false,
+"v_met": false,
+"v_ruins_talked": false
+},
 "answered": false,
 "nameChange": false,
-"playerName": "Player",
-"v_met": false,
-"v_talked": false
+"playerName": "Player"
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.03
@@ -145,6 +147,7 @@ folder_colors={
 Player="The Player Character"
 Enemy="Entity that DEALS DAMAGE "
 Camera=""
+RoomTransition=""
 
 [gui]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dkn6mu0v75054"]
 
 [ext_resource type="Script" uid="uid://8hu1ti3t7qtx" path="res://actors/enemy/test_basic_enemy/test_enemy.gd" id="1_4qekv"]
-[ext_resource type="Texture2D" uid="uid://cecw15jir0wal" path="res://game_assets/textures/enemies/spider.png" id="1_d2nw4"]
+[ext_resource type="Texture2D" uid="uid://cecw15jir0wal" path="res://game_assets/enemies/spider.png" id="1_d2nw4"]
 [ext_resource type="Shader" uid="uid://dl6ljofs1qdoi" path="res://vfx/shaders/entity_hit_blink.gdshader" id="1_pnwlf"]
 [ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HurtBox/hurtbox_component.tscn" id="2_eu3en"]
 [ext_resource type="PackedScene" uid="uid://drgmuwxuu5oib" path="res://vfx/particles/Enemy Gore/particle_enemy_gore.tscn" id="2_qdvu2"]

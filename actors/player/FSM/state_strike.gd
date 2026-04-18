@@ -8,7 +8,7 @@ class_name PlayerStrike
 
 func enter():
 	StrikeTimer.start()
-	GameManager.do_camera_shake(8.0, 0.4) # Big impact needs big screen shake
+	GameManager.do_camera_shake(8.0, 0.4)
 	var mouse_pos = PLAYER.get_global_mouse_position()
 	var dir_to_mouse = PLAYER.global_position.direction_to(mouse_pos)
 	

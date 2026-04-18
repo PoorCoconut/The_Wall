@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b2siu78c0trsl"]
 
-[ext_resource type="Texture2D" uid="uid://oknw5acrv0iw" path="res://game_assets/textures/Pixel Art Top Down - Basic v1.2.0/Texture/TX Tileset Grass.png" id="1_he1qd"]
+[ext_resource type="Texture2D" uid="uid://oknw5acrv0iw" path="res://game_assets/Pixel Art Top Down - Basic v1.2.0/Texture/TX Tileset Grass.png" id="1_he1qd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_baryq"]
 texture = ExtResource("1_he1qd")

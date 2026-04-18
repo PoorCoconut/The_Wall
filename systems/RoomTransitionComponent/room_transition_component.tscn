@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://vnsbdeo8tpf8"]
+
+[ext_resource type="Script" uid="uid://rd3w6623r7bu" path="res://systems/RoomTransitionComponent/room_transition_component.gd" id="1_rnwh8"]
+
+[node name="RoomTransitionComponent" type="Area2D" unique_id=2023134178 groups=["RoomTransition"]]
+script = ExtResource("1_rnwh8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=380740380]
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=544867611]
+position = Vector2(16, 0)

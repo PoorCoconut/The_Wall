@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bnodbsyi5e52j"]
+
+[sub_resource type="FontVariation" id="FontVariation_hfcou"]
+spacing_glyph = 1
+
+[node name="InteractHint" type="RichTextLabel" unique_id=362226030]
+visible = false
+offset_right = 128.0
+offset_bottom = 16.0
+theme_override_fonts/normal_font = SubResource("FontVariation_hfcou")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[wave speed=2 amp=5]Press E to interact"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

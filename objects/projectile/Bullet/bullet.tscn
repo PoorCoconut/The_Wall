@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://psv7p0iimql6"]
 
 [ext_resource type="Script" uid="uid://bbagkuxkdjtq1" path="res://objects/projectile/Bullet/bullet.gd" id="1_dgm76"]
-[ext_resource type="Texture2D" uid="uid://o5tljqq3vr32" path="res://game_assets/textures/objects/Bullets-Sheet.png" id="2_4cvm2"]
+[ext_resource type="Texture2D" uid="uid://o5tljqq3vr32" path="res://game_assets/objects/Bullets-Sheet.png" id="2_4cvm2"]
 [ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HitBox/hitbox_component.tscn" id="3_i48to"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nkuhk"]

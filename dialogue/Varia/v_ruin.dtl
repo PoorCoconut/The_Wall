@@ -1,4 +1,22 @@
-if {v_met} == false:
+if {Varia.v_met} == false:
 	varia (neutral_center): Greetings.
 	varia: You are an adventurer, yes?
 	varia (smile_center): I am Varia, an adventurer as well.
+if {Varia.v_ruins_talked} == false:
+	varia: I can offer some [wave amp=10.0]help[/wave] [pause=0.5]especially with your [wave amp=10.0]firearms[/wave].
+	varia (sinister_center): [speed=0.5]These relics of ancient scrap will stand [shake]NO.[pause=0.5] CHANCE.[pause=0.5][/shake] With the [shake]POWER[/shake] I can give to your gun!
+	varia (annoyed_closed): ...
+	varia (confused_left): [wave]Sorry[/wave]. [input]I got a little carried away there.
+	varia (smile_center): Will you let me take a look at your gun?
+	- Yes
+		varia (smile_center): Great!
+	- No
+		varia (neutral_left): Alright.
+	set {Varia.v_met} = true
+	set {Varia.v_ruins_talked} = true
+else:
+	varia: Will you let me tinker with your gun?
+	- Yes
+		varia (smile_center): Great!
+	- No
+		varia (neutral_left): Alright.

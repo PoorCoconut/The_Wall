@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="2_gy8a2"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="2_vbbi6"]
 [ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="2_yjork"]
-[ext_resource type="Texture2D" uid="uid://oknw5acrv0iw" path="res://game_assets/textures/Pixel Art Top Down - Basic v1.2.0/Texture/TX Tileset Grass.png" id="5_uftbt"]
-[ext_resource type="Texture2D" uid="uid://dfanb38e8dq22" path="res://game_assets/textures/Pixel Art Top Down - Basic v1.2.0/Texture/Extra/TX Plant with Shadow.png" id="8_g47hi"]
-[ext_resource type="Texture2D" uid="uid://ddr0rmq6paf5m" path="res://game_assets/textures/Pixel Art Top Down - Basic v1.2.0/Texture/TX Struct.png" id="9_qiwk8"]
+[ext_resource type="Texture2D" uid="uid://oknw5acrv0iw" path="res://game_assets/Pixel Art Top Down - Basic v1.2.0/Texture/TX Tileset Grass.png" id="5_uftbt"]
+[ext_resource type="Texture2D" uid="uid://dfanb38e8dq22" path="res://game_assets/Pixel Art Top Down - Basic v1.2.0/Texture/Extra/TX Plant with Shadow.png" id="8_g47hi"]
+[ext_resource type="Texture2D" uid="uid://ddr0rmq6paf5m" path="res://game_assets/Pixel Art Top Down - Basic v1.2.0/Texture/TX Struct.png" id="9_qiwk8"]
 [ext_resource type="PackedScene" uid="uid://6qsiwl1nt0ap" path="res://actors/npc/Varia/varia.tscn" id="10_g20jh"]
 [ext_resource type="PackedScene" uid="uid://bi8524qm1yaj" path="res://objects/save obelisk/save_obelisk.tscn" id="10_hyeq8"]
 
@@ -565,6 +565,7 @@ script = ExtResource("1_y3b4w")
 [node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("2_yjork")]
 
 [node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("2_gy8a2")]
+zoom = Vector2(1.5, 1.5)
 target = NodePath("../player")
 
 [node name="TileMap1" type="TileMapLayer" parent="." unique_id=1214445117]
@@ -574,7 +575,7 @@ tile_map_data = PackedByteArray("AAD3//v/AAACAAMAAAD4//v/AAAHAAMAAAD5//v/AAAGAAM
 tile_set = SubResource("TileSet_y762e")
 
 [node name="player" parent="." unique_id=483095811 instance=ExtResource("1_5o5pt")]
-position = Vector2(320, 280)
+position = Vector2(504, 464)
 
 [node name="Enemies" type="Node" parent="." unique_id=463887465]
 
@@ -589,6 +590,7 @@ autoplay = &"sunset"
 
 [node name="Varia" parent="." unique_id=1388448960 instance=ExtResource("10_g20jh")]
 position = Vector2(461, 449)
+dialogue = "v_ruin"
 
 [node name="SaveObelisk" parent="." unique_id=2105329902 instance=ExtResource("10_hyeq8")]
 position = Vector2(392, 360)

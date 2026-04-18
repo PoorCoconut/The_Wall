@@ -12,6 +12,7 @@ enum CameraMode {
 
 @export var target : CharacterBody2D
 @export var following : bool = true
+@export var mouse_cam_offset : bool = true
 
 var cameraShakeNoise : FastNoiseLite
 
@@ -34,8 +35,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
-	self.offset.x = (mouse_pos.x - global_position.x) / (160*1.5/2.0)
-	self.offset.y = (mouse_pos.y - global_position.y) / (90*1.5/2.0)
+	if GameManager.current_world_state != "Freeze" and mouse_cam_offset == true:
+		self.offset.x = (mouse_pos.x - global_position.x) / (160/2.0)
+		self.offset.y = (mouse_pos.y - global_position.y) / (90/2.0)
 	
 	if following and target != null:
 		_update_camera_position()

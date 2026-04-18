@@ -7,8 +7,16 @@ var has_dash : bool = false
 var has_glow : bool = false
 var has_strike : bool = false
 
+var player : Player
+
 ##World State
-var current_world_state : String = "Nothing"
+var intro_done : bool = false
+var launched_game : bool = false
+var  last_saved_room
+
+var current_world_state : String = "default"
+#List of world states [defualt , freeze]
+
 enum LOCATION{
 	UNKNOWN, #The DEFAULT and failsafe value
 	HUB,
@@ -19,6 +27,7 @@ enum LOCATION{
 	CAVERN
 }
 var current_location = LOCATION.UNKNOWN
+var target_door_id : String = ""
 
 ##Save File
 const SAVE_PATH : String = "user://savegame.json"
@@ -67,11 +76,10 @@ func save_game(player_pos: Vector2) -> void:
 	
 	# Sync Dialogic narrative data to a default slot
 	Dialogic.Save.save("slot_1") 
-	print("Game and Narrative Saved!")
 
 func load_game():
 	if not FileAccess.file_exists(SAVE_PATH):
-		print("No save file found. Starting from the bottom!")
+		print("No save file found.")
 		return null
 		
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
@@ -100,9 +108,16 @@ func load_game():
 	# Sync Dialogic narrative data
 	if Dialogic.Save.has_slot("slot_1"):
 		Dialogic.Save.load("slot_1")
-		
+		pass
 	print("Save loaded! Teleporting player to: ", loaded_pos)
-	return loaded_pos # Return safely at the end
+	if get_tree().get_first_node_in_group("Player"):
+		teleport_player(loaded_pos)
+
+##Player Helper Functions
+func teleport_player(new_pos : Vector2) -> void:
+	player = get_tree().get_first_node_in_group("Player")
+	if player:
+		player.global_position = new_pos
 
 ##Next Level Helper Functions
 func load_next_level(next_level_path : String) -> void:
@@ -120,10 +135,10 @@ func do_camera_shake(intensity:float, time:float):
 		camera.resetCameraOffset()
 
 func _on_timeline_started() -> void:
-	print("something")
-	current_world_state = "Dialogue" # Change the state
-	var PLAYER : Player = get_tree().get_first_node_in_group("Player")
-	PLAYER.FSM.force_change_state("Dialogue")
+	current_world_state = "freeze"
+	player = get_tree().get_first_node_in_group("Player")
+	if player:
+		player.FSM.force_change_state("Lock")
 
 func _on_timeline_ended() -> void:
-	current_world_state = "Exploration" # Revert the state
+	current_world_state = "default"

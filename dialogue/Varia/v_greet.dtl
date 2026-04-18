@@ -1,4 +1,4 @@
-if {v_talked} == false:
+if {Varia.v_greet_talked} == false:
 	varia: Hmm?
 	varia (neutral_left): Oh.
 	varia (smile_center): Hey there.
@@ -19,4 +19,4 @@ else:
 	varia (smile_center): The name is Varia. [pause=0.2]I am an adventurer like you.[input] Though I'm here more to protect y'all.
 	varia (neutral_center): Section Commander from the Tri-sun district tasked me for this job.[input] Wonder which district you belong in.
 	varia (smile_center): In any case, nice meeting you!
-set {v_talked} = true
+set {Varia.v_greet_talked} = true

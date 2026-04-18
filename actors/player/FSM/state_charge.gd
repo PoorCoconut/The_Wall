@@ -7,17 +7,19 @@ var original_speed : float
 var current_charge_time : float = 0.0
 @export var required_charge_time : float = 1.0
 
+var sfx_played : bool = false
+
 func enter():
+	sfx_played = false
 	original_speed = PLAYER.movement_component.MAX_SPEED
 	PLAYER.movement_component.MAX_SPEED = original_speed * 0.25
-	current_charge_time = 0.0 # Reset the stopwatch every time!
-
+	current_charge_time = 0.0
 func update(delta: float):
 	current_charge_time += delta
-	# (Optional Juice: If current_charge_time hits required_charge_time, 
-	# play a *DING* sound or flash the sprite white so the player knows it's ready!)
 	if current_charge_time >= required_charge_time:
-		print("Charged!")
+		if !sfx_played:
+			_play_strike_ready_sfx()
+			sfx_played = true
 	
 	#Handle Movement
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -42,5 +44,8 @@ func update(delta: float):
 				transition.emit(self, "Run")
 
 func exit():
-	# Always restore the speed!
 	PLAYER.movement_component.MAX_SPEED = original_speed
+
+func _play_strike_ready_sfx():
+	%charged.pitch_scale = randf_range(0.8, 1.2)
+	%charged.play()
