@@ -98,14 +98,17 @@ func _on_nuke_button_pressed() -> void:
 func _on_button_1080p_pressed() -> void:
 	print("CLICKED 1080p BUTTON")
 	DisplayServer.window_set_size(Vector2i(1980, 1080))
+	
 
 func _on_button_720p_pressed() -> void:
 	print("CLICKED 720p BUTTON")
 	DisplayServer.window_set_size(Vector2i(1280, 720))
+	
 
 func _on_button_540p_pressed() -> void:
 	print("CLICKED 540p BUTTON")
 	DisplayServer.window_set_size(Vector2i(990, 540))
+	
 
 func _on_button_windowed_pressed() -> void:
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

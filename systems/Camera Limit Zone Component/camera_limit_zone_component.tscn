@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://7hxnvb6i4ier" path="res://systems/Camera Limit Zone Component/camera_limit_zone_component.gd" id="1_qdjvw"]
 
 [node name="CameraLimitZoneComponent" type="Area2D" unique_id=276472449]
+collision_mask = 2
 script = ExtResource("1_qdjvw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=282465000]

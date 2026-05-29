@@ -1,61 +1,54 @@
 [gd_scene format=3 uid="uid://dxjo8og6ycxyn"]
 
 [ext_resource type="Script" uid="uid://clwn8su430isr" path="res://actors/enemy/enemy_base.gd" id="1_vva2j"]
-[ext_resource type="Script" uid="uid://b2lxdglq8mebq" path="res://systems/components/Stats Component/stats_component.gd" id="2_3rqts"]
+[ext_resource type="PackedScene" uid="uid://cd0gji0ohlvxv" path="res://systems/Entity Components/Health Component/HealthComponent.tscn" id="2_lo3pr"]
 [ext_resource type="PackedScene" uid="uid://d2laiwiq4q0rl" path="res://systems/BulletSprayer/bullet_sprayer.tscn" id="2_qmbl6"]
-[ext_resource type="Script" uid="uid://cljyk5ifq86ly" path="res://systems/FSM/fsm_Handler.gd" id="3_yfm6i"]
-[ext_resource type="Script" uid="uid://ck5o005w63kct" path="res://actors/enemy/enemy_base_states/enemy_idle.gd" id="5_b2h4t"]
+[ext_resource type="PackedScene" uid="uid://baahldfh4kwvn" path="res://systems/Entity Components/Movement Component/MovementComponent.tscn" id="3_k71g4"]
+[ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HitBox/hitbox_component.tscn" id="5_0hoiw"]
+[ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HurtBox/hurtbox_component.tscn" id="6_tcon1"]
+[ext_resource type="PackedScene" uid="uid://7jg5f5lwc4u1" path="res://systems/Entity Components/Attack Range Component/attack_range.tscn" id="7_kwpwu"]
+[ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="8_k71g4"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lo3pr"]
+bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fwulj"]
-size = Vector2(8, 8)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k71g4"]
+bg_color = Color(0.25882354, 1, 0, 1)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2nwbj"]
-radius = 4.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_j7lhn"]
-radius = 4.0
-
-[node name="Enemy_Base" type="CharacterBody2D"]
+[node name="Enemy_Base" type="CharacterBody2D" unique_id=557583214 groups=["Enemy"]]
 script = ExtResource("1_vva2j")
 
-[node name="BulletSprayer" parent="." instance=ExtResource("2_qmbl6")]
+[node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("2_lo3pr")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_fwulj")
+[node name="MovementComponent" parent="." unique_id=1896702948 instance=ExtResource("3_k71g4")]
 
-[node name="Stats_Component" type="Node" parent="."]
-script = ExtResource("2_3rqts")
-MAX_HP = 1
-CUR_HP = 1
-BULLETS = -1
-MELEE_DMG = 1
-RANGE_DMG = 1
-CHARGE_DMG = 1
-CONTACT_DMG = 1
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1992969734]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2nwbj")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1282023239]
 
-[node name="Detection_Range" type="Area2D" parent="."]
+[node name="BulletSprayer" parent="." unique_id=773336776 instance=ExtResource("2_qmbl6")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Range"]
-debug_color = Color(0.91, 0, 0.743167, 0)
+[node name="HitboxComponent" parent="." unique_id=1755790887 instance=ExtResource("5_0hoiw")]
 
-[node name="Attack_Range" type="Area2D" parent="."]
+[node name="HurtboxComponent" parent="." unique_id=330416737 instance=ExtResource("6_tcon1")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Range"]
-debug_color = Color(0, 0.595, 0.7, 0)
+[node name="AttackRange" parent="." unique_id=1879264944 instance=ExtResource("7_kwpwu")]
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="Looker" type="Marker2D" parent="." unique_id=779506463]
+unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("CircleShape2D_j7lhn")
-debug_color = Color(2.21401e-06, 0.640605, 0.347354, 0.42)
+[node name="StunTimer" type="Timer" parent="." unique_id=415591648]
+unique_name_in_owner = true
 
-[node name="EnemyFSM" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_yfm6i")
-initial_state = NodePath("Idle")
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=627243978]
+unique_name_in_owner = true
+offset_left = -17.0
+offset_top = 10.0
+offset_right = 17.0
+offset_bottom = 18.0
+theme_override_styles/background = SubResource("StyleBoxFlat_lo3pr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_k71g4")
+step = 1.0
+show_percentage = false
 
-[node name="Idle" type="Node" parent="EnemyFSM"]
-script = ExtResource("5_b2h4t")
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 instance=ExtResource("8_k71g4")]

@@ -43,6 +43,6 @@ func _on_shoot_cooldown_timeout() -> void:
 		bullet.position = s.global_position
 		bullet.SPEED = bullet_speed
 		bullet.dir = s.global_rotation
-		bullet.DMG = bullet_dmg
+		bullet.get_node("Hitbox").damage = bullet_dmg
 		get_tree().root.add_child(bullet)
 		

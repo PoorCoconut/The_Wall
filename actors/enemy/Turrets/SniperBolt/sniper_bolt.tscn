@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bed6exih80qrm"]
+
+[ext_resource type="PackedScene" uid="uid://cd0gji0ohlvxv" path="res://systems/Entity Components/Health Component/HealthComponent.tscn" id="1_c5ib2"]
+[ext_resource type="PackedScene" uid="uid://7jg5f5lwc4u1" path="res://systems/Entity Components/Attack Range Component/attack_range.tscn" id="2_p6pts"]
+[ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HurtBox/hurtbox_component.tscn" id="3_1ifi6"]
+
+[node name="SniperBolt" type="StaticBody2D" unique_id=1861013175 groups=["Enemy"]]
+
+[node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("1_c5ib2")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=427718887]
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1844602414]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=250098896]
+
+[node name="AttackRange" parent="." unique_id=1466727208 instance=ExtResource("2_p6pts")]
+
+[node name="HurtboxComponent" parent="." unique_id=330416737 node_paths=PackedStringArray("health_component") instance=ExtResource("3_1ifi6")]
+health_component = NodePath("../HealthComponent")

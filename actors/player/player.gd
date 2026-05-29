@@ -57,6 +57,8 @@ var consecutive_hits : int
 @onready var camera = get_tree().get_first_node_in_group("Camera")
 
 func _ready() -> void:
+	RoomTransitionComponent.apply_spawn_to_player(self)
+	
 	if OS.has_feature("editor"):
 		if debug_has_dash:
 			GameManager.has_dash = true

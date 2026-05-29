@@ -423,6 +423,7 @@ grow_vertical = 2
 
 [node name="WorldCameraComponent" parent="." unique_id=1725945058 instance=ExtResource("4_k3qgb")]
 position = Vector2(0, -360)
+zoom = Vector2(1, 1)
 camera_mode = 0
 following = false
 mouse_cam_offset = false
@@ -582,6 +583,7 @@ theme_override_constants/separation = 6
 
 [node name="Label" type="Label" parent="SettingsContainer/SettingsTabs/GeneralSettings/VBoxContainer" unique_id=801633829]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "GENERAL SETTINGS"
 horizontal_alignment = 1
 
@@ -634,9 +636,11 @@ step = 0.1
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_colors/default_color = Color(1, 0.60693425, 0.54883397, 1)
+theme_override_colors/default_color = Color(0.99997467, 0.2296117, 0.17401633, 1)
 bbcode_enabled = true
-text = "[shake]WARNING! YOU ARE ABOUT TO RESET EVERYTHING. INCLUDING YOUR SAVE FILE!"
+text = "[shake]YOU ARE ABOUT TO DELETE YOUR SAVE.
+YOU ARE ABOUT TO RESET THE STATE OF THE WORLD.
+THIS CAN NOT BE UNDONE!"
 fit_content = true
 horizontal_alignment = 1
 
@@ -652,7 +656,7 @@ text = "NUKE MY FILE!"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-text = "RESET GAME"
+text = "DELETE SAVE"
 
 [node name="ViewportSettings" type="MarginContainer" parent="SettingsContainer/SettingsTabs" unique_id=2086456263]
 visible = false
@@ -670,6 +674,7 @@ theme_override_constants/separation = 6
 
 [node name="Label" type="Label" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer" unique_id=3804488]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "VIEWPORT SETTINGS"
 horizontal_alignment = 1
 
@@ -679,7 +684,6 @@ theme_override_constants/separation = 19
 
 [node name="Label" type="Label" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution" unique_id=495751952]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "Screen Resolution"
 
 [node name="ScreenResAccordion2" type="FoldableContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution" unique_id=1578316268]
@@ -692,17 +696,14 @@ layout_mode = 2
 
 [node name="Button_1080p" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution/ScreenResAccordion2/VBoxContainer" unique_id=1520860721]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "1980x1080"
 
 [node name="Button_720p" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution/ScreenResAccordion2/VBoxContainer" unique_id=1963271185]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "1280x720"
 
 [node name="Button_540p" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution/ScreenResAccordion2/VBoxContainer" unique_id=976220345]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "990x540"
 
 [node name="WindowMode" type="HBoxContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer" unique_id=463611335]
@@ -711,7 +712,6 @@ theme_override_constants/separation = 14
 
 [node name="Label" type="Label" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode" unique_id=1182272754]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "Window Mode"
 
 [node name="WindowModeAccordion" type="FoldableContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode" unique_id=1854593696]
@@ -724,17 +724,14 @@ layout_mode = 2
 
 [node name="Button_Windowed" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode/WindowModeAccordion/VBoxContainer" unique_id=1876477194]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "WINDOWED"
 
 [node name="Button_Fullscreen" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode/WindowModeAccordion/VBoxContainer" unique_id=976583148]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "FULLSCREEN"
 
 [node name="Button_ExclusiveFullscreen" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode/WindowModeAccordion/VBoxContainer" unique_id=1864238956]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "EXCLUSIVE FULLSCREEN"
 
 [node name="ControlsSettings" type="MarginContainer" parent="SettingsContainer/SettingsTabs" unique_id=2007466088]
@@ -755,6 +752,7 @@ theme_override_constants/separation = 10
 [node name="Controls" type="Label" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer" unique_id=390794563]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
 text = "CONTROLS"
 horizontal_alignment = 1
 
@@ -862,12 +860,13 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -50.0
-offset_bottom = 28.0
+offset_left = -51.0
+offset_top = -4.0
+offset_right = -1.0
+offset_bottom = 14.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 8
 text = "BACK"
 
 [node name="Fader" type="ColorRect" parent="." unique_id=653684737]
@@ -893,9 +892,9 @@ position = Vector2(320, -160)
 [node name="DevName" type="Label" parent="IntroContainer" unique_id=1931655796]
 modulate = Color(0, 0, 0, 1)
 offset_left = -72.0
-offset_top = -64.0
-offset_right = 376.0
-offset_bottom = 67.0
+offset_top = -61.0
+offset_right = 276.0
+offset_bottom = 38.0
 theme_override_fonts/font = SubResource("FontVariation_dcpgc")
 theme_override_font_sizes/font_size = 48
 text = "CRAFTY 

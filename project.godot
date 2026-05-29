@@ -35,6 +35,7 @@ LoadingScreen="*uid://1cdnr1bl805e"
 ScreenTransition="*uid://rgy5yu73bm2h"
 SettingsManager="*uid://boav6xpuq74ks"
 SoundBank="*uid://ce7kxbchc8ajm"
+SpawnData="*uid://dj10bvi4dfimj"
 
 [dialogic]
 
@@ -120,7 +121,6 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
 window/per_pixel_transparency/allowed=true
 mouse_cursor/custom_image="uid://btehqqni61teh"
 

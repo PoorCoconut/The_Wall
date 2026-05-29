@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var next_scene : PackedScene
+
 var user_name : String = "Player"
 
 func _ready() -> void:
@@ -36,11 +36,14 @@ func _on_dialogic_signal(argument:String):
 		%Window_YesNo.show()
 	
 	elif argument == "dialogue_done":
-		%Background.color = Color(1.0, 1.0, 1.0, 0.0)
+		#%Background.color = Color(1.0, 1.0, 1.0, 0.0)
 		var tween = get_tree().create_tween()
 		tween.tween_property(%Background, "modulate", Color(1,1,1,1), 5)
 		await tween.finished
-		get_tree().change_scene_to_packed(next_scene)
+		var tween2 = get_tree().create_tween()
+		tween2.tween_property(%TW_AMBIENCE, "volume_db", -80, 1)
+		await tween2.finished
+		
 
 
 func _on_window_yes_no_confirmed() -> void:
