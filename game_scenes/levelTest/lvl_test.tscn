@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ddr0rmq6paf5m" path="res://game_assets/Pixel Art Top Down - Basic v1.2.0/Texture/TX Struct.png" id="9_qiwk8"]
 [ext_resource type="PackedScene" uid="uid://6qsiwl1nt0ap" path="res://actors/npc/Varia/varia.tscn" id="10_g20jh"]
 [ext_resource type="PackedScene" uid="uid://bi8524qm1yaj" path="res://objects/save obelisk/save_obelisk.tscn" id="10_hyeq8"]
+[ext_resource type="PackedScene" uid="uid://bed6exih80qrm" path="res://actors/enemy/Turrets/SniperBolt/sniper_bolt.tscn" id="11_hyeq8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ek4vm"]
 texture = ExtResource("5_uftbt")
@@ -565,7 +566,6 @@ script = ExtResource("1_y3b4w")
 [node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("2_yjork")]
 
 [node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("2_gy8a2")]
-zoom = Vector2(1.5, 1.5)
 target = NodePath("../player")
 
 [node name="TileMap1" type="TileMapLayer" parent="." unique_id=1214445117]
@@ -594,3 +594,6 @@ dialogue = "v_ruin"
 
 [node name="SaveObelisk" parent="." unique_id=2105329902 instance=ExtResource("10_hyeq8")]
 position = Vector2(392, 360)
+
+[node name="SniperBolt" parent="." unique_id=1861013175 instance=ExtResource("11_hyeq8")]
+position = Vector2(768, 512)

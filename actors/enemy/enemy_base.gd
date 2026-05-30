@@ -101,3 +101,11 @@ func _spawn_particle(particle_scene: PackedScene) -> void:
 		var particle = particle_scene.instantiate()
 		particle.global_position = global_position
 		get_tree().root.add_child(particle)
+
+func set_threat(): 
+	if is_detected:
+		is_detected = false
+		GameManager.threat_level -= threat_level
+	else:
+		is_detected = true
+		GameManager.threat_level += threat_level

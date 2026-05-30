@@ -63,6 +63,7 @@ collision_layer = 4
 script = ExtResource("1_4qekv")
 health_component = NodePath("HealthComponent")
 movement_component = NodePath("MovementComponent")
+threat_level = 0.1
 particle_path_gore = ExtResource("2_qdvu2")
 particle_path_explosion = ExtResource("3_mgonl")
 particle_path_hit = ExtResource("4_e76aq")
@@ -117,9 +118,8 @@ show_percentage = false
 [node name="AttackRange" parent="." unique_id=1031003738 instance=ExtResource("11_2yc2l")]
 visible = false
 collision_layer = 5
-collision_mask = 2
 
-[node name="CollisionShape2D" parent="AttackRange" index="0"]
+[node name="CollisionShape2D" parent="AttackRange" index="0" unique_id=430212409]
 shape = SubResource("CircleShape2D_pnwlf")
 
 [node name="LookerNode" type="Marker2D" parent="." unique_id=680200325]
