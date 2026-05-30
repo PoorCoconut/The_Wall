@@ -21,6 +21,10 @@ var player : Player
 @onready var cooldown_timer: Timer = %CooldownTimer
 
 func _ready() -> void:
+	%HealthBar.max_value = health_component.MAX_HP
+	%HealthBar.value = health_component.CUR_HP
+	
+	health_component.hp_changed.connect(_on_hp_changed)
 	health_component.died.connect(_death)
 	%Laser.set_point_position(0, Vector2.ZERO)
 	%Laser.set_point_position(1, Vector2.RIGHT * laser_length)
@@ -43,6 +47,7 @@ func _start_firing_sequence() -> void:
 func _on_aim_timer_timeout() -> void:
 	var bullet : Bullet = bullet_path.instantiate()
 	get_tree().root.add_child(bullet)
+	SoundBank.play_sfx("sniperbolt_attack", global_position)
 	
 	bullet.SPEED = bullet_speed
 	bullet.dir = %TurretHead.rotation
@@ -65,8 +70,32 @@ func _on_attack_range_body_exited(body: Node2D) -> void:
 		aim_timer.stop()
 		is_aiming = true
 
+func _on_hp_changed(new_hp: int, max_hp: int) -> void:
+	%HealthBar.value = new_hp
+	
+	# Visuals
+	var tween = get_tree().create_tween()
+	tween.tween_method(SetShader_BlinkIntensity, 1.0, 0.0, 0.5)
+	play_hit_sound()
+	
+	#var particle_hit = particle_path_hit.instantiate()
+	#particle_hit.global_position = global_position
+	#get_tree().root.add_child(particle_hit)
+	
+	## Trigger Hit Stun
+	#stunned = true
+	#following = false
+	#%StunTimer.start()
+
 func _death():
-	queue_free()
+	is_aiming = false
+	%TurretWarnToExplode.play()
+
+func play_hit_sound() -> void:
+	if randi_range(1, 2) == 1:
+		SoundBank.play_sfx("hit_metal1", global_position)
+	else:
+		SoundBank.play_sfx("hit_metal2", global_position)
 
 func set_threat(): 
 	if is_detected:
@@ -75,3 +104,11 @@ func set_threat():
 	else:
 		is_detected = true
 		GameManager.threat_level += threat_level
+
+func SetShader_BlinkIntensity(newValue: float):
+	%Sprite.material.set_shader_parameter("blink_intensity", newValue)
+
+
+func _on_turret_warn_to_explode_finished() -> void:
+	SoundBank.play_sfx("explosion", global_position)
+	queue_free()

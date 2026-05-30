@@ -6,6 +6,10 @@ var sfx_dict : Dictionary = {
 	"hit_metal2" : preload("res://sound/sfx/weapons/hit/metal-hit-95-200424.mp3"),
 	"hit1" : preload("res://sound/sfx/weapons/hit/sfx_hit2.mp3"),
 	"kill_enemy1" : preload("res://sound/sfx/weapons/hit/sfx_enemy_kill2.mp3"),
+	
+	"explosion" : preload("res://sound/sfx/weapons/range/lordsonny-cannon-fire-161072.mp3"),
+	"sniperbolt_attack" : preload("res://sound/sfx/weapons/range/sfx_turret_gun.mp3")
+	
 }
 
 #Here is an example:

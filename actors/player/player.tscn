@@ -17,7 +17,6 @@
 [ext_resource type="Script" uid="uid://07uiwqv6ap1t" path="res://actors/player/FSM/state_atk1.gd" id="9_fvcfl"]
 [ext_resource type="PackedScene" uid="uid://kq5421dak6je" path="res://systems/InteractionAreaComponent/interaction_area_component.tscn" id="10_1c637"]
 [ext_resource type="Script" uid="uid://blikevan384uj" path="res://actors/player/FSM/state_atk2.gd" id="10_s44gf"]
-[ext_resource type="Script" uid="uid://kxvis2gq1kw" path="res://systems/InteractionAreaComponent/interaction_area_component.gd" id="11_4ihbh"]
 [ext_resource type="Script" uid="uid://bmuovlyby71qn" path="res://actors/player/FSM/state_shoot.gd" id="12_1rh3m"]
 [ext_resource type="Script" uid="uid://63d2ig4v6vpc" path="res://actors/player/Misc/player_anim.gd" id="13_mf6ab"]
 [ext_resource type="Script" uid="uid://df2e1af20srmy" path="res://actors/player/FSM/state_death.gd" id="14_jmusd"]
@@ -28,10 +27,10 @@
 [ext_resource type="AudioStream" uid="uid://ggu35xlflvat" path="res://sound/sfx/weapons/melee/sfx_sword1.mp3" id="21_lv4bx"]
 [ext_resource type="AudioStream" uid="uid://b14r7l7obufdv" path="res://sound/sfx/weapons/melee/sfx_sword2.mp3" id="22_jgd8i"]
 [ext_resource type="AudioStream" uid="uid://c817rrewfr8hx" path="res://sound/sfx/weapons/range/sfx_shoot2.mp3" id="22_lv4bx"]
-[ext_resource type="AudioStream" uid="uid://dh11jdauibrbm" path="res://sound/sfx/weapons/range/empty-gun-shot-6209.mp3" id="22_yybc7"]
 [ext_resource type="Script" uid="uid://oowlxrnjm2ma" path="res://actors/player/FSM/state_lock.gd" id="23_4ihbh"]
 [ext_resource type="AudioStream" uid="uid://fxp7nkgmj3f5" path="res://sound/sfx/misc/sfx_dash.mp3" id="27_2vokq"]
-[ext_resource type="AudioStream" uid="uid://dwgmmcwywyrsw" path="res://sound/sfx/misc/sfx_teleport.mp3" id="32_4jc6f"]
+[ext_resource type="AudioStream" uid="uid://da5wsb2y8v0g5" path="res://sound/sfx/weapons/range/sfx_gun_empty.mp3" id="29_4ihbh"]
+[ext_resource type="AudioStream" uid="uid://cv4424881la3o" path="res://sound/sfx/weapons/melee/sfx_sword_charge.mp3" id="31_4ihbh"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ldci"]
 particles_animation = true
@@ -1628,7 +1627,6 @@ parameters/Shoot/blend_position = Vector2(0.410339, -0.522124)
 [node name="InteractionAreaComponent" parent="." unique_id=2138184127 instance=ExtResource("10_1c637")]
 collision_layer = 0
 collision_mask = 128
-script = ExtResource("11_4ihbh")
 
 [node name="CollisionShape2D" parent="InteractionAreaComponent" index="0" unique_id=370761401]
 position = Vector2(0, 12)
@@ -1780,8 +1778,7 @@ bus = &"SFX"
 
 [node name="attack_gun_empty" type="AudioStreamPlayer" parent="sfx" unique_id=824573222]
 unique_name_in_owner = true
-stream = ExtResource("22_yybc7")
-volume_db = -10.0
+stream = ExtResource("29_4ihbh")
 bus = &"SFX"
 
 [node name="dash" type="AudioStreamPlayer" parent="sfx" unique_id=195645180]
@@ -1791,7 +1788,7 @@ bus = &"SFX"
 
 [node name="charged" type="AudioStreamPlayer" parent="sfx" unique_id=599073826]
 unique_name_in_owner = true
-stream = ExtResource("32_4jc6f")
+stream = ExtResource("31_4ihbh")
 bus = &"SFX"
 
 [connection signal="body_entered" from="ThreatDetector" to="." method="_on_threat_detector_body_entered"]
