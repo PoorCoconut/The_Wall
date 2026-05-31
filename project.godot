@@ -149,6 +149,7 @@ Player="The Player Character"
 Enemy="Entity that DEALS DAMAGE "
 Camera=""
 RoomTransition=""
+Obelisk=""
 
 [gui]
 

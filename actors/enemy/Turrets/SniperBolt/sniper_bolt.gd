@@ -3,6 +3,7 @@ class_name SniperBolt
 
 @export_category("Components")
 @export var health_component: HealthComponent
+@export var hurtbox_component: HurtboxComponent
 
 @export_category("Stats")
 @export var damage : int = 1
@@ -11,7 +12,7 @@ class_name SniperBolt
 @export var laser_length : float = 200.0 # How far the physical laser sight projects
 @export var threat_level : float = 0.1
 
-var bullet_path : PackedScene = preload("res://objects/projectile/Bullet/bullet.tscn")
+var bullet_path : PackedScene = preload("res://objects/projectile/Bullet/Enemy Bullet/Turrets/SniperBolt/sniper_bolt_bullet.tscn")
 
 var is_detected : bool = false
 var is_aiming : bool = true 
@@ -32,28 +33,34 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if player:
 		if is_aiming:
+			var tween = get_tree().create_tween()
+			tween.tween_property(%TurretRotation, "volume_db", 0, 0.5)
+			
 			var target_angle = %TurretHead.global_position.angle_to_point(player.global_position)
 			var angle_diff = angle_difference(%TurretHead.global_rotation, target_angle)
 			%TurretHead.global_rotation += clamp(angle_diff, -turn_speed * delta, turn_speed * delta)
 			
-			if abs(angle_diff) < 0.1:
+			if abs(angle_diff) < 0.05:
 				if aim_timer.is_stopped() and cooldown_timer.is_stopped():
 					_start_firing_sequence()
 
 func _start_firing_sequence() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(%TurretRotation, "volume_db", -80, 0.5)
+	SoundBank.play_sfx("turret_charge", global_position)
 	is_aiming = false
 	aim_timer.start()
 
 func _on_aim_timer_timeout() -> void:
 	var bullet : Bullet = bullet_path.instantiate()
-	get_tree().root.add_child(bullet)
+	
 	SoundBank.play_sfx("sniperbolt_attack", global_position)
 	
 	bullet.SPEED = bullet_speed
 	bullet.dir = %TurretHead.rotation
 	bullet.global_rotation = %TurretHead.global_rotation
 	bullet.global_position = %Marker.global_position
-	
+	get_tree().root.add_child(bullet)
 	bullet.hitbox_component.damage = damage
 	cooldown_timer.start()
 
@@ -70,7 +77,7 @@ func _on_attack_range_body_exited(body: Node2D) -> void:
 		aim_timer.stop()
 		is_aiming = true
 
-func _on_hp_changed(new_hp: int, max_hp: int) -> void:
+func _on_hp_changed(new_hp: int, _max_hp: int) -> void:
 	%HealthBar.value = new_hp
 	
 	# Visuals
@@ -88,14 +95,18 @@ func _on_hp_changed(new_hp: int, max_hp: int) -> void:
 	#%StunTimer.start()
 
 func _death():
+	hurtbox_component.queue_free()
+	var tween = get_tree().create_tween()
+	tween.tween_property(%TurretRotation, "volume_db", 0, 0.5)
 	is_aiming = false
+	player = null
 	%TurretWarnToExplode.play()
 
 func play_hit_sound() -> void:
 	if randi_range(1, 2) == 1:
-		SoundBank.play_sfx("hit_metal1", global_position)
+		SoundBank.play_sfx("robot_hit1", global_position)
 	else:
-		SoundBank.play_sfx("hit_metal2", global_position)
+		SoundBank.play_sfx("robot_hit2", global_position)
 
 func set_threat(): 
 	if is_detected:
@@ -110,5 +121,6 @@ func SetShader_BlinkIntensity(newValue: float):
 
 
 func _on_turret_warn_to_explode_finished() -> void:
-	SoundBank.play_sfx("explosion", global_position)
+	SoundBank.play_sfx("robot_explosion", global_position)
+	GameManager.do_camera_shake(8.0, 0.5)
 	queue_free()

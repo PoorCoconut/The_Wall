@@ -7,6 +7,11 @@ class_name PlayerHit
 var current_stun_time : float = 0.0
 
 func enter():
+	if randi_range(1,2) == 1:
+		SoundBank.play_sfx("player_hit1", PLAYER.global_position)
+	else:
+		SoundBank.play_sfx("player_hit2", PLAYER.global_position)
+	GameManager.do_camera_shake(4.0, 0.5)
 	# Reset the stun timer every time we get hit
 	current_stun_time = stun_duration
 	

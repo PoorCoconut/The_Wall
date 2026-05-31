@@ -4,4 +4,8 @@
 
 [node name="EnemyGenericBullet" unique_id=515527385 instance=ExtResource("1_75yrp")]
 
+[node name="Hitbox" parent="." index="4" unique_id=1596047665]
+collision_layer = 64
+collision_mask = 8
+
 [editable path="Hitbox"]

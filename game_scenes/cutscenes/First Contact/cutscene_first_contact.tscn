@@ -20,6 +20,7 @@ shader_parameter/sourceAngle = 1.0000000475
 
 [node name="cutscene_first_contact" type="Node2D" unique_id=841937327]
 script = ExtResource("1_aywi8")
+next_path = "uid://x361qstrsmg7"
 
 [node name="Kaleidoscope" type="Sprite2D" parent="." unique_id=184493767]
 unique_name_in_owner = true

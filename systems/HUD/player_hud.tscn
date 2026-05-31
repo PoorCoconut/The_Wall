@@ -1,17 +1,34 @@
 [gd_scene format=3 uid="uid://btbcu7i2ahwq5"]
 
 [ext_resource type="Script" uid="uid://dax15qxwg4uwj" path="res://systems/HUD/player_hud.gd" id="1_cadqa"]
+[ext_resource type="Texture2D" uid="uid://cfi57usiws4t4" path="res://game_assets/ui/tw_player_ui.png" id="2_rhs8c"]
+[ext_resource type="Shader" uid="uid://dl6ljofs1qdoi" path="res://vfx/shaders/entity_hit_blink.gdshader" id="3_i0keh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cadqa"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i0keh"]
+shader = ExtResource("3_i0keh")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0keh"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0keh"]
+atlas = ExtResource("2_rhs8c")
+region = Rect2(0, 16, 48, 16)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rhs8c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tei2"]
+atlas = ExtResource("2_rhs8c")
+region = Rect2(0, 48, 48, 16)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhs8c"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gw1j"]
+shader = ExtResource("3_i0keh")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kxea"]
+atlas = ExtResource("2_rhs8c")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prc57"]
+atlas = ExtResource("2_rhs8c")
+region = Rect2(0, 32, 48, 16)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gw1j"]
 bg_color = Color(0, 0, 0, 1)
@@ -44,44 +61,69 @@ script = ExtResource("1_cadqa")
 
 [node name="HealthDisplay" type="Node2D" parent="." unique_id=1156197549]
 
-[node name="BarChaserTexture" type="ProgressBar" parent="HealthDisplay" unique_id=72051859]
+[node name="BarChaserTexture" type="TextureProgressBar" parent="HealthDisplay" unique_id=1778784312]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_i0keh")
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 272.0
-offset_bottom = 39.0
-theme_override_styles/background = SubResource("StyleBoxFlat_cadqa")
-theme_override_styles/fill = SubResource("StyleBoxFlat_i0keh")
-show_percentage = false
+offset_right = 240.0
+offset_bottom = 32.0
+step = 0.1
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_right = 16
+texture_under = SubResource("AtlasTexture_i0keh")
+texture_progress = SubResource("AtlasTexture_1tei2")
 
-[node name="WhiteBarTexture" type="ProgressBar" parent="HealthDisplay" unique_id=2024980034]
+[node name="WhiteBarTexture" type="TextureProgressBar" parent="HealthDisplay" unique_id=1649556139]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_2gw1j")
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 272.0
-offset_bottom = 39.0
-theme_override_styles/background = SubResource("StyleBoxEmpty_rhs8c")
-theme_override_styles/fill = SubResource("StyleBoxFlat_rhs8c")
-show_percentage = false
+offset_right = 240.0
+offset_bottom = 32.0
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_right = 16
+texture_over = SubResource("AtlasTexture_7kxea")
+texture_progress = SubResource("AtlasTexture_prc57")
 
 [node name="AmmoDisplay" type="Node2D" parent="." unique_id=44506540]
 
 [node name="AmmoBarChaser" type="ProgressBar" parent="AmmoDisplay" unique_id=942982653]
 unique_name_in_owner = true
+visible = false
 offset_left = 16.0
-offset_top = 48.0
+offset_top = 32.0
 offset_right = 144.0
-offset_bottom = 64.0
+offset_bottom = 48.0
 theme_override_styles/background = SubResource("StyleBoxFlat_2gw1j")
 theme_override_styles/fill = SubResource("StyleBoxFlat_7kxea")
 show_percentage = false
 
 [node name="AmmoBar" type="ProgressBar" parent="AmmoDisplay" unique_id=360275087]
 unique_name_in_owner = true
+visible = false
 offset_left = 16.0
-offset_top = 48.0
+offset_top = 32.0
 offset_right = 144.0
-offset_bottom = 64.0
+offset_bottom = 48.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_1tei2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1tei2")
 show_percentage = false
+
+[node name="BulletBackContainer" type="HBoxContainer" parent="AmmoDisplay" unique_id=283720185]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 144.0
+offset_bottom = 48.0
+theme_override_constants/separation = -4
+
+[node name="BulletContainer" type="HBoxContainer" parent="AmmoDisplay" unique_id=804615430]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 144.0
+offset_bottom = 48.0
+theme_override_constants/separation = -4

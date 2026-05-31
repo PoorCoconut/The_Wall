@@ -2,14 +2,28 @@ extends Node
 
 #Store sound effects here...
 var sfx_dict : Dictionary = {
+	#Player-specific SFX
+	"player_hit1" : preload("res://sound/sfx/weapons/hit/sfx_hit3.mp3"),
+	"player_hit2" : preload("res://sound/sfx/weapons/hit/sfx_hit4.mp3"),
+	
+	#Entity Hits
 	"hit_metal1" : preload("res://sound/sfx/weapons/hit/metal-hit-12-193278.mp3"),
 	"hit_metal2" : preload("res://sound/sfx/weapons/hit/metal-hit-95-200424.mp3"),
 	"hit1" : preload("res://sound/sfx/weapons/hit/sfx_hit2.mp3"),
 	"kill_enemy1" : preload("res://sound/sfx/weapons/hit/sfx_enemy_kill2.mp3"),
+	"kill_enemy2" : preload("res://sound/sfx/weapons/hit/sfx_enemy_death.mp3"),
+	"robot_explosion" : preload("res://sound/sfx/weapons/hit/sfx_enemy_explosion.mp3"),
+	"robot_death" : preload("res://sound/sfx/weapons/hit/sfx_robot_enemy_death.mp3"),
+	"robot_hit1" : preload("res://sound/sfx/weapons/hit/sfx_robot_hit1.mp3"),
+	"robot_hit2" : preload("res://sound/sfx/weapons/hit/sfx_robot_hit2.mp3"),
 	
+	#Enemy Specific SFX
 	"explosion" : preload("res://sound/sfx/weapons/range/lordsonny-cannon-fire-161072.mp3"),
-	"sniperbolt_attack" : preload("res://sound/sfx/weapons/range/sfx_turret_gun.mp3")
-	
+	"sniperbolt_attack" : preload("res://sound/sfx/weapons/range/sfx_turret_gun.mp3"),
+	"laser_charge1" : preload("res://sound/sfx/misc/sfx_laser_charge1.mp3"),
+	"laser_charge2" : preload("res://sound/sfx/misc/sfx_laser_charge2.mp3"),
+	"laser_charge3" : preload("res://sound/sfx/misc/sfx_laser_charge3.mp3"),
+	"turret_charge" : preload("res://sound/sfx/misc/sfx_turret_charge.mp3"),
 }
 
 #Here is an example:
@@ -19,6 +33,7 @@ var sfx_dict : Dictionary = {
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+"res://sound/sfx/misc/sfx_turret_charge.mp3"
 
 func play_sfx(sfx_name : String, spawn_pos : Vector2) -> void:
 	#Check if sound exists

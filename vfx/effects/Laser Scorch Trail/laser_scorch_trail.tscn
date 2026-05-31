@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://6mpsiyi4y6jm"]
+
+[ext_resource type="Script" uid="uid://cly5itlygeqls" path="res://vfx/effects/Laser Scorch Trail/laser_scorch_trail.gd" id="1_li1wo"]
+
+[node name="LaserScorchTrail" type="Line2D" unique_id=280952482]
+script = ExtResource("1_li1wo")

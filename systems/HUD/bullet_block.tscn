@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c6v580wf7n215"]
+
+[ext_resource type="Texture2D" uid="uid://cfi57usiws4t4" path="res://game_assets/ui/tw_player_ui.png" id="1_2c6m2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gw1j"]
+atlas = ExtResource("1_2c6m2")
+region = Rect2(96, 0, 16, 16)
+
+[node name="Bullet" type="TextureRect" unique_id=923702452]
+texture = SubResource("AtlasTexture_2gw1j")
+expand_mode = 2
+stretch_mode = 1

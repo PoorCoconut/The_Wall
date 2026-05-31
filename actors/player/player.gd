@@ -4,8 +4,7 @@ class_name Player
 @export_category("Components")
 @export var FSM : StateMachine
 @export var health_component: HealthComponent
-# Make sure to assign your new MovementComponent in the inspector!
-@export var movement_component: MovementComponent 
+@export var movement_component: MovementComponent
 @export var hurtbox_component : HurtboxComponent
 @export var hitbox_component : HitboxComponent
 
@@ -26,7 +25,7 @@ var cur_bullets: int = max_bullets
 @export var debug_has_strike: bool = false
 
 @export_category("Dash Mechanics")
-@export var dash_speed: float = 500.0 
+@export var dash_speed: float = 500.0
 @export var dash_friction: float = 50.0
 @export var dash_cooldown: float = 1.0
 @export var chains_to_damage : int = 5
@@ -58,7 +57,7 @@ var consecutive_hits : int
 
 func _ready() -> void:
 	RoomTransitionComponent.apply_spawn_to_player(self)
-	
+
 	if OS.has_feature("editor"):
 		if debug_has_dash:
 			GameManager.has_dash = true
@@ -66,12 +65,13 @@ func _ready() -> void:
 			GameManager.has_glow = true
 		if debug_has_strike:
 			GameManager.has_strike = true
-	
+
+	## Restore (or seed) persistent stats from GameManager.
+	## This also handles the UI emit — no manual emit needed below.
+	GameManager.restore_player_stats(self)
+
 	health_component.hp_changed.connect(_on_hp_changed)
 	hitbox_component.hit_landed.connect(_on_sword_hit_landed)
-	
-	Events.player_hp_updated.emit(health_component.CUR_HP, health_component.MAX_HP)
-	Events.player_ammo_updated.emit(cur_bullets, max_bullets)
 
 func _process(_delta: float) -> void:
 	update_debug()
@@ -101,43 +101,44 @@ func _on_i_frame_timeout() -> void:
 
 func apply_stumble_debuff(duration: float) -> void:
 	movement_component.apply_slide_debuff(duration, 10)
-	#This block here is for special effects in the future
 
 ##COMBAT SYSTEM
 func shoot():
 	GameManager.do_camera_shake(5.0, 0.5)
 	var bullet = bullet_path.instantiate()
-	bullet.get_node("Hitbox").damage = range_damage 
+	bullet.get_node("Hitbox").damage = range_damage
 	bullet.dir = GunMarker.rotation
 	bullet.global_rotation = GunMarker.global_rotation
 	bullet.global_position = GunSprite.global_position
-	
+
 	get_tree().root.add_child(bullet)
 
 func _on_hp_changed(new_hp: int, max_hp: int) -> void:
+	## Write back to GameManager so the value survives the next scene switch.
+	GameManager.player_cur_hp = new_hp
+	GameManager.player_max_hp = max_hp
+
 	Events.player_hp_updated.emit(new_hp, max_hp)
 	FSM.force_change_state("Hit")
-	remove_bonus_damage() #When Player is hit, remove bonus damage
+	remove_bonus_damage()
 
 func _on_sword_hit_landed(_recoil_direction: Vector2) -> void:
 	if hitbox_component.damage > 3:
 		GameManager.do_camera_shake(10.0 + hitbox_component.damage, 0.5)
-	
-	# Only count hits if the gun isn't already full!
+
 	if cur_bullets < max_bullets:
 		consecutive_hits += 1
 		if consecutive_hits >= HITS_TO_RECHARGE:
 			cur_bullets += 1
-			consecutive_hits = 0 # Reset the counter for the next bullet
-			
+			consecutive_hits = 0
+
+			## Write back to GameManager.
+			GameManager.player_cur_bullets = cur_bullets
+
 			Events.player_ammo_updated.emit(cur_bullets, max_bullets)
-			
-			# HIGHLY RECOMMENDED JUICE: 
-			# Play a sharp, satisfying mechanical 'click' sound effect right here!
-	
-	#For bonus damage
+
 	await get_tree().create_timer(0.5).timeout
-	remove_bonus_damage() #When Player hits something, remove bonus damage
+	remove_bonus_damage()
 
 func dashchain_damage_boost() -> void:
 	if dash_chain == 0:
@@ -152,7 +153,7 @@ func remove_bonus_damage() -> void:
 	update_sword_damage()
 
 func update_sword_damage() -> void:
-	hitbox_component.damage = melee_damage + melee_bonus_damage 
+	hitbox_component.damage = melee_damage + melee_bonus_damage
 
 func _on_dash_chain_damage_timer_timeout() -> void:
 	remove_bonus_damage()

@@ -1489,8 +1489,6 @@ health_component = NodePath("HealthComponent")
 movement_component = NodePath("MovementComponent")
 hurtbox_component = NodePath("Hurtbox")
 hitbox_component = NodePath("Hitbox")
-debug_has_dash = true
-debug_has_strike = true
 dash_speed = 200.0
 
 [node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("2_qct7d")]
@@ -1504,6 +1502,7 @@ FRICTION = 500.0
 ACCELERATION = 500.0
 
 [node name="Particles" type="Node2D" parent="." unique_id=802228733]
+position = Vector2(0, -16)
 
 [node name="DashTrail" type="Node2D" parent="Particles" unique_id=706665284]
 script = ExtResource("4_cp0mr")
@@ -1589,12 +1588,14 @@ scale_amount_max = 0.5
 color_ramp = SubResource("Gradient_q0ixk")
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=818297224]
+position = Vector2(0, -16)
 texture = ExtResource("3_nvg7b")
 hframes = 8
 vframes = 8
 
 [node name="GunMarker" type="Marker2D" parent="." unique_id=1405712990]
 unique_name_in_owner = true
+position = Vector2(0, -16)
 
 [node name="GunSprite" type="Sprite2D" parent="GunMarker" unique_id=11410249]
 modulate = Color(0, 0, 0, 1)
@@ -1603,7 +1604,7 @@ scale = Vector2(0.05, 0.05)
 texture = ExtResource("7_kyfeq")
 
 [node name="collision" type="CollisionShape2D" parent="." unique_id=1615503991]
-position = Vector2(0, 11)
+position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_yoru2")
 debug_color = Color(0.967122, 2.88785e-07, 0.476246, 0.42)
 
@@ -1625,6 +1626,7 @@ parameters/Run/blend_position = Vector2(0, 0)
 parameters/Shoot/blend_position = Vector2(0.410339, -0.522124)
 
 [node name="InteractionAreaComponent" parent="." unique_id=2138184127 instance=ExtResource("10_1c637")]
+position = Vector2(0, -16)
 collision_layer = 0
 collision_mask = 128
 
@@ -1633,6 +1635,7 @@ position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_4ihbh")
 
 [node name="ThreatDetector" type="Area2D" parent="." unique_id=1915531002]
+position = Vector2(0, -16)
 collision_layer = 0
 collision_mask = 4
 
@@ -1641,6 +1644,7 @@ shape = SubResource("CircleShape2D_lv4bx")
 debug_color = Color(0, 1.1700428, 1.353256, 0)
 
 [node name="Hitbox" parent="." unique_id=317839162 instance=ExtResource("18_d2agh")]
+position = Vector2(0, -16)
 collision_layer = 16
 collision_mask = 32
 knockback_force = 250.0
@@ -1651,11 +1655,12 @@ shape = SubResource("RectangleShape2D_fpo3a")
 disabled = true
 
 [node name="Hurtbox" parent="." unique_id=2038774351 node_paths=PackedStringArray("health_component", "movement_component") instance=ExtResource("8_fpo3a")]
-position = Vector2(0, 8)
+position = Vector2(0, -8)
 collision_layer = 8
 collision_mask = 64
 health_component = NodePath("../HealthComponent")
 movement_component = NodePath("../MovementComponent")
+iframe = 0.5
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1993016751]
 shape = SubResource("CapsuleShape2D_kyfeq")
@@ -1750,6 +1755,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="GlowLight" type="PointLight2D" parent="." unique_id=1079674673]
+position = Vector2(0, -16)
 scale = Vector2(4, 4)
 enabled = false
 shadow_enabled = true

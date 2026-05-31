@@ -1,20 +1,23 @@
 extends Node2D
 
-
+@export_file("*.tscn") var next_path : String
 var user_name : String = "Player"
 
 func _ready() -> void:
-	#Checks for username. Failsafes to Player.
-	if OS.has_environment("USERNAME"):
-		user_name = OS.get_environment("USERNAME")
+	if GameManager.player_name != "Player":
+		user_name = GameManager.player_name
 	else:
-		if OS.has_environment("USER"):
-			user_name = OS.get_environment("USER")
+		#Checks for username. Failsafes to Player.
+		if OS.has_environment("USERNAME"):
+			user_name = OS.get_environment("USERNAME")
+		else:
+			if OS.has_environment("USER"):
+				user_name = OS.get_environment("USER")
+			
+		if user_name == "user":
+				user_name = "Player"
 		
-	if user_name == "user":
-			user_name = "Player"
-	
-	GameManager.setPlayerName(user_name)
+		GameManager.setPlayerName(user_name)
 	
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 	var music_tween = get_tree().create_tween()
@@ -43,10 +46,11 @@ func _on_dialogic_signal(argument:String):
 		var tween2 = get_tree().create_tween()
 		tween2.tween_property(%TW_AMBIENCE, "volume_db", -80, 1)
 		await tween2.finished
-		
+		GameManager.load_next_level(next_path)
 
 
 func _on_window_yes_no_confirmed() -> void:
+	GameManager.save_game(Vector2.ZERO)
 	Dialogic.VAR.set('nameChange', false)
 	Dialogic.start("TW_first_greet_2")
 

@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://khe1iw3uos15"]
+
+[ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="1_px4ov"]
+[ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="2_2gjrq"]
+[ext_resource type="Texture2D" uid="uid://oknw5acrv0iw" path="res://game_assets/Pixel Art Top Down - Basic v1.2.0/Texture/TX Tileset Grass.png" id="3_advh4"]
+[ext_resource type="PackedScene" uid="uid://vnsbdeo8tpf8" path="res://systems/RoomTransitionComponent/room_transition_component.tscn" id="3_n4iqu"]
+[ext_resource type="PackedScene" uid="uid://b5kib01h7s7am" path="res://systems/Camera Limit Zone Component/camera_limit_zone_component.tscn" id="4_advh4"]
+[ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="4_v3tpm"]
+[ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="5_v3tpm"]
+[ext_resource type="PackedScene" uid="uid://bwyyko6bjn4hw" path="res://actors/player/player.tscn" id="6_fh55i"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fh55i"]
+texture = ExtResource("3_advh4")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7y515"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_fh55i")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f3s1"]
+texture = ExtResource("4_v3tpm")
+texture_region_size = Vector2i(32, 32)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ga4fp"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_3f3s1")
+
+[node name="world_base" type="Node2D" unique_id=1446299206]
+
+[node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("1_px4ov")]
+
+[node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("2_2gjrq")]
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=675902682]
+tile_set = SubResource("TileSet_7y515")
+
+[node name="Wall" type="TileMapLayer" parent="." unique_id=96061779]
+modulate = Color(0, 0, 0, 1)
+tile_set = SubResource("TileSet_ga4fp")
+
+[node name="Room Transition Component" parent="." unique_id=174095724 instance=ExtResource("3_n4iqu")]
+
+[node name="CameraLimitZoneComponent" parent="." unique_id=276472449 instance=ExtResource("4_advh4")]
+
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 instance=ExtResource("5_v3tpm")]
+
+[node name="player" parent="." unique_id=567391177 instance=ExtResource("6_fh55i")]

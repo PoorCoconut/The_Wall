@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://du3dpyopanhc1"]
+
+[ext_resource type="Script" uid="uid://cdxp1ea5ycceg" path="res://actors/enemy/Turrets/BurstBolt/burst_bolt.gd" id="1_cy4de"]
+[ext_resource type="PackedScene" uid="uid://cd0gji0ohlvxv" path="res://systems/Entity Components/Health Component/HealthComponent.tscn" id="2_18nas"]
+[ext_resource type="Shader" uid="uid://dl6ljofs1qdoi" path="res://vfx/shaders/entity_hit_blink.gdshader" id="3_gpeea"]
+[ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="4_b3vsf"]
+[ext_resource type="PackedScene" uid="uid://7jg5f5lwc4u1" path="res://systems/Entity Components/Attack Range Component/attack_range.tscn" id="5_vec2t"]
+[ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HurtBox/hurtbox_component.tscn" id="6_m20br"]
+[ext_resource type="AudioStream" uid="uid://g7h4oi8v0wak" path="res://sound/sfx/ambience/amb_factory_crusher3.mp3" id="7_fie1w"]
+[ext_resource type="AudioStream" uid="uid://g1obp63x47s8" path="res://sound/sfx/weapons/hit/sfx_robot_enemy_death.mp3" id="8_guygf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jhv8s"]
+resource_local_to_scene = true
+shader = ExtResource("3_gpeea")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hiyeb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_b3vsf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_joixq"]
+radius = 7.071068
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i573m"]
+radius = 256.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ccbwq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6gof"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jos8y"]
+bg_color = Color(0.25882354, 1, 0, 1)
+
+[node name="BurstBolt" type="StaticBody2D" unique_id=1597469155 node_paths=PackedStringArray("health_component", "hurtbox_component") groups=["Enemy"]]
+script = ExtResource("1_cy4de")
+health_component = NodePath("HealthComponent")
+hurtbox_component = NodePath("HurtboxComponent")
+bullet_speed = 300
+turn_speed = 2.5
+threat_level = 0.5
+
+[node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("2_18nas")]
+MAX_HP = 5
+
+[node name="TurretHead" type="Node2D" parent="." unique_id=2137437469]
+unique_name_in_owner = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="TurretHead" unique_id=902674239]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_jhv8s")
+scale = Vector2(0.125, 0.125)
+sprite_frames = SubResource("SpriteFrames_hiyeb")
+
+[node name="Marker" type="Marker2D" parent="TurretHead" unique_id=897957270]
+unique_name_in_owner = true
+position = Vector2(8, 0)
+
+[node name="Laser" type="Line2D" parent="TurretHead" unique_id=481997221]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 0, 0)
+width = 1.0
+default_color = Color(1, 0, 0, 0.44313726)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=230918330]
+shape = SubResource("CircleShape2D_joixq")
+
+[node name="AttackRange" parent="." unique_id=1298451380 instance=ExtResource("5_vec2t")]
+
+[node name="CollisionShape2D" parent="AttackRange" index="0" unique_id=430212409]
+shape = SubResource("CircleShape2D_i573m")
+
+[node name="HurtboxComponent" parent="." unique_id=330416737 node_paths=PackedStringArray("health_component") instance=ExtResource("6_m20br")]
+collision_layer = 32
+collision_mask = 16
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1993016751]
+shape = SubResource("CircleShape2D_ccbwq")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=74333995]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="AimTimer" type="Timer" parent="." unique_id=713392582]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=587288976]
+unique_name_in_owner = true
+offset_left = -17.0
+offset_top = 10.0
+offset_right = 17.0
+offset_bottom = 18.0
+theme_override_styles/background = SubResource("StyleBoxFlat_m6gof")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jos8y")
+step = 1.0
+show_percentage = false
+
+[node name="TurretRotation" type="AudioStreamPlayer2D" parent="." unique_id=840419691]
+unique_name_in_owner = true
+stream = ExtResource("7_fie1w")
+volume_db = -25.0
+autoplay = true
+max_distance = 400.0
+bus = &"SFX"
+
+[node name="TurretWarnToExplode" type="AudioStreamPlayer2D" parent="." unique_id=1587688373]
+unique_name_in_owner = true
+stream = ExtResource("8_guygf")
+max_distance = 200.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="AimTimer" to="." method="_on_aim_timer_timeout"]
+[connection signal="finished" from="TurretWarnToExplode" to="." method="_on_turret_warn_to_explode_finished"]
+
+[editable path="AttackRange"]
+[editable path="HurtboxComponent"]

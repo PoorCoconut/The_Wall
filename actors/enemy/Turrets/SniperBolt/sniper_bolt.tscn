@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HurtBox/hurtbox_component.tscn" id="3_1ifi6"]
 [ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="3_8iyte"]
 [ext_resource type="AudioStream" uid="uid://g7h4oi8v0wak" path="res://sound/sfx/ambience/amb_factory_crusher3.mp3" id="7_0r25r"]
-[ext_resource type="AudioStream" uid="uid://bca0wyr6knoln" path="res://sound/sfx/misc/sfx_errror.mp3" id="8_lkjqv"]
+[ext_resource type="AudioStream" uid="uid://g1obp63x47s8" path="res://sound/sfx/weapons/hit/sfx_robot_enemy_death.mp3" id="8_lkjqv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lkjqv"]
 resource_local_to_scene = true
@@ -30,7 +30,7 @@ animations = [{
 radius = 7.071068
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8iyte"]
-radius = 192.0
+radius = 256.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0r25r"]
 
@@ -40,13 +40,15 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0r25r"]
 bg_color = Color(0.25882354, 1, 0, 1)
 
-[node name="SniperBolt" type="StaticBody2D" unique_id=1861013175 node_paths=PackedStringArray("health_component") groups=["Enemy"]]
+[node name="SniperBolt" type="StaticBody2D" unique_id=1861013175 node_paths=PackedStringArray("health_component", "hurtbox_component") groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_p6pts")
 health_component = NodePath("HealthComponent")
-bullet_speed = 200
-threat_level = 0.2
+hurtbox_component = NodePath("HurtboxComponent")
+damage = 2
+bullet_speed = 600
+threat_level = 0.4
 
 [node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("1_c5ib2")]
 MAX_HP = 5
@@ -110,8 +112,9 @@ show_percentage = false
 [node name="TurretRotation" type="AudioStreamPlayer2D" parent="." unique_id=377388419]
 unique_name_in_owner = true
 stream = ExtResource("7_0r25r")
+volume_db = -25.0
 autoplay = true
-max_distance = 200.0
+max_distance = 400.0
 bus = &"SFX"
 
 [node name="TurretWarnToExplode" type="AudioStreamPlayer2D" parent="." unique_id=1665449795]

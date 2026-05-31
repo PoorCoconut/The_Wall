@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bwo2pcll8w3s3" path="res://objects/save obelisk/save_obelisk.png" id="1_fdy05"]
 [ext_resource type="PackedScene" uid="uid://db3o7r26hm084" path="res://systems/InteractArea/interact_area.tscn" id="2_47ivx"]
 [ext_resource type="Texture2D" uid="uid://o5tljqq3vr32" path="res://game_assets/objects/Bullets-Sheet.png" id="4_uqiu5"]
+[ext_resource type="AudioStream" uid="uid://br2ne4413x0tl" path="res://sound/sfx/ambience/amb_droning2.mp3" id="5_7oa4s"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7oa4s"]
 particles_animation = true
@@ -51,7 +52,6 @@ particles_anim_v_frames = 4
 particles_anim_loop = false
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7oa4s"]
-load_path = "res://.godot/imported/Bullets-Sheet.png-1e2ab8b14856d212958d2662058cadd8.ctex"
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dnpj5"]
 particle_flag_disable_z = true
@@ -76,7 +76,7 @@ radius = 26.076809
 [sub_resource type="CircleShape2D" id="CircleShape2D_7oa4s"]
 radius = 96.50906
 
-[node name="SaveObelisk" type="StaticBody2D" unique_id=276213319]
+[node name="SaveObelisk" type="StaticBody2D" unique_id=276213319 groups=["Obelisk"]]
 script = ExtResource("1_47ivx")
 
 [node name="GroundParticles" type="GPUParticles2D" parent="." unique_id=264437655]
@@ -119,6 +119,12 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BodyDetector" unique_id=2086456514]
 shape = SubResource("CircleShape2D_7oa4s")
 debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="SFX_Droning" type="AudioStreamPlayer2D" parent="." unique_id=38605179]
+stream = ExtResource("5_7oa4s")
+autoplay = true
+max_distance = 500.0
+bus = &"SFX"
 
 [connection signal="interacted" from="InteractionArea" to="." method="_on_interaction_area_interacted"]
 [connection signal="body_entered" from="BodyDetector" to="." method="_on_body_detector_body_entered"]
