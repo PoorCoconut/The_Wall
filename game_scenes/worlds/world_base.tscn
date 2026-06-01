@@ -110,6 +110,7 @@ tile_set = SubResource("TileSet_ga4fp")
 
 [node name="CameraLimitZoneComponent" parent="." unique_id=276472449 instance=ExtResource("4_advh4")]
 
-[node name="WorldCameraComponent" parent="." unique_id=1725945058 instance=ExtResource("5_v3tpm")]
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("5_v3tpm")]
+target = NodePath("../player")
 
 [node name="player" parent="." unique_id=567391177 instance=ExtResource("6_fh55i")]

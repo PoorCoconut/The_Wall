@@ -135,6 +135,7 @@ func _on_hp_changed(new_hp: int, _max_hp: int) -> void:
 	play_hit_sound()
 
 func _death() -> void:
+	%LaserScorchTrail.delete = true
 	# Stop _process immediately so nothing accesses nodes after this point.
 	set_process(false)
 	hurtbox_component.queue_free()

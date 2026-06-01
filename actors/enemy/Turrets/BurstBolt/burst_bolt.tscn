@@ -30,7 +30,7 @@ animations = [{
 radius = 7.071068
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i573m"]
-radius = 256.0
+radius = 160.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ccbwq"]
 
@@ -47,6 +47,7 @@ hurtbox_component = NodePath("HurtboxComponent")
 bullet_speed = 300
 turn_speed = 2.5
 threat_level = 0.5
+recharge_duration = 1.0
 
 [node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("2_18nas")]
 MAX_HP = 5
@@ -88,7 +89,6 @@ shape = SubResource("CircleShape2D_ccbwq")
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=74333995]
 unique_name_in_owner = true
-wait_time = 2.0
 one_shot = true
 autostart = true
 

@@ -3,7 +3,7 @@ extends Line2D
 @export var laser_tip: Node2D # Drag your laser tip marker into this in the inspector
 @export var drop_distance: float = 8.0 # How far the tip moves before dropping a new point
 @export var max_length: int = 50 # How many points before the oldest ones fade
-
+var delete : bool = false
 func _ready() -> void:
 	# Ensure we start with a clean slate
 	clear_points()
@@ -13,7 +13,7 @@ func _physics_process(_delta: float) -> void:
 		return
 		
 	var current_pos = laser_tip.global_position
-	print("Tip Position: ", current_pos) # <--- ADD THIS
+	#print("Tip Position: ", current_pos)
 	
 	# If the line is empty, just drop the first point
 	if get_point_count() == 0:
@@ -29,3 +29,6 @@ func _physics_process(_delta: float) -> void:
 		# Erase the oldest point if the trail gets too long
 		if get_point_count() > max_length:
 			remove_point(0)
+	
+	if delete:
+		remove_point(0)

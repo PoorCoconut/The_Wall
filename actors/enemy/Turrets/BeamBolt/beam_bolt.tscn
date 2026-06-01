@@ -49,12 +49,16 @@ bg_color = Color(0.25882354, 1, 0, 1)
 script = ExtResource("1_n4vv0")
 health_component = NodePath("HealthComponent")
 hurtbox_component = NodePath("HurtboxComponent")
+laser_width = 2.0
+tip_speed = 70.0
 
 [node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("2_k6whj")]
 MAX_HP = 5
 
 [node name="LaserScorchTrail" parent="." unique_id=280952482 node_paths=PackedStringArray("laser_tip") instance=ExtResource("3_t5rq8")]
+unique_name_in_owner = true
 top_level = true
+z_index = -1
 default_color = Color(0, 0, 0, 1)
 laser_tip = NodePath("../TurretHead/LaserHitbox")
 
