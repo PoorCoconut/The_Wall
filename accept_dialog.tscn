@@ -30,5 +30,6 @@ scale = Vector2(3, 3)
 [connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
 
 [editable path="Window/player"]
-[editable path="Window/player/Hurtbox"]
+[editable path="Window/player/InteractionAreaComponent"]
 [editable path="Window/player/Hitbox"]
+[editable path="Window/player/Hurtbox"]

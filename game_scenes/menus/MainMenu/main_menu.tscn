@@ -378,10 +378,36 @@ region = Rect2(80, 48, 32, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcpgc"]
 bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrcmg"]
+atlas = ExtResource("2_kcaeb")
+region = Rect2(224, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au03i"]
+atlas = ExtResource("2_kcaeb")
+region = Rect2(240, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4l38u"]
+atlas = ExtResource("2_kcaeb")
+region = Rect2(256, 32, 16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3qgb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkmlf"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control" unique_id=804645915]
@@ -413,7 +439,6 @@ stream = ExtResource("3_dcpgc")
 bus = &"Music"
 
 [node name="Background" type="ColorRect" parent="." unique_id=754250336]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -915,6 +940,8 @@ scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_bues4")
 
 [node name="SavesContainer" type="PanelContainer" parent="." unique_id=1824307839]
+unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 64.0
 offset_top = 56.0
@@ -929,31 +956,305 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SavesContainer/MarginContainer" unique_id=1562833262]
+[node name="SlotGraphic" type="VBoxContainer" parent="SavesContainer/MarginContainer" unique_id=2109429576]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SavesContainer/MarginContainer/VBoxContainer" unique_id=114578948]
+[node name="Label" type="Label" parent="SavesContainer/MarginContainer/SlotGraphic" unique_id=827064456]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "CONTINUE"
+theme_override_font_sizes/font_size = 32
+text = "CONTINUE YOUR JOURNEY"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SavesContainer/MarginContainer/VBoxContainer" unique_id=1674458813]
+[node name="HBoxContainer" type="HBoxContainer" parent="SavesContainer/MarginContainer/SlotGraphic" unique_id=762656212]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="SaveSlot1" type="Button" parent="SavesContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1012663718]
+[node name="Slot1Graphic" type="VBoxContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer" unique_id=182683296]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 1
 
-[node name="SaveSlot2" type="Button" parent="SavesContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=490998836]
+[node name="Slot1PowerUpContainer" type="MarginContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot1Graphic" unique_id=1753580596]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
 
-[node name="SaveSlot3" type="Button" parent="SavesContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=772951992]
+[node name="HBoxContainer" type="HBoxContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot1Graphic/Slot1PowerUpContainer" unique_id=378382736]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Slot1Dash" type="TextureRect" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot1Graphic/Slot1PowerUpContainer/HBoxContainer" unique_id=298052453]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = SubResource("AtlasTexture_xrcmg")
+stretch_mode = 3
+
+[node name="Slot1Slash" type="TextureRect" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot1Graphic/Slot1PowerUpContainer/HBoxContainer" unique_id=177656386]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = SubResource("AtlasTexture_au03i")
+stretch_mode = 3
+
+[node name="Slot1Glow" type="TextureRect" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot1Graphic/Slot1PowerUpContainer/HBoxContainer" unique_id=1172636928]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = SubResource("AtlasTexture_4l38u")
+stretch_mode = 3
+
+[node name="TextSlot1" type="RichTextLabel" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot1Graphic" unique_id=418780515]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "EMPTY SLOT"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot1Information" type="MarginContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot1Graphic" unique_id=900375000]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot1Graphic/Slot1Information" unique_id=1659914433]
+layout_mode = 2
+
+[node name="Slot1AreaName" type="Label" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot1Graphic/Slot1Information/VBoxContainer" unique_id=809669114]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "AREA NAME"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Slot1Time" type="Label" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot1Graphic/Slot1Information/VBoxContainer" unique_id=797878754]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "00:00:00"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Slot2Graphic" type="VBoxContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer" unique_id=1278116575]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 1
+
+[node name="Slot2PowerUpContainer" type="MarginContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot2Graphic" unique_id=270041757]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot2Graphic/Slot2PowerUpContainer" unique_id=86010767]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Slot2Dash" type="TextureRect" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot2Graphic/Slot2PowerUpContainer/HBoxContainer" unique_id=1908958934]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = SubResource("AtlasTexture_xrcmg")
+stretch_mode = 3
+
+[node name="Slot2Slash" type="TextureRect" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot2Graphic/Slot2PowerUpContainer/HBoxContainer" unique_id=219602975]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = SubResource("AtlasTexture_au03i")
+stretch_mode = 3
+
+[node name="Slot2Glow" type="TextureRect" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot2Graphic/Slot2PowerUpContainer/HBoxContainer" unique_id=2004233825]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = SubResource("AtlasTexture_4l38u")
+stretch_mode = 3
+
+[node name="TextSlot2" type="RichTextLabel" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot2Graphic" unique_id=302507504]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "EMPTY SLOT"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot2Information" type="MarginContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot2Graphic" unique_id=481535189]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot2Graphic/Slot2Information" unique_id=1232552953]
+layout_mode = 2
+
+[node name="Slot2AreaName" type="Label" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot2Graphic/Slot2Information/VBoxContainer" unique_id=1257494299]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "AREA NAME"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Slot2Time" type="Label" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot2Graphic/Slot2Information/VBoxContainer" unique_id=312195352]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "00:00:00"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Slot3Graphic" type="VBoxContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer" unique_id=395629627]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Slot3PowerUpContainer" type="MarginContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot3Graphic" unique_id=1809467072]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot3Graphic/Slot3PowerUpContainer" unique_id=1390228309]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Slot3Dash" type="TextureRect" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot3Graphic/Slot3PowerUpContainer/HBoxContainer" unique_id=80575605]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = SubResource("AtlasTexture_xrcmg")
+stretch_mode = 3
+
+[node name="Slot3Slash" type="TextureRect" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot3Graphic/Slot3PowerUpContainer/HBoxContainer" unique_id=1663219575]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = SubResource("AtlasTexture_au03i")
+stretch_mode = 3
+
+[node name="Slot3Glow" type="TextureRect" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot3Graphic/Slot3PowerUpContainer/HBoxContainer" unique_id=2125507116]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = SubResource("AtlasTexture_4l38u")
+stretch_mode = 3
+
+[node name="TextSlot3" type="RichTextLabel" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot3Graphic" unique_id=1963320913]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "EMPTY SLOT"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot3Information" type="MarginContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot3Graphic" unique_id=1611257445]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot3Graphic/Slot3Information" unique_id=1832480440]
+layout_mode = 2
+
+[node name="Slot3AreaName" type="Label" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot3Graphic/Slot3Information/VBoxContainer" unique_id=1200993727]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "AREA NAME"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Slot3Time" type="Label" parent="SavesContainer/MarginContainer/SlotGraphic/HBoxContainer/Slot3Graphic/Slot3Information/VBoxContainer" unique_id=1067136627]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "00:00:00"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SlotButtons" type="VBoxContainer" parent="SavesContainer/MarginContainer" unique_id=1562833262]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SavesContainer/MarginContainer/SlotButtons" unique_id=114578948]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = " "
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SavesContainer/MarginContainer/SlotButtons" unique_id=1674458813]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="SaveSlot1" type="Button" parent="SavesContainer/MarginContainer/SlotButtons/HBoxContainer" unique_id=1012663718]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/focus = SubResource("StyleBoxFlat_k3qgb")
+
+[node name="SaveSlot2" type="Button" parent="SavesContainer/MarginContainer/SlotButtons/HBoxContainer" unique_id=490998836]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/focus = SubResource("StyleBoxFlat_k3qgb")
+
+[node name="SaveSlot3" type="Button" parent="SavesContainer/MarginContainer/SlotButtons/HBoxContainer" unique_id=772951992]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_k3qgb")
+theme_override_styles/focus = SubResource("StyleBoxFlat_k3qgb")
+
+[node name="CloseSavesContainer" type="Button" parent="SavesContainer" unique_id=867366313]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_bkmlf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bkmlf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bkmlf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bkmlf")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bkmlf")
+text = " EXIT"
 
 [connection signal="animation_finished" from="Anim_TransitionContinue" to="." method="_on_anim_transition_continue_animation_finished"]
 [connection signal="pressed" from="ButtonContainerSizer/ButtonContainer/Button_NewGame" to="." method="_on_button_new_game_pressed"]
@@ -974,3 +1275,7 @@ size_flags_horizontal = 3
 [connection signal="pressed" from="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode/WindowModeAccordion/VBoxContainer/Button_ExclusiveFullscreen" to="." method="_on_button_exclusive_fullscreen_pressed"]
 [connection signal="pressed" from="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ControlsReset" to="." method="_on_controls_reset_pressed"]
 [connection signal="pressed" from="SettingsContainer/Back/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="SavesContainer/MarginContainer/SlotButtons/HBoxContainer/SaveSlot1" to="." method="_on_save_slot_1_pressed"]
+[connection signal="pressed" from="SavesContainer/MarginContainer/SlotButtons/HBoxContainer/SaveSlot2" to="." method="_on_save_slot_2_pressed"]
+[connection signal="pressed" from="SavesContainer/MarginContainer/SlotButtons/HBoxContainer/SaveSlot3" to="." method="_on_save_slot_3_pressed"]
+[connection signal="pressed" from="SavesContainer/CloseSavesContainer" to="." method="_on_close_saves_container_pressed"]

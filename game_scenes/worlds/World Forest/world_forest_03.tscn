@@ -117,6 +117,9 @@ tile_set = SubResource("TileSet_ga4fp")
 
 [node name="Room Transition Component" parent="." unique_id=174095724 instance=ExtResource("6_6be5b")]
 position = Vector2(0, 192)
+my_id = "f03_sou"
+target_id = "f02_noreas"
+next_room = "uid://p82ly7vpxa7u"
 
 [node name="Room Transition Component2" parent="." unique_id=1645965071 instance=ExtResource("6_6be5b")]
 position = Vector2(960, -224)

@@ -27,6 +27,7 @@ bg_color = Color(0.18431373, 0.18431373, 0.18431373, 0.9098039)
 process_mode = 3
 layer = 2
 script = ExtResource("1_txmun")
+menu_path = "uid://camlgx74mlna4"
 
 [node name="Background" type="TextureRect" parent="." unique_id=227818396]
 visible = false

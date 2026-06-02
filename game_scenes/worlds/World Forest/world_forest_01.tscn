@@ -88,6 +88,12 @@ my_id = "f01_sou"
 target_id = "f00_nor"
 next_room = "uid://x361qstrsmg7"
 
+[node name="Room Transition Component2" parent="." unique_id=1321141935 instance=ExtResource("1_4grxi")]
+position = Vector2(896, -832)
+my_id = "f01_nor"
+target_id = "f02_sou"
+next_room = "uid://p82ly7vpxa7u"
+
 [node name="CameraLimitZoneComponent" parent="." unique_id=276472449 instance=ExtResource("2_dtf00")]
 
 [node name="CollisionShape2D" parent="CameraLimitZoneComponent" index="0" unique_id=282465000]

@@ -26,16 +26,17 @@ buses/default_bus_layout="uid://dqpfumudla4vk"
 
 [autoload]
 
-UiDebug="*res://ui/debug/ui_debug.tscn"
-MusicManager="*res://globals/Music Manager/music_manager.tscn"
+SaveManager="*uid://e0cq2gh0vwlx"
+SpawnData="*uid://dj10bvi4dfimj"
 Dialogic="*uid://ds2q0uclmolvu"
-GameManager="*uid://c7guh55seakpu"
-Events="*uid://dp7ruldhwh5ke"
 LoadingScreen="*uid://1cdnr1bl805e"
 ScreenTransition="*uid://rgy5yu73bm2h"
-SettingsManager="*uid://boav6xpuq74ks"
 SoundBank="*uid://ce7kxbchc8ajm"
-SpawnData="*uid://dj10bvi4dfimj"
+GameManager="*uid://c7guh55seakpu"
+SettingsManager="*uid://boav6xpuq74ks"
+MusicManager="*res://globals/Music Manager/music_manager.tscn"
+Events="*uid://dp7ruldhwh5ke"
+UiDebug="*res://ui/debug/ui_debug.tscn"
 
 [dialogic]
 

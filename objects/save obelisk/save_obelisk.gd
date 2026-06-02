@@ -9,7 +9,7 @@ func _on_interaction_area_interacted() -> void:
 	var player = get_tree().get_first_node_in_group("Player")
 	
 	if player:
-		GameManager.save_game(player.global_position)
+		GameManager.save_game(player.global_position, "Overgrown Forest", get_tree().current_scene.scene_file_path)
 		play_save_feedback()
 
 func play_save_feedback() -> void:

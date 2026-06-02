@@ -117,6 +117,9 @@ tile_set = SubResource("TileSet_ga4fp")
 
 [node name="Room Transition Component" parent="." unique_id=174095724 instance=ExtResource("6_5lonh")]
 position = Vector2(0, 160)
+my_id = "f02_sou"
+target_id = "f01_nor"
+next_room = "uid://b3nif2tere4vr"
 
 [node name="Room Transition Component2" parent="." unique_id=1651439673 instance=ExtResource("6_5lonh")]
 position = Vector2(64, -1600)
@@ -126,6 +129,9 @@ position = Vector2(1440, -496)
 
 [node name="Room Transition Component4" parent="." unique_id=801283075 instance=ExtResource("6_5lonh")]
 position = Vector2(576, -1600)
+my_id = "f02_noreas"
+target_id = "f03_sou"
+next_room = "uid://bevcx5yuk8pea"
 
 [node name="CameraLimitZoneComponent" parent="." unique_id=276472449 instance=ExtResource("7_ptv86")]
 
