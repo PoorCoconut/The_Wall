@@ -13,6 +13,9 @@ func load_level(path: String):
 	target_scene_path = path
 	show() # Make the loading screen visible
 	
+	# Freeze the playtime counter — loading time shouldn't count as play.
+	GameManager.pause_playtime()
+	
 	# Ask Godot's background thread to start building the scene
 	ResourceLoader.load_threaded_request(target_scene_path)
 	
@@ -43,6 +46,9 @@ func _process(_delta):
 		
 		await ScreenTransition.trans_out().finished
 		ScreenTransition.reset()
+		
+		# Scene is fully visible — resume counting playtime.
+		GameManager.resume_playtime()
 	
 	# Failsafe in case the file path is wrong
 	elif status == ResourceLoader.THREAD_LOAD_FAILED:

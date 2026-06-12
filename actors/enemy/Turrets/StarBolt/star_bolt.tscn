@@ -40,7 +40,9 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrh55"]
 bg_color = Color(0.25882354, 1, 0, 1)
 
-[node name="StarBolt" type="StaticBody2D" unique_id=1791115613 node_paths=PackedStringArray("health_component", "hurtbox_component")]
+[node name="StarBolt" type="StaticBody2D" unique_id=1791115613 node_paths=PackedStringArray("health_component", "hurtbox_component") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_d4x5h")
 health_component = NodePath("HealthComponent")
 hurtbox_component = NodePath("HurtboxComponent")
@@ -63,6 +65,7 @@ unique_name_in_owner = true
 
 [node name="Laser" type="Line2D" parent="TurretHead" unique_id=528547696]
 unique_name_in_owner = true
+visible = false
 points = PackedVector2Array(0, 0, 0, 0)
 width = 1.0
 default_color = Color(1, 0, 0, 0.44313726)
@@ -75,10 +78,9 @@ shape = SubResource("CircleShape2D_oh8k2")
 [node name="CollisionShape2D" parent="AttackRange" index="0" unique_id=430212409]
 shape = SubResource("CircleShape2D_mh5rw")
 
-[node name="HurtboxComponent" parent="." unique_id=330416737 node_paths=PackedStringArray("health_component") instance=ExtResource("6_sj6wy")]
+[node name="HurtboxComponent" parent="." unique_id=330416737 instance=ExtResource("6_sj6wy")]
 collision_layer = 32
 collision_mask = 16
-health_component = NodePath("")
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1993016751]
 shape = SubResource("CircleShape2D_pny2n")

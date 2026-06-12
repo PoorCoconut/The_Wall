@@ -56,8 +56,18 @@ var consecutive_hits : int
 @onready var camera = get_tree().get_first_node_in_group("Camera")
 
 func _ready() -> void:
+	# 1. Normal door-to-door room transition (RTC / SpawnData).
+	#    If a pending_save_position load is happening, SpawnData was already
+	#    cleared by GameManager.load_saved_scene(), so this becomes a no-op.
 	RoomTransitionComponent.apply_spawn_to_player(self)
-
+ 
+	# 2. Save-file continue: override whatever position the player landed on
+	#    with the exact world coordinate stored in the save file.
+	if GameManager.pending_save_position:
+		global_position = GameManager.loaded_player_pos
+		GameManager.pending_save_position = false   # consume the flag — one use only
+ 
+	# 3. Editor debug helpers.
 	if OS.has_feature("editor"):
 		if debug_has_dash:
 			GameManager.has_dash = true
@@ -65,11 +75,10 @@ func _ready() -> void:
 			GameManager.has_glow = true
 		if debug_has_strike:
 			GameManager.has_strike = true
-
-	## Restore (or seed) persistent stats from GameManager.
-	## This also handles the UI emit — no manual emit needed below.
+ 
+	# 4. Restore (or seed) persistent stats from GameManager.
+	#    Also fires the HUD update events — no manual emit needed.
 	GameManager.restore_player_stats(self)
-
 	health_component.hp_changed.connect(_on_hp_changed)
 	hitbox_component.hit_landed.connect(_on_sword_hit_landed)
 

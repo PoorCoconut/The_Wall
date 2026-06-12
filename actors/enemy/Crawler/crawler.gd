@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Crawler
 
 @export_category("Components")
 @export var health_component: HealthComponent

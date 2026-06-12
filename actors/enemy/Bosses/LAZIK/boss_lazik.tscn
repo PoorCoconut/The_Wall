@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://ckgkya5pn2cr2"]
+
+[ext_resource type="Script" uid="uid://dh8hmw6tx2e7e" path="res://actors/enemy/Turrets/BeamBolt/beam_bolt.gd" id="1_1202o"]
+[ext_resource type="PackedScene" uid="uid://cd0gji0ohlvxv" path="res://systems/Entity Components/Health Component/HealthComponent.tscn" id="2_05br8"]
+[ext_resource type="Shader" uid="uid://dl6ljofs1qdoi" path="res://vfx/shaders/entity_hit_blink.gdshader" id="2_to2f5"]
+[ext_resource type="PackedScene" uid="uid://6mpsiyi4y6jm" path="res://vfx/effects/Laser Scorch Trail/laser_scorch_trail.tscn" id="3_341w6"]
+[ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="5_cg63t"]
+[ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HitBox/hitbox_component.tscn" id="6_51qwb"]
+[ext_resource type="PackedScene" uid="uid://7jg5f5lwc4u1" path="res://systems/Entity Components/Attack Range Component/attack_range.tscn" id="7_coyhn"]
+[ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HurtBox/hurtbox_component.tscn" id="8_rxubb"]
+[ext_resource type="AudioStream" uid="uid://g7h4oi8v0wak" path="res://sound/sfx/ambience/amb_factory_crusher3.mp3" id="9_2elat"]
+[ext_resource type="AudioStream" uid="uid://g1obp63x47s8" path="res://sound/sfx/weapons/hit/sfx_robot_enemy_death.mp3" id="10_e83s3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_evwnp"]
+resource_local_to_scene = true
+shader = ExtResource("2_to2f5")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eadfn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_cg63t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t5rq8"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k05l8"]
+radius = 7.071068
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s2qm0"]
+radius = 385.33102
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nlhvm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4pfu"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aw1wu"]
+bg_color = Color(0.25882354, 1, 0, 1)
+
+[node name="LAZIK" type="StaticBody2D" unique_id=167963856 node_paths=PackedStringArray("health_component", "hurtbox_component") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_1202o")
+health_component = NodePath("HealthComponent")
+hurtbox_component = NodePath("HurtboxComponent")
+threat_level = 1.0
+laser_width = 2.0
+tip_speed = 75.0
+turn_speed = 3.0
+
+[node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("2_05br8")]
+MAX_HP = 15
+
+[node name="LaserScorchTrail" parent="." unique_id=280952482 node_paths=PackedStringArray("laser_tip") instance=ExtResource("3_341w6")]
+unique_name_in_owner = true
+top_level = true
+default_color = Color(0, 0, 0, 1)
+laser_tip = NodePath("../TurretHead/LaserHitbox")
+
+[node name="TurretHead" type="Node2D" parent="." unique_id=1984412272]
+unique_name_in_owner = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="TurretHead" unique_id=362064827]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_evwnp")
+scale = Vector2(0.125, 0.125)
+sprite_frames = SubResource("SpriteFrames_eadfn")
+
+[node name="Marker" type="Marker2D" parent="TurretHead" unique_id=787475846]
+unique_name_in_owner = true
+
+[node name="Laser" type="Line2D" parent="TurretHead" unique_id=1409851707]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 0, 0)
+width = 1.0
+default_color = Color(1, 0, 0, 0.44313726)
+
+[node name="LaserHitbox" parent="TurretHead" unique_id=1755790887 instance=ExtResource("6_51qwb")]
+unique_name_in_owner = true
+collision_layer = 320
+collision_mask = 40
+knockback_force = 300.0
+
+[node name="CollisionShape2D" parent="TurretHead/LaserHitbox" index="0" unique_id=939226382]
+shape = SubResource("CircleShape2D_t5rq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2077716731]
+shape = SubResource("CircleShape2D_k05l8")
+
+[node name="AttackRange" parent="." unique_id=1298451380 instance=ExtResource("7_coyhn")]
+
+[node name="CollisionShape2D" parent="AttackRange" index="0" unique_id=430212409]
+shape = SubResource("CircleShape2D_s2qm0")
+
+[node name="HurtboxComponent" parent="." unique_id=330416737 node_paths=PackedStringArray("health_component") instance=ExtResource("8_rxubb")]
+collision_layer = 32
+collision_mask = 16
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1993016751]
+shape = SubResource("CircleShape2D_nlhvm")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1544221988]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="AimTimer" type="Timer" parent="." unique_id=1894684920]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="TurretRotation" type="AudioStreamPlayer2D" parent="." unique_id=1497321346]
+unique_name_in_owner = true
+stream = ExtResource("9_2elat")
+volume_db = -25.0
+autoplay = true
+max_distance = 400.0
+bus = &"SFX"
+
+[node name="TurretWarnToExplode" type="AudioStreamPlayer2D" parent="." unique_id=405485554]
+unique_name_in_owner = true
+stream = ExtResource("10_e83s3")
+max_distance = 200.0
+bus = &"SFX"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1662266566]
+
+[node name="VisibleBar" type="Node2D" parent="CanvasLayer" unique_id=1370066523]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/VisibleBar" unique_id=1836246934]
+unique_name_in_owner = true
+offset_left = 32.0
+offset_top = 336.0
+offset_right = 608.0
+offset_bottom = 352.0
+theme_override_styles/background = SubResource("StyleBoxFlat_o4pfu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_aw1wu")
+step = 1.0
+show_percentage = false
+
+[node name="BOSS_NAME" type="Label" parent="CanvasLayer/VisibleBar" unique_id=1335777134]
+offset_left = 32.0
+offset_top = 320.0
+offset_right = 608.0
+offset_bottom = 336.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "LAZIK, THE FORGOTTEN SENTRY"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="AimTimer" to="." method="_on_aim_timer_timeout"]
+[connection signal="finished" from="TurretWarnToExplode" to="." method="_on_turret_warn_to_explode_finished"]
+
+[editable path="TurretHead/LaserHitbox"]
+[editable path="AttackRange"]
+[editable path="HurtboxComponent"]

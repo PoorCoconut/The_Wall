@@ -41,6 +41,8 @@ bg_color = Color(0, 0, 0, 1)
 bg_color = Color(0.25882354, 1, 0, 1)
 
 [node name="BurstBolt" type="StaticBody2D" unique_id=1597469155 node_paths=PackedStringArray("health_component", "hurtbox_component") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_cy4de")
 health_component = NodePath("HealthComponent")
 hurtbox_component = NodePath("HurtboxComponent")
@@ -67,6 +69,7 @@ position = Vector2(8, 0)
 
 [node name="Laser" type="Line2D" parent="TurretHead" unique_id=481997221]
 unique_name_in_owner = true
+visible = false
 points = PackedVector2Array(0, 0, 0, 0)
 width = 1.0
 default_color = Color(1, 0, 0, 0.44313726)

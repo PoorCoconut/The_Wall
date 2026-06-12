@@ -224,6 +224,8 @@ dialogic_default_action={
 2d_physics/layer_6="Enemy_Hurtbox"
 2d_physics/layer_7="Enemy_Hitbox"
 2d_physics/layer_8="Interactable"
+2d_physics/layer_9="Neutral_Hitbox"
+2d_physics/layer_10="Neutral_Hurtbox"
 
 [physics]
 

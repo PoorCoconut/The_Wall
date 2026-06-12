@@ -65,12 +65,27 @@ var threat_level: float = 0.0:
 			MusicManager.set_intensity(threat_level, 2)
 
 
+# ── Playtime Tracking ─────────────────────────────────────────────────────────
+## Total accumulated playtime in seconds for the active save slot.
+## Loaded from disk on continue, then counted up in _process().
+var playtime_seconds : float = 0.0
+
+## Only paused during level loads (LoadingScreen sets this via
+## pause_playtime / resume_playtime) so loading time isn't counted.
+var playtime_running : bool = false
+
+
 # ── Lifecycle ──────────────────────────────────────────────────────────────────
 func _ready() -> void:
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 	Dialogic.timeline_started.connect(_on_timeline_started)
 	Dialogic.timeline_ended.connect(_on_timeline_ended)
 	load_game()
+
+
+func _process(delta: float) -> void:
+	if playtime_running:
+		playtime_seconds += delta
 
 
 # ── Player Name ────────────────────────────────────────────────────────────────
@@ -92,6 +107,24 @@ func window_shake() -> void:
 func _on_dialogic_signal(argument: String) -> void:
 	if argument == "name_changed":
 		setPlayerName(Dialogic.VAR.playerName)
+
+
+
+## Called by LoadingScreen at the start and end of every level load.
+func pause_playtime() -> void:
+	playtime_running = false
+
+func resume_playtime() -> void:
+	playtime_running = true
+
+
+## Converts raw seconds to a "HH:MM:SS" display string.
+func format_playtime(total_seconds: float) -> String:
+	var s := int(total_seconds)
+	var hours   := s / 3600
+	var minutes := (s % 3600) / 60
+	var seconds := s % 60
+	return "%02d:%02d:%02d" % [hours, minutes, seconds]
 
 
 # ── Persistent Stat Helpers ────────────────────────────────────────────────────
@@ -154,6 +187,7 @@ func save_game(player_pos: Vector2 = Vector2(INF, INF), area_name: String = last
 		"area_name"          : last_saved_area,
 		"save_time"          : Time.get_datetime_string_from_system(),
 		"scene_path"         : last_saved_scene,
+		"playtime_seconds"   : playtime_seconds,
 		"dash"               : has_dash,
 		"glow"               : has_glow,
 		"strike"             : has_strike,
@@ -175,6 +209,13 @@ func save_game(player_pos: Vector2 = Vector2(INF, INF), area_name: String = last
 ##                 `loaded_player_pos` and nothing moves — useful while
 ##                 testing individual rooms in the editor.
 var loaded_player_pos : Vector2 = Vector2.ZERO
+## Set to true by load_saved_scene() so Player._ready() knows to
+## override the RTC spawn with the saved world position.
+var pending_save_position : bool = false
+
+## When true, Player._ready() should override its spawn position with
+## loaded_player_pos after RoomTransitionComponent runs.
+## Cleared automatically once consumed so it never bleeds into the next load.
 
 func load_game(load_position: bool = false) -> void:
 	var save_data = SaveManager.read_save(active_slot)
@@ -186,6 +227,9 @@ func load_game(load_position: bool = false) -> void:
 	_apply_save_data(save_data)
 
 	print("GameManager: slot %d loaded. Saved position: %s" % [active_slot, loaded_player_pos])
+
+	# Begin counting playtime now that a save is loaded.
+	playtime_running = true
 
 	if load_position:
 		if get_tree().get_first_node_in_group("Player") and get_tree().get_first_node_in_group("Obelisk"):
@@ -225,6 +269,9 @@ func _apply_save_data(data: Dictionary) -> void:
 	if data.has("world_state"):
 		current_world_state = data["world_state"]
 
+	if data.has("playtime_seconds"):
+		playtime_seconds = float(data["playtime_seconds"])
+
 	if data.has("player_max_hp"):      player_max_hp      = int(data["player_max_hp"])
 	if data.has("player_cur_hp"):      player_cur_hp      = int(data["player_cur_hp"])
 	if data.has("player_max_bullets"): player_max_bullets = int(data["player_max_bullets"])
@@ -246,6 +293,11 @@ func load_saved_scene(slot: int, fallback_path: String = "") -> void:
 		push_error("GameManager.load_saved_scene: no scene path found for slot %d and no fallback provided." % slot)
 		return
 
+	## Clear any pending door-spawn so the RTC system doesn't override us.
+	SpawnData.clear()
+	## Flag the player's _ready() to apply the saved position
+	## instead of the scene-default spawn point.
+	pending_save_position = true
 	load_next_level(scene)  # handles ScreenTransition + LoadingScreen
 
 

@@ -1700,6 +1700,7 @@ one_shot = true
 [node name="Atk2" type="Node" parent="FSM" unique_id=1510034258 node_paths=PackedStringArray("PLAYER")]
 script = ExtResource("10_s44gf")
 PLAYER = NodePath("../..")
+lunge_strength = 200.0
 
 [node name="ComboTimer" type="Timer" parent="FSM/Atk2" unique_id=890360234]
 wait_time = 0.5

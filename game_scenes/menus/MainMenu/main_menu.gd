@@ -81,7 +81,7 @@ func _refresh_saves_ui() -> void:
 	var summaries : Array = SaveManager.get_all_slot_summaries()
 
 	for summary in summaries:
-		var n   : int        = summary["slot"]
+		var n     : int        = summary["slot"]
 		var nodes : Dictionary = slot_nodes[n]
 
 		if not summary["exists"]:
@@ -98,29 +98,19 @@ func _refresh_saves_ui() -> void:
 			# Power-up icons: show only acquired ones.
 			nodes["dash"].visible  = summary["has_dash"]
 			nodes["glow"].visible  = summary["has_glow"]
-			# "slash" maps to has_strike in your data.
+			# "slash" maps to has_strike in the save data.
 			nodes["slash"].visible = summary["has_strike"]
 			nodes["powerups"].show()
 
-			# Area and time info.
+			# Area name and accumulated playtime.
 			nodes["area_name"].text = summary["area_name"]
-			nodes["time"].text      = _format_save_time(summary["save_time"])
+			nodes["time"].text      = GameManager.format_playtime(summary["playtime"])
 			nodes["info"].show()
 
 
-## Converts the ISO 8601 datetime string stored in the save file to something
-## nicer for display.  Falls back gracefully if the string is missing / malformed.
-func _format_save_time(raw: String) -> String:
-	if raw == "":
-		return "00:00:00"
-	# raw looks like "2025-07-04T14:32:07" — just show the time part.
-	var parts := raw.split("T")
-	if parts.size() == 2:
-		return parts[1]   # "14:32:07"
-	return raw
-
 func _on_close_saves_container_pressed() -> void:
 	%SavesContainer.visible = false
+
 
 # ── Slot Button Callbacks ──────────────────────────────────────────────────────
 
@@ -155,20 +145,21 @@ func _on_anim_transition_continue_animation_finished(_anim_name: StringName) -> 
 		GameManager.load_saved_scene(_pending_slot, next_level_path)
 		_pending_slot = -1
 	else:
-		# New Game — go to the default starting scene.
+		# New Game — load the default starting scene.
 		GameManager.load_next_level(next_level_path)
 
 
-# ── Other Menu Buttons ─────────────────────────────────────────────────────────
+# ── Main Menu Buttons ──────────────────────────────────────────────────────────
 
 func _on_button_new_game_pressed() -> void:
-	# Original "Play / Continue" button (kept for backwards compat).
+	# Plays the intro cutscene transition into the starting scene.
 	_pending_slot = -1
 	var tween = get_tree().create_tween()
 	tween.tween_property(%Music, "volume_db", -80, 1)
 	%Anim_TransitionContinue.play("transition")
 
 func _on_button_play_pressed() -> void:
+	# Opens the save slot picker.
 	%SavesContainer.visible = true
 
 func _on_button_settings_pressed() -> void:
@@ -190,6 +181,7 @@ func _on_reset_button_pressed() -> void:
 	%WarningLabel.show()
 	%NukeButton.show()
 	%ResetButton.hide()
+
 
 # ── Audio Sliders ──────────────────────────────────────────────────────────────
 

@@ -53,7 +53,7 @@ func change_music(track_name: String, crossfade_time: float = 2.0) -> void:
 		tween.parallel().tween_property(player, "volume_db", target_vol, crossfade_time)
 
 # Call this to raise/lower the music tension (e.g., set_intensity(0.8))
-func set_intensity(new_intensity: float, fade_time: float = 1.0) -> void:
+func set_intensity(new_intensity: float, fade_time: float = 3.0) -> void:
 	current_intensity = clamp(new_intensity, 0.0, 1.0)
 	
 	var tween = create_tween()

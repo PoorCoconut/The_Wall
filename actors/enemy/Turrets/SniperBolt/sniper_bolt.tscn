@@ -48,6 +48,7 @@ health_component = NodePath("HealthComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 damage = 2
 bullet_speed = 600
+laser_length = 256.0
 threat_level = 0.4
 
 [node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("1_c5ib2")]

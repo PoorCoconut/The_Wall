@@ -40,7 +40,9 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8itbq"]
 bg_color = Color(0.25882354, 1, 0, 1)
 
-[node name="SpreadSpire" type="StaticBody2D" unique_id=1627256783 node_paths=PackedStringArray("health_component", "hurtbox_component")]
+[node name="SpreadSpire" type="StaticBody2D" unique_id=1627256783 node_paths=PackedStringArray("health_component", "hurtbox_component") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_7f3k7")
 health_component = NodePath("HealthComponent")
 hurtbox_component = NodePath("HurtboxComponent")
@@ -63,6 +65,7 @@ position = Vector2(8, 0)
 
 [node name="Laser" type="Line2D" parent="TurretHead" unique_id=178986946]
 unique_name_in_owner = true
+visible = false
 points = PackedVector2Array(0, 0, 0, 0)
 width = 1.0
 default_color = Color(1, 0, 0, 0.44313726)

@@ -92,7 +92,7 @@ func get_all_slot_summaries() -> Array:
 				"slot"        : slot,
 				"player_name" : data.get("player_name", "Unknown"),
 				"area_name"   : data.get("area_name",   "Unknown Area"),
-				"save_time"   : data.get("save_time",   ""),
+				"playtime"    : data.get("playtime_seconds", 0.0),
 				"scene_path"  : data.get("scene_path",  ""),
 				"has_dash"    : data.get("dash",         false),
 				"has_glow"    : data.get("glow",         false),

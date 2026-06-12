@@ -53,6 +53,9 @@ var player: Player
 var _laser_tip_pos: Vector2 = Vector2.ZERO
 
 @onready var laser_hitbox: HitboxComponent = %LaserHitbox
+@onready var visible_bar: Node2D = %VisibleBar
+
+signal boss_dead
 
 # ── Ready ─────────────────────────────────────────────────────────────────────
 func _ready() -> void:
@@ -109,6 +112,9 @@ func _update_laser_visuals() -> void:
 # ── Attack range ──────────────────────────────────────────────────────────────
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
+		var boss_bar_tween = get_tree().create_tween()
+		boss_bar_tween.tween_property(visible_bar, "modulate", Color(1.0, 1.0, 1.0, 1.0), 1)
+		
 		player = body
 		_laser_tip_pos = global_position
 		%Laser.visible = true
@@ -119,6 +125,9 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 
 func _on_attack_range_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
+		var boss_bar_tween = get_tree().create_tween()
+		boss_bar_tween.tween_property(visible_bar, "modulate", Color(1.0, 1.0, 1.0, 0.0), 1)
+		
 		player = null
 		laser_hitbox.monitoring = false
 		if is_instance_valid(%Laser):
@@ -135,6 +144,7 @@ func _on_hp_changed(new_hp: int, _max_hp: int) -> void:
 	play_hit_sound()
 
 func _death() -> void:
+	boss_dead.emit()
 	%LaserScorchTrail.delete = true
 	# Stop _process immediately so nothing accesses nodes after this point.
 	set_process(false)
@@ -165,5 +175,5 @@ func SetShader_BlinkIntensity(newValue: float) -> void:
 
 func _on_turret_warn_to_explode_finished() -> void:
 	SoundBank.play_sfx("robot_explosion", global_position)
-	GameManager.do_camera_shake(8.0, 0.5)
+	GameManager.do_camera_shake(10.0, 1)
 	queue_free()

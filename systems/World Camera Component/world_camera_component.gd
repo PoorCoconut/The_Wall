@@ -5,12 +5,15 @@ enum CameraMode {
 	##The Camera is fixed in a room. When the target moves out of the room, it moves 1 "room" towards the target's direction.
 	ROOM_BASED , 
 	##The Camera is fixed to the target. If your room has a CameraLimitZoneCompnent, the camera will automatically stop following when it reaches its limit.
-	ENTITY_ATTACHED }
+	ENTITY_ATTACHED,
+	##The Camera is fixed at the midpoint of two targets.
+	ENTITY_MIDPOINT }
 ##Camera Mode Options
 @export var camera_mode: CameraMode = CameraMode.ENTITY_ATTACHED
 
 
-@export var target : CharacterBody2D
+@export var target : PhysicsBody2D
+@export var target2 : PhysicsBody2D
 @export var following : bool = true
 @export var mouse_cam_offset : bool = true
 
@@ -46,7 +49,10 @@ func _update_camera_position() -> void:
 	if camera_mode == CameraMode.ROOM_BASED:
 		moveCameraToEntity(target.global_position)
 	else:
-		global_position = target.global_position
+		if camera_mode == CameraMode.ENTITY_MIDPOINT and target2 != null:
+			global_position = ((target.global_position + target2.global_position)/2)
+		else:
+			global_position = target.global_position
 
 func moveCameraToEntity(entity_global_pos : Vector2):
 	var grid_x = floor(entity_global_pos.x / viewport_width)
