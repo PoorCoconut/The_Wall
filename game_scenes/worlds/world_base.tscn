@@ -5,9 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://oknw5acrv0iw" path="res://game_assets/Pixel Art Top Down - Basic v1.2.0/Texture/TX Tileset Grass.png" id="3_advh4"]
 [ext_resource type="PackedScene" uid="uid://vnsbdeo8tpf8" path="res://systems/RoomTransitionComponent/room_transition_component.tscn" id="3_n4iqu"]
 [ext_resource type="PackedScene" uid="uid://b5kib01h7s7am" path="res://systems/Camera Limit Zone Component/camera_limit_zone_component.tscn" id="4_advh4"]
-[ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="4_v3tpm"]
+[ext_resource type="PackedScene" uid="uid://p7ff21hp8fs7" path="res://systems/Tile Components/special_ground.tscn" id="4_v3tpm"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="5_v3tpm"]
 [ext_resource type="PackedScene" uid="uid://bwyyko6bjn4hw" path="res://actors/player/player.tscn" id="6_fh55i"]
+[ext_resource type="PackedScene" uid="uid://dr6erfynvsl7a" path="res://systems/Tile Components/wall.tscn" id="8_n4iqu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fh55i"]
 texture = ExtResource("3_advh4")
@@ -81,30 +82,20 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_fh55i")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f3s1"]
-texture = ExtResource("4_v3tpm")
-texture_region_size = Vector2i(32, 32)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-2:1/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_ga4fp"]
-tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_3f3s1")
-
 [node name="world_base" type="Node2D" unique_id=1446299206]
+y_sort_enabled = true
 
 [node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("1_px4ov")]
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("2_2gjrq")]
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=675902682]
+z_index = -12
 tile_set = SubResource("TileSet_7y515")
 
-[node name="Wall" type="TileMapLayer" parent="." unique_id=96061779]
-modulate = Color(0, 0, 0, 1)
-tile_set = SubResource("TileSet_ga4fp")
+[node name="SpecialGround32" parent="." unique_id=756984881 instance=ExtResource("4_v3tpm")]
+
+[node name="Wall" parent="." unique_id=1045282911 instance=ExtResource("8_n4iqu")]
 
 [node name="Room Transition Component" parent="." unique_id=174095724 instance=ExtResource("3_n4iqu")]
 
