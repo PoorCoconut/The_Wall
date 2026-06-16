@@ -3,32 +3,41 @@ extends Node
 ## Ferries spawn info across scene loads.
 ## Add to Project > Autoloads as "SpawnData".
 
-var _pending_target_id: String = ""
-var _pending_entry_direction: Vector2 = Vector2.ZERO
-var _has_pending: bool = false
+var _pending_target_id: String    = ""
+var _pending_dominant_axis: String = ""  # "x" or "y"
+var _pending_perp_offset: float   = 0.0  # player's lane offset on the non-travel axis
+var _pending_push_sign: float     = 0.0  # +1 or -1, which side to exit the dest RTC
+var _has_pending: bool            = false
 
 
-func set_spawn(target_id: String, entry_direction: Vector2) -> void:
-	_pending_target_id = target_id
-	_pending_entry_direction = entry_direction
-	_has_pending = true
+func set_spawn(
+		target_id: String,
+		dominant_axis: String,
+		perp_offset: float,
+		push_sign: float) -> void:
+	_pending_target_id     = target_id
+	_pending_dominant_axis = dominant_axis
+	_pending_perp_offset   = perp_offset
+	_pending_push_sign     = push_sign
+	_has_pending           = true
 
 
 func consume_spawn() -> Dictionary:
-	## Returns { target_id, entry_direction } or empty dict if nothing pending.
 	if not _has_pending:
 		return {}
 	var data := {
-		"target_id": _pending_target_id,
-		"entry_direction": _pending_entry_direction,
+		"target_id"    : _pending_target_id,
+		"dominant_axis": _pending_dominant_axis,
+		"perp_offset"  : _pending_perp_offset,
+		"push_sign"    : _pending_push_sign,
 	}
-	_pending_target_id = ""
-	_pending_entry_direction = Vector2.ZERO
-	_has_pending = false
+	clear()
 	return data
 
 
 func clear() -> void:
-	_pending_target_id = ""
-	_pending_entry_direction = Vector2.ZERO
-	_has_pending = false
+	_pending_target_id     = ""
+	_pending_dominant_axis = ""
+	_pending_perp_offset   = 0.0
+	_pending_push_sign     = 0.0
+	_has_pending           = false

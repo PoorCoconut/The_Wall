@@ -4,6 +4,8 @@ class_name SaveObelisk
 @onready var sprite: Sprite2D = $Sprite
 @onready var ground_particles: GPUParticles2D = $GroundParticles
 @onready var shockwave: GPUParticles2D = $Shockwave
+@onready var sprite_shockwave: AnimatedSprite2D = $SpriteShockwave
+
 @export var location : String = "Somewhere in Apocrypha..." ##Please change this according the location
 
 func _on_interaction_area_interacted() -> void:
@@ -16,7 +18,7 @@ func _on_interaction_area_interacted() -> void:
 func play_save_feedback() -> void:
 	# Play a specific animation, spawn particles, or play a chime
 	shockwave.emitting = true
-	
+	sprite_shockwave.play("default")
 	# Optional: You can trigger a small UI popup here that says "Game Saved"
 	print("Game Successfully Saved.")
 

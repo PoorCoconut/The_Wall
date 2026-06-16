@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://baahldfh4kwvn" path="res://systems/Entity Components/Movement Component/MovementComponent.tscn" id="5_0x6d2"]
 [ext_resource type="PackedScene" uid="uid://cd0gji0ohlvxv" path="res://systems/Entity Components/Health Component/HealthComponent.tscn" id="5_dp0u8"]
 [ext_resource type="PackedScene" uid="uid://7jg5f5lwc4u1" path="res://systems/Entity Components/Attack Range Component/attack_range.tscn" id="11_2yc2l"]
+[ext_resource type="Script" uid="uid://cljyk5ifq86ly" path="res://systems/FSM/fsm_Handler.gd" id="12_a1b3p"]
+[ext_resource type="Script" uid="uid://be8u8sje2t8b8" path="res://actors/enemy/enemy_base_states/generic_idle.gd" id="13_fcg2p"]
+[ext_resource type="Script" uid="uid://co2gwhthb7jm7" path="res://actors/enemy/enemy_base_states/generic_stunned.gd" id="14_vew84"]
+[ext_resource type="Script" uid="uid://dyh7w8ta2qwwe" path="res://actors/enemy/enemy_base_states/generic_nav_chase.gd" id="14_y6s3a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pnwlf"]
 resource_local_to_scene = true
@@ -49,23 +53,27 @@ radius = 7.071068
 [sub_resource type="CircleShape2D" id="CircleShape2D_4qekv"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnwlf"]
+radius = 235.07658
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdvu2"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgonl"]
 bg_color = Color(0.25882354, 1, 0, 1)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pnwlf"]
-radius = 235.07658
-
-[node name="Crawler" type="CharacterBody2D" unique_id=1147587710 node_paths=PackedStringArray("health_component", "movement_component") groups=["Enemy"]]
+[node name="Crawler" type="CharacterBody2D" unique_id=1147587710 node_paths=PackedStringArray("health_component", "movement_component", "sprite", "attack_range", "looker") groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_4qekv")
-health_component = NodePath("HealthComponent")
-movement_component = NodePath("MovementComponent")
-threat_level = 0.1
 particle_path_gore = ExtResource("2_qdvu2")
 particle_path_explosion = ExtResource("3_mgonl")
+health_component = NodePath("HealthComponent")
+movement_component = NodePath("MovementComponent")
+sprite = NodePath("Sprite2D")
+attack_range = NodePath("AttackRange")
+looker = NodePath("LookerNode")
+threat_level = 0.1
+stun_duration = 0.3
 particle_path_hit = ExtResource("4_e76aq")
 
 [node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("5_dp0u8")]
@@ -104,6 +112,16 @@ weight = 0.0
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1993016751]
 shape = SubResource("CircleShape2D_4qekv")
 
+[node name="AttackRange" parent="." unique_id=1031003738 instance=ExtResource("11_2yc2l")]
+visible = false
+collision_layer = 5
+
+[node name="CollisionShape2D" parent="AttackRange" index="0" unique_id=430212409]
+shape = SubResource("CircleShape2D_pnwlf")
+
+[node name="LookerNode" type="Marker2D" parent="." unique_id=680200325]
+unique_name_in_owner = true
+
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=2093616766]
 unique_name_in_owner = true
 offset_left = -17.0
@@ -115,24 +133,22 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_mgonl")
 step = 1.0
 show_percentage = false
 
-[node name="AttackRange" parent="." unique_id=1031003738 instance=ExtResource("11_2yc2l")]
-visible = false
-collision_layer = 5
+[node name="FSM" type="Node" parent="." unique_id=1491796571]
+script = ExtResource("12_a1b3p")
 
-[node name="CollisionShape2D" parent="AttackRange" index="0" unique_id=430212409]
-shape = SubResource("CircleShape2D_pnwlf")
+[node name="Idle" type="Node" parent="FSM" unique_id=1043274490]
+script = ExtResource("13_fcg2p")
 
-[node name="LookerNode" type="Marker2D" parent="." unique_id=680200325]
-unique_name_in_owner = true
+[node name="Chase" type="Node" parent="FSM" unique_id=1761161406]
+script = ExtResource("14_y6s3a")
 
-[node name="StunTimer" type="Timer" parent="." unique_id=51583600]
-unique_name_in_owner = true
-wait_time = 0.3
-one_shot = true
+[node name="Stunned" type="Node" parent="FSM" unique_id=1369433211]
+script = ExtResource("14_vew84")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1169465662]
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
-[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

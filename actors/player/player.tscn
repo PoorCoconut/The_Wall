@@ -1489,6 +1489,7 @@ health_component = NodePath("HealthComponent")
 movement_component = NodePath("MovementComponent")
 hurtbox_component = NodePath("Hurtbox")
 hitbox_component = NodePath("Hitbox")
+debug_has_dash = true
 dash_speed = 200.0
 
 [node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("2_qct7d")]
@@ -1505,6 +1506,7 @@ ACCELERATION = 500.0
 position = Vector2(0, -16)
 
 [node name="DashTrail" type="Node2D" parent="Particles" unique_id=706665284]
+visible = false
 script = ExtResource("4_cp0mr")
 TrailDuration = 0.8
 TrailAmount = 10
@@ -1681,6 +1683,7 @@ PLAYER = NodePath("../..")
 script = ExtResource("7_bemkg")
 PLAYER = NodePath("../..")
 slide_duration = 0.5
+ghost_fade_duration = 1.0
 
 [node name="DashCooldown" type="Timer" parent="FSM/Dash" unique_id=1110950712]
 one_shot = true

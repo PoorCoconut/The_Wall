@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://p7ff21hp8fs7"]
+
+[ext_resource type="Texture2D" uid="uid://dvvhm6654tye3" path="res://game_assets/world/special_tiles.png" id="1_ichnk"]
+[ext_resource type="Shader" uid="uid://luy6ci4jrxly" path="res://game_scenes/worlds/World Forest/glowing_mana.gdshader" id="2_xvt0m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvt0m"]
+texture = ExtResource("1_ichnk")
+texture_region_size = Vector2i(32, 32)
+0:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_uca6h"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_xvt0m")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xvt0m"]
+seed = -1
+fractal_type = 2
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xvt0m"]
+width = 32
+height = 32
+noise = SubResource("FastNoiseLite_xvt0m")
+seamless = true
+normalize = false
+seamless_blend_skirt = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uca6h"]
+shader = ExtResource("2_xvt0m")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_xvt0m")
+shader_parameter/scroll_speed = Vector2(0.2, 0.3)
+shader_parameter/magic_color = Color(0, 1.259434, 1.8984075, 1)
+shader_parameter/noise_scale = 0.005
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aj7rk"]
+texture = ExtResource("1_ichnk")
+texture_region_size = Vector2i(32, 32)
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xvt0m"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_aj7rk")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbwx5"]
+texture = ExtResource("1_ichnk")
+texture_region_size = Vector2i(32, 32)
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/terrains_peering_bit/bottom_side = 0
+3:0/0/terrains_peering_bit/top_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/left_side = 0
+2:0/0/terrains_peering_bit/top_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/right_side = 0
+0:1/0/terrains_peering_bit/top_side = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/left_side = 0
+1:1/0/terrains_peering_bit/top_side = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/right_side = 0
+2:1/0/terrains_peering_bit/left_side = 0
+4:0/0 = 0
+4:0/0/terrain_set = 0
+4:0/0/terrain = 0
+4:0/0/terrains_peering_bit/right_side = 0
+4:0/0/terrains_peering_bit/bottom_side = 0
+4:0/0/terrains_peering_bit/left_side = 0
+4:1/0 = 0
+4:1/0/terrain_set = 0
+4:1/0/terrain = 0
+4:1/0/terrains_peering_bit/right_side = 0
+4:1/0/terrains_peering_bit/bottom_side = 0
+4:1/0/terrains_peering_bit/top_side = 0
+5:1/0 = 0
+5:1/0/terrain_set = 0
+5:1/0/terrain = 0
+5:1/0/terrains_peering_bit/right_side = 0
+5:1/0/terrains_peering_bit/left_side = 0
+5:1/0/terrains_peering_bit/top_side = 0
+5:0/0 = 0
+5:0/0/terrain_set = 0
+5:0/0/terrain = 0
+5:0/0/terrains_peering_bit/bottom_side = 0
+5:0/0/terrains_peering_bit/left_side = 0
+5:0/0/terrains_peering_bit/top_side = 0
+6:0/0 = 0
+6:0/0/terrain_set = 0
+6:0/0/terrain = 0
+6:0/0/terrains_peering_bit/top_side = 0
+7:0/0 = 0
+7:0/0/terrain_set = 0
+7:0/0/terrain = 0
+7:0/0/terrains_peering_bit/bottom_side = 0
+7:1/0 = 0
+7:1/0/terrain_set = 0
+7:1/0/terrain = 0
+7:1/0/terrains_peering_bit/left_side = 0
+6:1/0 = 0
+6:1/0/terrain_set = 0
+6:1/0/terrain = 0
+6:1/0/terrains_peering_bit/right_side = 0
+1:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hdvmt"]
+tile_size = Vector2i(32, 32)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "GroundTransOn"
+terrain_set_0/terrain_0/color = Color(0.8876213, 0, 0.2365123, 1)
+sources/0 = SubResource("TileSetAtlasSource_tbwx5")
+
+[node name="PowerLine32" type="Node2D" unique_id=1877570872]
+
+[node name="BaseUnpower" type="TileMapLayer" parent="." unique_id=594343837]
+z_index = -11
+tile_set = SubResource("TileSet_uca6h")
+
+[node name="Magic" type="TileMapLayer" parent="." unique_id=696880108]
+z_index = -11
+material = SubResource("ShaderMaterial_uca6h")
+tile_set = SubResource("TileSet_xvt0m")
+
+[node name="Cover" type="TileMapLayer" parent="." unique_id=756984881]
+z_index = -11
+tile_set = SubResource("TileSet_hdvmt")

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://7jg5f5lwc4u1" path="res://systems/Entity Components/Attack Range Component/attack_range.tscn" id="2_p6pts"]
 [ext_resource type="Shader" uid="uid://dl6ljofs1qdoi" path="res://vfx/shaders/entity_hit_blink.gdshader" id="3_0r25r"]
 [ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HurtBox/hurtbox_component.tscn" id="3_1ifi6"]
-[ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="3_8iyte"]
+[ext_resource type="Texture2D" uid="uid://t0uvg60tt038" path="res://actors/enemy/Turrets/turret_spritesheet.png" id="4_lkjqv"]
 [ext_resource type="AudioStream" uid="uid://g7h4oi8v0wak" path="res://sound/sfx/ambience/amb_factory_crusher3.mp3" id="7_0r25r"]
 [ext_resource type="AudioStream" uid="uid://g1obp63x47s8" path="res://sound/sfx/weapons/hit/sfx_robot_enemy_death.mp3" id="8_lkjqv"]
 
@@ -15,11 +15,15 @@ shader = ExtResource("3_0r25r")
 shader_parameter/blink_color = Color(1, 1, 1, 1)
 shader_parameter/blink_intensity = 0.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkjqv"]
+atlas = ExtResource("4_lkjqv")
+region = Rect2(0, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_0r25r"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_8iyte")
+"texture": SubResource("AtlasTexture_lkjqv")
 }],
 "loop": true,
 "name": &"default",
@@ -27,12 +31,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ifi6"]
-radius = 7.071068
+radius = 12.0415945
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8iyte"]
 radius = 256.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0r25r"]
+radius = 14.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8iyte"]
 bg_color = Color(0, 0, 0, 1)
@@ -47,7 +52,7 @@ script = ExtResource("1_p6pts")
 health_component = NodePath("HealthComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 damage = 2
-bullet_speed = 600
+bullet_speed = 400
 laser_length = 256.0
 threat_level = 0.4
 
@@ -60,12 +65,11 @@ unique_name_in_owner = true
 [node name="Sprite" type="AnimatedSprite2D" parent="TurretHead" unique_id=427718887]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_lkjqv")
-scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_0r25r")
 
 [node name="Marker" type="Marker2D" parent="TurretHead" unique_id=1844602414]
 unique_name_in_owner = true
-position = Vector2(8, 0)
+position = Vector2(13, 0)
 
 [node name="Laser" type="Line2D" parent="TurretHead" unique_id=1932823279]
 unique_name_in_owner = true
@@ -102,9 +106,9 @@ one_shot = true
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1978007228]
 unique_name_in_owner = true
 offset_left = -17.0
-offset_top = 10.0
+offset_top = 14.0
 offset_right = 17.0
-offset_bottom = 18.0
+offset_bottom = 22.0
 theme_override_styles/background = SubResource("StyleBoxFlat_8iyte")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0r25r")
 step = 1.0

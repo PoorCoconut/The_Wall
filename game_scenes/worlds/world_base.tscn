@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://oknw5acrv0iw" path="res://game_assets/Pixel Art Top Down - Basic v1.2.0/Texture/TX Tileset Grass.png" id="3_advh4"]
 [ext_resource type="PackedScene" uid="uid://vnsbdeo8tpf8" path="res://systems/RoomTransitionComponent/room_transition_component.tscn" id="3_n4iqu"]
 [ext_resource type="PackedScene" uid="uid://b5kib01h7s7am" path="res://systems/Camera Limit Zone Component/camera_limit_zone_component.tscn" id="4_advh4"]
-[ext_resource type="PackedScene" uid="uid://p7ff21hp8fs7" path="res://systems/Tile Components/special_ground.tscn" id="4_v3tpm"]
+[ext_resource type="PackedScene" uid="uid://p7ff21hp8fs7" path="res://systems/Tile Components/power_line.tscn" id="4_v3tpm"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="5_v3tpm"]
 [ext_resource type="PackedScene" uid="uid://bwyyko6bjn4hw" path="res://actors/player/player.tscn" id="6_fh55i"]
 [ext_resource type="PackedScene" uid="uid://dr6erfynvsl7a" path="res://systems/Tile Components/wall.tscn" id="8_n4iqu"]
@@ -105,3 +105,5 @@ tile_set = SubResource("TileSet_7y515")
 target = NodePath("../player")
 
 [node name="player" parent="." unique_id=567391177 instance=ExtResource("6_fh55i")]
+
+[editable path="SpecialGround32"]

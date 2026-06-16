@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://camq001bpdrlv"]
+
+[ext_resource type="Script" uid="uid://xc7xo2xauj2u" path="res://objects/powers/power_up_object.gd" id="1_bndwf"]
+
+[node name="PowerUpObject" type="Node2D" unique_id=1627565761]
+script = ExtResource("1_bndwf")

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ctrfcwtgb8nf4"]
+
+[ext_resource type="Script" uid="uid://dwtetb08xe8pe" path="res://actors/player/Dash Trail/dash_trail.gd" id="1_r6738"]
+
+[node name="DashTrail" type="Node2D" unique_id=812471974]
+script = ExtResource("1_r6738")

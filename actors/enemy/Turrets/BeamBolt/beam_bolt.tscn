@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://cd0gji0ohlvxv" path="res://systems/Entity Components/Health Component/HealthComponent.tscn" id="2_k6whj"]
 [ext_resource type="Shader" uid="uid://dl6ljofs1qdoi" path="res://vfx/shaders/entity_hit_blink.gdshader" id="3_7arcq"]
 [ext_resource type="PackedScene" uid="uid://6mpsiyi4y6jm" path="res://vfx/effects/Laser Scorch Trail/laser_scorch_trail.tscn" id="3_t5rq8"]
-[ext_resource type="Texture2D" uid="uid://b1kxhgd8g8147" path="res://icon.svg" id="4_t5rq8"]
 [ext_resource type="PackedScene" uid="uid://c58coiv6jurie" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HitBox/hitbox_component.tscn" id="5_7arcq"]
 [ext_resource type="PackedScene" uid="uid://7jg5f5lwc4u1" path="res://systems/Entity Components/Attack Range Component/attack_range.tscn" id="5_ksn24"]
+[ext_resource type="Texture2D" uid="uid://t0uvg60tt038" path="res://actors/enemy/Turrets/turret_spritesheet.png" id="5_t5rq8"]
 [ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Entity Components/Hitbox and Hurtbox Components/HurtBox/hurtbox_component.tscn" id="6_dig7d"]
 [ext_resource type="AudioStream" uid="uid://g7h4oi8v0wak" path="res://sound/sfx/ambience/amb_factory_crusher3.mp3" id="7_xf0pv"]
 [ext_resource type="AudioStream" uid="uid://g1obp63x47s8" path="res://sound/sfx/weapons/hit/sfx_robot_enemy_death.mp3" id="8_67u20"]
@@ -17,11 +17,15 @@ shader = ExtResource("3_7arcq")
 shader_parameter/blink_color = Color(1, 1, 1, 1)
 shader_parameter/blink_intensity = 0.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5rq8"]
+atlas = ExtResource("5_t5rq8")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_eadfn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_t5rq8")
+"texture": SubResource("AtlasTexture_t5rq8")
 }],
 "loop": true,
 "name": &"default",
@@ -70,7 +74,6 @@ unique_name_in_owner = true
 [node name="Sprite" type="AnimatedSprite2D" parent="TurretHead" unique_id=362064827]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_vf7ke")
-scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_eadfn")
 
 [node name="Marker" type="Marker2D" parent="TurretHead" unique_id=787475846]

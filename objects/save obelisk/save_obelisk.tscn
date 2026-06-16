@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cju0qarbtrmbd" path="res://objects/save obelisk/save_obelisk.gd" id="1_47ivx"]
 [ext_resource type="Texture2D" uid="uid://bwo2pcll8w3s3" path="res://objects/save obelisk/save_obelisk.png" id="1_fdy05"]
 [ext_resource type="PackedScene" uid="uid://db3o7r26hm084" path="res://systems/InteractArea/interact_area.tscn" id="2_47ivx"]
+[ext_resource type="Texture2D" uid="uid://u21qhsyjap6j" path="res://game_assets/Pixel Holy Spell Effect 32x32 Pack 3/00.png" id="3_do45k"]
 [ext_resource type="Texture2D" uid="uid://o5tljqq3vr32" path="res://game_assets/objects/Bullets-Sheet.png" id="4_uqiu5"]
 [ext_resource type="AudioStream" uid="uid://br2ne4413x0tl" path="res://sound/sfx/ambience/amb_droning2.mp3" id="5_7oa4s"]
 
@@ -45,13 +46,150 @@ color_ramp = SubResource("GradientTexture1D_7oa4s")
 anim_offset_min = 0.7
 anim_offset_max = 0.7
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uqiu5"]
-particles_animation = true
-particles_anim_h_frames = 4
-particles_anim_v_frames = 4
-particles_anim_loop = false
+[sub_resource type="AtlasTexture" id="AtlasTexture_do45k"]
+atlas = ExtResource("3_do45k")
+region = Rect2(1088, 0, 64, 64)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7oa4s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsrs7"]
+atlas = ExtResource("3_do45k")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uegy7"]
+atlas = ExtResource("3_do45k")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnpj5"]
+atlas = ExtResource("3_do45k")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edwl8"]
+atlas = ExtResource("3_do45k")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kknwy"]
+atlas = ExtResource("3_do45k")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm8eg"]
+atlas = ExtResource("3_do45k")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23wyp"]
+atlas = ExtResource("3_do45k")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hy7nd"]
+atlas = ExtResource("3_do45k")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vptw6"]
+atlas = ExtResource("3_do45k")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdovg"]
+atlas = ExtResource("3_do45k")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv7e0"]
+atlas = ExtResource("3_do45k")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8oal"]
+atlas = ExtResource("3_do45k")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2i1g"]
+atlas = ExtResource("3_do45k")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c3wm"]
+atlas = ExtResource("3_do45k")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfudd"]
+atlas = ExtResource("3_do45k")
+region = Rect2(896, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o61v2"]
+atlas = ExtResource("3_do45k")
+region = Rect2(960, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxeud"]
+atlas = ExtResource("3_do45k")
+region = Rect2(1024, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwrln"]
+atlas = ExtResource("3_do45k")
+region = Rect2(1152, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwrln"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do45k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsrs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uegy7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnpj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edwl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kknwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm8eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23wyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hy7nd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vptw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdovg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv7e0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8oal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2i1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c3wm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfudd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o61v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxeud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwrln")
+}],
+"loop": false,
+"name": &"default",
+"speed": 18.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oa4s"]
+atlas = ExtResource("4_uqiu5")
+region = Rect2(48, 32, 16, 16)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dnpj5"]
 particle_flag_disable_z = true
@@ -64,8 +202,6 @@ orbit_velocity_max = 0.1500001
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_qsrs7")
 color_ramp = SubResource("GradientTexture1D_7oa4s")
-anim_offset_min = 0.7
-anim_offset_max = 0.7
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqiu5"]
 size = Vector2(32, 32)
@@ -87,12 +223,16 @@ amount = 30
 texture = ExtResource("4_uqiu5")
 process_material = SubResource("ParticleProcessMaterial_uegy7")
 
+[node name="SpriteShockwave" type="AnimatedSprite2D" parent="." unique_id=1745908138]
+sprite_frames = SubResource("SpriteFrames_pwrln")
+frame = 18
+frame_progress = 1.0
+
 [node name="Shockwave" type="GPUParticles2D" parent="." unique_id=1433859341]
 light_mask = 0
-material = SubResource("CanvasItemMaterial_uqiu5")
 emitting = false
 amount = 50
-texture = SubResource("CompressedTexture2D_7oa4s")
+texture = SubResource("AtlasTexture_7oa4s")
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0

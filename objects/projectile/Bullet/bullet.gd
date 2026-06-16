@@ -6,9 +6,12 @@ class_name Bullet
 
 @export_category("Components")
 @export var hitbox_component : HitboxComponent
+@export var bullet_sprite : Node2D
 var dir : float = 0.0
 
 func _ready() -> void:
+	if bullet_sprite:
+		bullet_sprite.rotation = dir
 	hitbox_component.hit_landed.connect(delete_bullet)
  
 func _physics_process(_delta: float) -> void:
