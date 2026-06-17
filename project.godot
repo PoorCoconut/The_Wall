@@ -38,6 +38,13 @@ MusicManager="*res://globals/Music Manager/music_manager.tscn"
 Events="*uid://dp7ruldhwh5ke"
 UiDebug="*res://ui/debug/ui_debug.tscn"
 
+[debug]
+
+shapes/navigation/3d/geometry_edge_color=Color(0.5019608, 0.45882353, 1, 1)
+shapes/navigation/3d/geometry_face_color=Color(0.5019608, 0.4745098, 1, 0.4)
+shapes/navigation/2d/geometry_edge_color=Color(0.5019608, 0.35686275, 1, 1)
+shapes/navigation/2d/geometry_face_color=Color(0.5019608, 0.29411766, 1, 0.4)
+
 [dialogic]
 
 directories/dch_directory={
@@ -151,6 +158,7 @@ Enemy="Entity that DEALS DAMAGE "
 Camera=""
 RoomTransition=""
 Obelisk=""
+_nav_source="This is for tilemaps"
 
 [gui]
 

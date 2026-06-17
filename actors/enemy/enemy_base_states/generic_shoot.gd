@@ -26,10 +26,8 @@ func update(delta: float) -> void:
 
 	# If the player walks into melee range, back off a little
 	if d < min_engage_distance:
-		var away_dir = (enemy.global_position - enemy.target.global_position).normalized()
-		enemy.movement_component.set_velocity(away_dir)
-		enemy.movement_component.apply_friction(delta)
-		enemy.movement_component.move()
+		var away_point = enemy.global_position + (enemy.global_position - enemy.target.global_position).normalized()
+		enemy.move_toward_point(away_point, delta)
 	else:
 		enemy.stop_moving(delta)
 

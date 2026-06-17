@@ -25,6 +25,13 @@ class_name EnemySpawner
 ## The rest is the flash + fade-out that happens after the enemy is released.
 @export_range(0.0, 1.0) var buildup_ratio : float = 0.75
 
+@export_group("Enemy")
+## Optional: set this in the Inspector if you want to place a spawner directly
+## in a level and have it always spawn the same enemy type. If you call
+## spawn() with an explicit entity_scene argument, that argument always wins —
+## this export is only used as a fallback when none is passed.
+@export var default_enemy_scene : PackedScene
+
 @export_group("Visuals")
 ## Tint of the light pillar (default: warm white).
 @export var pillar_color   : Color = Color(1.0, 0.95, 0.8, 1.0)
@@ -53,15 +60,22 @@ var _spawn_scene    : PackedScene = null
 # ─────────────────────────────────────────────────────────────────
 
 ## Call this to kick off the spawn sequence.
-##   entity_scene   — any PackedScene whose root extends EnemyBase
+##   entity_scene   — PackedScene whose root extends EnemyBase. Pass null to
+##                     use default_enemy_scene instead (set in the Inspector).
 ##   spawn_position — world position for both the spawner and the enemy
 ##   parent_node    — where to add the enemy (usually get_tree().current_scene)
 func spawn(entity_scene: PackedScene, spawn_position: Vector2, parent_node: Node) -> void:
-	_spawn_scene = entity_scene
+	var scene_to_use : PackedScene = entity_scene if entity_scene else default_enemy_scene
+	if not scene_to_use:
+		push_error("EnemySpawner: no entity_scene passed and no default_enemy_scene set. Aborting.")
+		queue_free()
+		return
+
+	_spawn_scene = scene_to_use
 	global_position = spawn_position
 
 	# ── 1. Instantiate the enemy NOW so it exists during the effect ──
-	_enemy_instance = entity_scene.instantiate() as EnemyBase
+	_enemy_instance = scene_to_use.instantiate() as EnemyBase
 	if not _enemy_instance:
 		push_error("EnemySpawner: PackedScene root is not an EnemyBase. Aborting.")
 		queue_free()

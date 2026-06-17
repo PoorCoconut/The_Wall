@@ -54,7 +54,7 @@ radius = 7.071068
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pnwlf"]
-radius = 235.07658
+radius = 353.45154
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdvu2"]
 bg_color = Color(0, 0, 0, 1)
@@ -62,7 +62,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgonl"]
 bg_color = Color(0.25882354, 1, 0, 1)
 
-[node name="Crawler" type="CharacterBody2D" unique_id=1147587710 node_paths=PackedStringArray("health_component", "movement_component", "sprite", "attack_range", "looker") groups=["Enemy"]]
+[node name="Crawler" type="CharacterBody2D" unique_id=1147587710 node_paths=PackedStringArray("health_component", "movement_component", "sprite", "fsm", "attack_range", "looker") groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_4qekv")
 particle_path_gore = ExtResource("2_qdvu2")
@@ -70,18 +70,20 @@ particle_path_explosion = ExtResource("3_mgonl")
 health_component = NodePath("HealthComponent")
 movement_component = NodePath("MovementComponent")
 sprite = NodePath("Sprite2D")
+fsm = NodePath("FSM")
 attack_range = NodePath("AttackRange")
 looker = NodePath("LookerNode")
 threat_level = 0.1
 stun_duration = 0.3
 particle_path_hit = ExtResource("4_e76aq")
+particle_path_death = ExtResource("3_mgonl")
 
 [node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("5_dp0u8")]
 MAX_HP = 1
 
 [node name="MovementComponent" parent="." unique_id=1315994833 node_paths=PackedStringArray("ENTITY") instance=ExtResource("5_0x6d2")]
 ENTITY = NodePath("..")
-MAX_SPEED = 50.0
+MAX_SPEED = 20.0
 FRICTION = 500.0
 ACCELERATION = 300.0
 
@@ -113,10 +115,10 @@ weight = 0.0
 shape = SubResource("CircleShape2D_4qekv")
 
 [node name="AttackRange" parent="." unique_id=1031003738 instance=ExtResource("11_2yc2l")]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" parent="AttackRange" index="0" unique_id=430212409]
+visible = false
 shape = SubResource("CircleShape2D_pnwlf")
 
 [node name="LookerNode" type="Marker2D" parent="." unique_id=680200325]
@@ -133,8 +135,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_mgonl")
 step = 1.0
 show_percentage = false
 
-[node name="FSM" type="Node" parent="." unique_id=1491796571]
+[node name="FSM" type="Node" parent="." unique_id=1491796571 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("12_a1b3p")
+initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="FSM" unique_id=1043274490]
 script = ExtResource("13_fcg2p")
@@ -146,6 +149,11 @@ script = ExtResource("14_y6s3a")
 script = ExtResource("14_vew84")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1169465662]
+path_desired_distance = 4.0
+avoidance_enabled = true
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_line_width = 2.0
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

@@ -6,6 +6,7 @@ extends EnemyState
 ##   → Chase  : when enemy.target becomes non-null (detected by Looker/sight logic)
 
 func enter() -> void:
+	print("Entered Idle State")
 	# Play idle animation if the sprite supports it
 	if enemy.sprite is AnimatedSprite2D:
 		enemy.sprite.play("idle")

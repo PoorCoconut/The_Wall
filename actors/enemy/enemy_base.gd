@@ -126,15 +126,20 @@ func move_toward_point(point: Vector2, delta: float) -> void:
 	if not movement_component:
 		return
 	var dir = (point - global_position).normalized()
-	movement_component.set_velocity(dir)
-	movement_component.apply_friction(delta)
+	movement_component.accelerate_in_direction(dir, delta)
 	movement_component.move()
 
 func stop_moving(delta: float) -> void:
 	if movement_component:
-		movement_component.set_velocity(Vector2.ZERO)
-		movement_component.apply_friction(delta)
+		# Passing ZERO makes accelerate_in_direction apply friction internally
+		movement_component.accelerate_in_direction(Vector2.ZERO, delta)
 		movement_component.move()
+
+## Apply an instant knockback impulse (e.g. from a melee hit or explosion).
+## force is a velocity-space vector — direction * strength.
+func apply_knockback(force: Vector2) -> void:
+	if movement_component:
+		movement_component.apply_knockback(force)
 
 func look_at_target(world_pos: Vector2) -> void:
 	if looker:
