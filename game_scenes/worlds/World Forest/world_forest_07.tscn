@@ -88,6 +88,7 @@ size = Vector2(896, 288)
 [node name="world_forest_07" type="Node2D" unique_id=1446299206]
 y_sort_enabled = true
 script = ExtResource("1_641g3")
+music_name = "warning"
 
 [node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("1_qomaa")]
 

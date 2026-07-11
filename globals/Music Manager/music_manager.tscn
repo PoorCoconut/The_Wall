@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://78t0nmghggyd"]
 
 [ext_resource type="Script" uid="uid://ok7aycfrhu2f" path="res://systems/Custom Music Track Resource/MusicTrack.gd" id="1_edcgs"]
-[ext_resource type="AudioStream" uid="uid://cs2uq2glmo7gb" path="res://sound/music/TW OST - Overgrown (Forest)/Wahhh Pad.mp3" id="2_uvhfi"]
-[ext_resource type="AudioStream" uid="uid://bnv17g7x3444b" path="res://sound/music/TW OST - Overgrown (Forest)/Dreams.mp3" id="3_517qc"]
-[ext_resource type="AudioStream" uid="uid://hunw1ft2r33c" path="res://sound/music/TW OST - Overgrown (Forest)/Double Bass Staccato.mp3" id="4_1ovvu"]
-[ext_resource type="AudioStream" uid="uid://dlicy4isj4xwe" path="res://sound/music/TW OST - Overgrown (Forest)/Violins Pizzicato.mp3" id="5_ui0ya"]
-[ext_resource type="AudioStream" uid="uid://q6lqqws7dqa6" path="res://sound/music/TW OST - Overgrown (Forest)/Acoustic Soft.mp3" id="6_ac5hv"]
-[ext_resource type="AudioStream" uid="uid://dncltbs5u5cb4" path="res://sound/music/TW OST - Overgrown (Forest)/Nylon Soft.mp3" id="7_4xba3"]
-[ext_resource type="AudioStream" uid="uid://df5674vjhwmuh" path="res://sound/music/TW OST - Overgrown (Forest)/Long String.mp3" id="8_2jjgd"]
-[ext_resource type="AudioStream" uid="uid://b4dhg1ymmyv7w" path="res://sound/music/TW OST - Overgrown (Forest)/Brighten.mp3" id="9_xrk1l"]
-[ext_resource type="AudioStream" uid="uid://bhl33w8seh0h5" path="res://sound/music/TW OST - Overgrown (Forest)/High Hats.mp3" id="10_5thek"]
-[ext_resource type="AudioStream" uid="uid://b3s2rxu28qqkm" path="res://sound/music/TW OST - Overgrown (Forest)/Strat Air FX.mp3" id="11_jrkqm"]
-[ext_resource type="AudioStream" uid="uid://dhncqcdsnuepe" path="res://sound/music/TW OST - Overgrown (Forest)/Drum Beat .mp3" id="12_ilqpo"]
+[ext_resource type="AudioStream" uid="uid://ciyivlysntbob" path="res://sound/music/TW_OST Overgrowth (Forest)/Wahhh Pad.wav" id="2_edcgs"]
+[ext_resource type="AudioStream" uid="uid://blt0ss2aybvft" path="res://sound/music/TW_OST Overgrowth (Forest)/Dreams.wav" id="3_uvhfi"]
+[ext_resource type="AudioStream" uid="uid://djrcji2fpy3f4" path="res://sound/music/TW_OST Overgrowth (Forest)/Double Bass Staccato.wav" id="4_517qc"]
+[ext_resource type="AudioStream" uid="uid://drid3cdc1p4d4" path="res://sound/music/TW_OST Overgrowth (Forest)/Violins Pizzicato.wav" id="5_1ovvu"]
+[ext_resource type="AudioStream" uid="uid://dnhomt3k3slmu" path="res://sound/music/TW_OST Overgrowth (Forest)/Acoustic Soft.wav" id="6_ui0ya"]
+[ext_resource type="AudioStream" uid="uid://dl26nepg3u6xy" path="res://sound/music/TW_OST Overgrowth (Forest)/Nylon Soft.wav" id="7_ac5hv"]
+[ext_resource type="AudioStream" uid="uid://dmuh44v4alv7a" path="res://sound/music/TW_OST Overgrowth (Forest)/Long String.wav" id="8_4xba3"]
+[ext_resource type="AudioStream" uid="uid://df1jpxgp6s0s2" path="res://sound/music/TW_OST Overgrowth (Forest)/Brighten.wav" id="9_2jjgd"]
+[ext_resource type="AudioStream" uid="uid://tvrvjvyk3wsl" path="res://sound/music/TW_OST Overgrowth (Forest)/High Hats.wav" id="10_xrk1l"]
+[ext_resource type="AudioStream" uid="uid://cfoekb83ckens" path="res://sound/music/TW_OST Overgrowth (Forest)/Strat Air FX.wav" id="11_5thek"]
+[ext_resource type="AudioStream" uid="uid://ufmgaq7sy2dm" path="res://sound/music/TW_OST Overgrowth (Forest)/Drum Beat .wav" id="12_jrkqm"]
+[ext_resource type="AudioStream" uid="uid://cbyna57anthda" path="res://sound/music/TW_OST_LaserDance.wav" id="13_uvhfi"]
 
 [sub_resource type="GDScript" id="GDScript_5flft"]
 script/source = "extends Node
@@ -119,10 +120,22 @@ func stop_music(fade_out_time: float = 2.0) -> void:
 [sub_resource type="Resource" id="Resource_y3vpy"]
 script = ExtResource("1_edcgs")
 track_name = "forest"
-stems = Array[AudioStream]([ExtResource("2_uvhfi"), ExtResource("3_517qc"), ExtResource("4_1ovvu"), ExtResource("5_ui0ya"), ExtResource("6_ac5hv"), ExtResource("7_4xba3"), ExtResource("8_2jjgd"), ExtResource("9_xrk1l"), ExtResource("10_5thek"), ExtResource("11_jrkqm"), ExtResource("12_ilqpo")])
+stems = Array[AudioStream]([ExtResource("2_edcgs"), ExtResource("3_uvhfi"), ExtResource("4_517qc"), ExtResource("5_1ovvu"), ExtResource("6_ui0ya"), ExtResource("7_ac5hv"), ExtResource("8_4xba3"), ExtResource("9_2jjgd"), ExtResource("10_xrk1l"), ExtResource("11_5thek"), ExtResource("12_jrkqm")])
+metadata/_custom_type_script = "uid://ok7aycfrhu2f"
+
+[sub_resource type="Resource" id="Resource_517qc"]
+script = ExtResource("1_edcgs")
+track_name = "lazik"
+stems = Array[AudioStream]([ExtResource("13_uvhfi")])
+metadata/_custom_type_script = "uid://ok7aycfrhu2f"
+
+[sub_resource type="Resource" id="Resource_1ovvu"]
+script = ExtResource("1_edcgs")
+track_name = "warning"
+stems = Array[AudioStream]([ExtResource("10_xrk1l")])
 metadata/_custom_type_script = "uid://ok7aycfrhu2f"
 
 [node name="MusicManager" type="Node" unique_id=1495717072]
 process_mode = 3
 script = SubResource("GDScript_5flft")
-music_tracks = Array[ExtResource("1_edcgs")]([SubResource("Resource_y3vpy")])
+music_tracks = Array[ExtResource("1_edcgs")]([SubResource("Resource_y3vpy"), SubResource("Resource_517qc"), SubResource("Resource_1ovvu")])

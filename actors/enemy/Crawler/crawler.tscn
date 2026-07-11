@@ -40,7 +40,18 @@ animations = [{
 "texture": SubResource("AtlasTexture_4qekv")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu3en")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qekv")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -90,8 +101,8 @@ ACCELERATION = 300.0
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=243531092]
 material = SubResource("ShaderMaterial_pnwlf")
 sprite_frames = SubResource("SpriteFrames_0fgnf")
-autoplay = "default"
-frame_progress = 0.44587666
+animation = &"walk"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1706486528]
 shape = SubResource("CircleShape2D_d2nw4")

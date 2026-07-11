@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://df1jpxgp6s0s2"
+path="res://.godot/imported/Brighten.wav-f2a1a3258e498a01cd5e42da63ccf632.sample"
+
+[deps]
+
+source_file="res://sound/music/TW_OST Overgrowth (Forest)/Brighten.wav"
+dest_files=["res://.godot/imported/Brighten.wav-f2a1a3258e498a01cd5e42da63ccf632.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

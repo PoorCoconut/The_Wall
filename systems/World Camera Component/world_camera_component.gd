@@ -12,8 +12,8 @@ enum CameraMode {
 @export var camera_mode: CameraMode = CameraMode.ENTITY_ATTACHED
 
 
-@export var target : PhysicsBody2D
-@export var target2 : PhysicsBody2D
+@export var target : Node2D
+@export var target2 : Node2D
 @export var following : bool = true
 @export var mouse_cam_offset : bool = true
 

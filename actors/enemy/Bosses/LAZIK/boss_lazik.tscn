@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ckgkya5pn2cr2"]
 
-[ext_resource type="Script" uid="uid://dh8hmw6tx2e7e" path="res://actors/enemy/Turrets/BeamBolt/beam_bolt.gd" id="1_1202o"]
+[ext_resource type="Script" uid="uid://cq8h5cgk2tp0t" path="res://actors/enemy/Bosses/LAZIK/boss_lazik.gd" id="1_1202o"]
 [ext_resource type="PackedScene" uid="uid://cd0gji0ohlvxv" path="res://systems/Entity Components/Health Component/HealthComponent.tscn" id="2_05br8"]
 [ext_resource type="Shader" uid="uid://dl6ljofs1qdoi" path="res://vfx/shaders/entity_hit_blink.gdshader" id="2_to2f5"]
 [ext_resource type="PackedScene" uid="uid://6mpsiyi4y6jm" path="res://vfx/effects/Laser Scorch Trail/laser_scorch_trail.tscn" id="3_341w6"]
@@ -55,10 +55,6 @@ collision_mask = 0
 script = ExtResource("1_1202o")
 health_component = NodePath("HealthComponent")
 hurtbox_component = NodePath("HurtboxComponent")
-threat_level = 1.0
-laser_width = 2.0
-tip_speed = 75.0
-turn_speed = 3.0
 
 [node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("2_05br8")]
 MAX_HP = 15
@@ -113,7 +109,7 @@ shape = SubResource("CircleShape2D_nlhvm")
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=1544221988]
 unique_name_in_owner = true
-wait_time = 2.0
+wait_time = 5.0
 one_shot = true
 autostart = true
 

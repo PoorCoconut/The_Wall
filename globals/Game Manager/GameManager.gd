@@ -31,6 +31,11 @@ var last_saved_room
 var current_world_state : String = "default"
 # World states: [default, freeze]
 
+# -- Game State --
+var defeated_lazik1 : bool = false
+var defeated_lazik2 : bool = false
+
+
 enum LOCATION {
 	UNKNOWN, # Default / failsafe
 	HUB,

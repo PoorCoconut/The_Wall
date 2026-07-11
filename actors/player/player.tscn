@@ -1489,7 +1489,6 @@ health_component = NodePath("HealthComponent")
 movement_component = NodePath("MovementComponent")
 hurtbox_component = NodePath("Hurtbox")
 hitbox_component = NodePath("Hitbox")
-debug_has_dash = true
 dash_speed = 200.0
 
 [node name="HealthComponent" parent="." unique_id=1869818733 instance=ExtResource("2_qct7d")]

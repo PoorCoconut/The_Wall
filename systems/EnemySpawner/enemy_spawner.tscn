@@ -2,5 +2,52 @@
 
 [ext_resource type="Script" uid="uid://dc1e17n2hf7xf" path="res://systems/EnemySpawner/enemy_spawner.gd" id="1_m138r"]
 
+[sub_resource type="Curve" id="Curve_m138r"]
+_data = [Vector2(0.015625, 0), 0.0, 0.0, 0, 0, Vector2(0.12499999, 1), 0.0, 0.0, 0, 0, Vector2(0.8710937, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_3eppd"]
+curve = SubResource("Curve_m138r")
+
+[sub_resource type="Curve" id="Curve_3eppd"]
+_limits = [-18.451416, 144.31631, 0.0, 1.0]
+_data = [Vector2(0, -18.451416), 0.0, 0.0, 0, 0, Vector2(0.515625, 144.31631), 0.0, 0.0, 0, 0, Vector2(1, -18.451416), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mrqiy"]
+curve = SubResource("Curve_3eppd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m138r"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 30.0
+angular_velocity_min = -90.000015
+angular_velocity_max = 89.999985
+gravity = Vector3(0, -39.2, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 9.999997
+tangential_accel_min = -1.0000023
+tangential_accel_max = 0.99999774
+tangential_accel_curve = SubResource("CurveTexture_mrqiy")
+scale_curve = SubResource("CurveTexture_3eppd")
+
+[sub_resource type="Gradient" id="Gradient_m138r"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="EnemySpawner" type="Node2D" unique_id=875646278]
 script = ExtResource("1_m138r")
+
+[node name="LandParticles" type="GPUParticles2D" parent="." unique_id=1015606958]
+emitting = false
+amount = 30
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_m138r")
+
+[node name="Pillar" type="Line2D" parent="." unique_id=220631141]
+position = Vector2(0, 1.9073486e-06)
+points = PackedVector2Array(0, 7.999998, 0, -96)
+width = 16.0
+gradient = SubResource("Gradient_m138r")

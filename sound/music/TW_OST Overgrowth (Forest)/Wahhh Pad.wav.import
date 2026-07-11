@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ciyivlysntbob"
+path="res://.godot/imported/Wahhh Pad.wav-3a2e6156054b615e8d7bf47f0a7c8cfe.sample"
+
+[deps]
+
+source_file="res://sound/music/TW_OST Overgrowth (Forest)/Wahhh Pad.wav"
+dest_files=["res://.godot/imported/Wahhh Pad.wav-3a2e6156054b615e8d7bf47f0a7c8cfe.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
